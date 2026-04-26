@@ -17,13 +17,15 @@ export const metadata: Metadata = {
   description: "Elegant digital wedding invitations with integrated RSVP",
   manifest: "/manifest.json",
   themeColor: "#d4af37",
+  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "SmartWedding",
   },
-  formatDetection: {
-    telephone: false,
+  icons: {
+    apple: "/icons/icon-192x192.png",
+    shortcut: "/icons/icon-192x192.png",
   },
 };
 
