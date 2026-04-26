@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+
+  --color-gold: #d4af37;
+  --color-gold-light: #f9f6e5;
+  --color-gold-vibrant: #FFC107;
+  --color-islamic-green: #009000;
+  --color-islamic-gold: #c5a059;
+  --color-gold-primary: #9E7E45;
+  --color-gold-muted: #C5A059;
+  --color-gold-dark: #735B32;
+
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-slide-up: slide-up 0.8s ease-out forwards;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.wedding-card {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -4px rgba(0, 0, 0, 0.05);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbar - Hidden */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Base styles for smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* DESKTOP ONLY PERFECT BORDER */
+@media (min-width: 1024px) {
+  .right-card-wrapper {
+    border: 2px solid rgba(212, 175, 55, 0.25);
+    border-radius: 3rem;
+  }
+}
+
+/* STRICT MOBILE PROTECTION */
+@media (max-width: 768px) {
+  .right-card-wrapper {
+    border: none !important;
+  }
+}
