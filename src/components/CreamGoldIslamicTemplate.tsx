@@ -135,7 +135,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
             <motion.div
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="flex flex-col items-center mb-[15px]"
+              className="flex flex-col items-center mb-[13px]"
             >
               <p className="text-gold-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' 
@@ -326,7 +326,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
-            margin-top: 30px !important;
+            margin-top: 33px !important;
           }
 
           /* Theme override for Music Button */
