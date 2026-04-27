@@ -67,13 +67,13 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-[30px] lg:pb-10 overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-10 overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[10px] lg:mt-[7px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
+              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[10px] lg:mt-[17px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
             >
               IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL
             </motion.p>
@@ -187,7 +187,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                       </p>
                       
                       {/* Line 3: Location */}
-                      <p className="text-gold-primary font-cinzel text-[11px] lg:text-[12px] font-bold uppercase tracking-wider line-clamp-1">
+                      <p className="text-gold-primary font-cinzel text-[11px] lg:text-[12px] font-bold uppercase tracking-wider line-clamp-1 mt-[10px] mb-[-10px] location-text">
                         {wedding.nikah_location}
                       </p>
                     </div>
