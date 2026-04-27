@@ -177,7 +177,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                   )}
                 </div>
 
-                <div className="mt-[10px] lg:mt-[20px] flex flex-col items-center w-full">
+                <div className="mt-[7px] lg:mt-[20px] flex flex-col items-center w-full">
                   {hasNikah ? (
                     <div className="flex flex-col items-center w-full px-4">
                       {/* Line 1: Nikah Ceremony Label */}
@@ -326,7 +326,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
-            margin-top: 33px !important;
+            margin-top: 36px !important;
           }
 
           /* Theme override for Music Button */
