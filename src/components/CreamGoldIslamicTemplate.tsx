@@ -80,7 +80,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             {/* A. BISMILLAH LINE */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[30px] lg:mt-[20px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
+              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[30px] lg:mt-[10px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
             >
               IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL
             </motion.p>
