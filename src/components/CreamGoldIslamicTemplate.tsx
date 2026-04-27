@@ -80,7 +80,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             {/* A. BISMILLAH LINE */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[30px] lg:mt-[27px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
+              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[30px] lg:mt-[30px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
             >
               IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL
             </motion.p>
@@ -254,7 +254,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
         </div>
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
-        <aside className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[2.2rem] bg-transparent lg:bg-white lg:shadow-[0_20px_50px_rgba(197,160,89,0.1)] overflow-visible gap-5 lg:gap-0 border-none lg:border-[1px] border-[#c5a059]/20">
+        <aside className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[820px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[2.2rem] bg-transparent lg:bg-white lg:shadow-[0_20px_50px_rgba(197,160,89,0.1)] overflow-visible gap-5 lg:gap-0 border-none lg:border-[1px] border-[#c5a059]/20">
           
           {/* Countdown */}
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-gold-muted/30 rounded-[1.8rem] lg:rounded-none bg-white lg:bg-transparent shadow-xl lg:shadow-none">
