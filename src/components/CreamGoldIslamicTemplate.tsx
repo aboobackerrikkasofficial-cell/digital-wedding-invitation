@@ -135,7 +135,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
             <motion.div
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="flex flex-col items-center mb-[18px]"
+              className="flex flex-col items-center mb-[15px]"
             >
               <p className="text-gold-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' 
