@@ -74,7 +74,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[170px] lg:mt-[210px] px-6 lg:px-10 pb-[70px] lg:pb-[30px] overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[170px] lg:mt-[210px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
