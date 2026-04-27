@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Sparkles, Clock, MapPin } from "lucide-react";
+import { Sparkles, Clock, MapPin, ArrowLeft } from "lucide-react";
 import { Countdown } from "./Countdown";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
@@ -36,14 +36,19 @@ const DiamondJewel = ({ className = "", animate = true }) => (
 export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: TemplateProps) {
   const date = new Date(wedding.wedding_date);
   const hasNikah = !!wedding.nikah_date;
+  
+  useEffect(() => {
+    document.body.classList.add('cream-gold-active');
+    return () => document.body.classList.remove('cream-gold-active');
+  }, []);
 
   return (
-    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-2 md:p-6 lg:p-10 cream-gold-theme">
+    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:p-10 cream-gold-theme">
       <BackgroundDecor />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[95svh] lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[720px] lg:h-[820px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
           
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
@@ -67,7 +72,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-[70px] overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[170px] lg:mt-[210px] px-6 lg:px-10 pb-[70px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
@@ -170,7 +175,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                   )}
                 </div>
 
-                <div className="mt-[30px] md:mt-[50px] flex flex-col items-center w-full">
+                <div className="mt-[15px] md:mt-[50px] flex flex-col items-center w-full">
                   {hasNikah ? (
                     <div className="flex flex-col items-center w-full px-4">
                       {/* Line 1: Nikah Ceremony Label */}
@@ -214,6 +219,18 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
               </div>
             </motion.div>
           </motion.div>
+          
+          {/* Back Button for mobile app preview */}
+          {typeof window !== 'undefined' && (window.location.search.includes('preview=true') || window.location.search.includes('side=')) && (
+            <div className="lg:hidden absolute top-4 left-4 z-[100]">
+              <button 
+                onClick={() => window.history.back()}
+                className="bg-gold-dark/90 backdrop-blur-sm p-2 rounded-full shadow-md text-white hover:bg-gold-dark"
+              >
+                <ArrowLeft size={20} />
+              </button>
+            </div>
+          )}
         </main>
 
         {/* 6. DIVIDER */}
@@ -296,7 +313,15 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
-            margin-top: 75px !important;
+            margin-top: 25px !important;
+          }
+
+          /* Theme override for Music Button */
+          body.cream-gold-active button.fixed.z-\[100\] {
+            background-color: #735B32 !important;
+            color: white !important;
+            border-color: #735B32 !important;
+            box-shadow: 0 10px 25px rgba(115, 91, 50, 0.3) !important;
           }
 
           .cream-gold-theme .friends-family {
