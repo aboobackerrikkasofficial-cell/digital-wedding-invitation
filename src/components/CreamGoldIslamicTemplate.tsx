@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Sparkles, Clock, MapPin, ArrowLeft } from "lucide-react";
+import { Sparkles, Clock, MapPin, ArrowLeft, LayoutDashboard } from "lucide-react";
 import { Countdown } from "./Countdown";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
@@ -48,7 +50,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[720px] lg:h-[820px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[715px] lg:h-[820px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
           
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
@@ -220,8 +222,19 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             </motion.div>
           </motion.div>
           
-          {/* Back Button for mobile app preview */}
-          {typeof window !== 'undefined' && (window.location.search.includes('preview=true') || window.location.search.includes('side=')) && (
+          {/* Admin Dashboard Navigation (Preview Mode Only) */}
+          {typeof window !== 'undefined' && window.location.search.includes('preview=true') && (
+            <Link 
+              href="/admin"
+              className="fixed top-4 left-4 z-[150] flex items-center gap-2 px-4 py-2 bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/40 text-gold-dark rounded-full font-bold text-xs transition-all shadow-xl shadow-gold-dark/10"
+            >
+              <LayoutDashboard size={14} />
+              Back to Dashboard
+            </Link>
+          )}
+
+          {/* Back Button for mobile side preview (non-admin) */}
+          {typeof window !== 'undefined' && !window.location.search.includes('preview=true') && window.location.search.includes('side=') && (
             <div className="lg:hidden absolute top-4 left-4 z-[100]">
               <button 
                 onClick={() => window.history.back()}
@@ -313,7 +326,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
-            margin-top: 25px !important;
+            margin-top: 30px !important;
           }
 
           /* Theme override for Music Button */
