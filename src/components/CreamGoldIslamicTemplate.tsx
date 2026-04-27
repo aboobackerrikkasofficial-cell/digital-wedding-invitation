@@ -67,13 +67,13 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-10 overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-[25px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[10px] lg:mt-[7px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
+              className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[25px] lg:mt-[22px] mb-[12px] whitespace-nowrap in-the-name-of-allah"
             >
               IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL
             </motion.p>
@@ -170,7 +170,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                   )}
                 </div>
 
-                <div className="mt-0 md:mt-[20px] flex flex-col items-center w-full">
+                <div className="mt-[-15px] md:mt-[5px] flex flex-col items-center w-full">
                   {hasNikah ? (
                     <div className="flex flex-col items-center w-full px-4">
                       {/* Line 1: Nikah Ceremony Label */}
@@ -296,7 +296,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
-            margin-top: 55px !important;
+            margin-top: 70px !important;
           }
 
           .cream-gold-theme .friends-family {
