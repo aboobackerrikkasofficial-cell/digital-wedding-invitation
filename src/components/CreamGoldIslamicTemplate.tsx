@@ -135,7 +135,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
 
             <motion.div
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-              className="flex flex-col items-center mb-5"
+              className="flex flex-col items-center mb-[18px]"
             >
               <p className="text-gold-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' 
@@ -177,7 +177,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                   )}
                 </div>
 
-                <div className="mt-[15px] lg:mt-[20px] flex flex-col items-center w-full">
+                <div className="mt-[10px] lg:mt-[20px] flex flex-col items-center w-full">
                   {hasNikah ? (
                     <div className="flex flex-col items-center w-full px-4">
                       {/* Line 1: Nikah Ceremony Label */}
