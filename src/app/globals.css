@@ -69,6 +69,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overscroll-behavior-y: contain; /* Prevents pull-to-refresh */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .wedding-card {
