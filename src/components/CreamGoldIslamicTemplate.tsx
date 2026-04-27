@@ -67,7 +67,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-5 overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[200px] lg:mt-[230px] px-6 lg:px-10 pb-[70px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
@@ -170,7 +170,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                   )}
                 </div>
 
-                <div className="mt-[-20px] md:mt-0 flex flex-col items-center w-full">
+                <div className="mt-[30px] md:mt-[50px] flex flex-col items-center w-full">
                   {hasNikah ? (
                     <div className="flex flex-col items-center w-full px-4">
                       {/* Line 1: Nikah Ceremony Label */}
