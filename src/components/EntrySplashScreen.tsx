@@ -24,7 +24,7 @@ export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
       exit={{ opacity: 0, scale: 1.1, pointerEvents: "none" }}
       transition={{ duration: 1, ease: "easeInOut" }}
       className={`fixed inset-0 z-[200] flex items-center justify-center overflow-hidden ${
-        isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#2b1e3f]'
+        isCreamGold ? 'bg-[#E3B0B5]' : 'bg-[#2b1e3f]'
       }`}
     >
       {/* Background Ornaments */}
