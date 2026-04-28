@@ -102,7 +102,7 @@ export function InstallPWA() {
             <div className="bg-[#1a1a1a] backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden pointer-events-auto p-4 md:p-6">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-gold to-gold/60 flex items-center justify-center shadow-lg shadow-gold/20 flex-shrink-0">
-                  <Download className="text-white" size={24} md:size={32} />
+                  <Download className="text-white" size={24} />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-white font-bold text-base md:text-lg">Download as App</h3>

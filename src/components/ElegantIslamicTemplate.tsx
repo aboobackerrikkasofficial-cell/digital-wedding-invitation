@@ -111,12 +111,12 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
             >
               <p className="text-gold-primary font-poppins text-[clamp(8px,2.5vw,10px)] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
                 {wedding.host_selection === 'bride_side' 
-                  ? `${wedding.bride_father_name} & ${wedding.bride_mother_name}` 
-                  : `${wedding.groom_father_name} & ${wedding.groom_mother_name}`}
+                  ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` 
+                  : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
               </p>
               {/* C. LOCATION (UNDER PARENTS) */}
               <p className="text-gold-muted font-poppins text-[8px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
-                {wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}
+                {wedding.host_selection === 'bride_side' ? (wedding.bride_place || "") : (wedding.groom_place || "")}
               </p>
             </motion.div>
 
@@ -159,8 +159,8 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
             >
               <p className="text-gold-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' 
-                  ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name}` 
-                  : `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name}`}
+                  ? (wedding.groom_father_name ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name || ""}` : "") 
+                  : (wedding.bride_father_name ? `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name || ""}` : "")}
               </p>
               <p className="text-gold-muted font-poppins text-[8px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}

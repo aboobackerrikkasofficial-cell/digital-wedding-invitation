@@ -37,7 +37,7 @@ export default function InvitePage() {
         setWedding({
           bride_name: "Sarah",
           groom_name: "Deepak",
-          wedding_date: new Date().toISOString(),
+          wedding_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
           venue_name: "Grand Royal Ballroom",
           google_maps_url: "https://maps.google.com",
           islamic_date: "12th Shawwal 1445",
