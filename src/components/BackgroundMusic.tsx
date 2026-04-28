@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Music, VolumeX } from "lucide-react";
 
@@ -11,7 +11,7 @@ interface BackgroundMusicProps {
 
 export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const ytPlayerRef = useRef<any>(null);
+  const ytPlayerRef = useRef<any>(null); // Keeping any for YouTube Player since it's an external library without easy types here
   const [isPlaying, setIsPlaying] = useState(false);
   const [isYoutube, setIsYoutube] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -61,12 +61,12 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       }
 
-      const onPlayerReady = (event: any) => {
+      const onPlayerReady = (event: { target: any }) => {
         console.log("YouTube Player Ready");
         setIsReady(true);
       };
 
-      const onPlayerStateChange = (event: any) => {
+      const onPlayerStateChange = (event: { data: number; target: any }) => {
         if (event.data === (window as any).YT.PlayerState.PLAYING) {
           setIsPlaying(true);
           setIsManuallyPaused(false);
@@ -112,7 +112,7 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
     }
   }, [musicUrl, isManuallyPaused]);
 
-  const startPlayback = () => {
+  const startPlayback = useCallback(() => {
     if (isManuallyPaused) return; 
 
     if (isYoutube) {
@@ -131,19 +131,19 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
         console.log("Autoplay prevented or failed:", err);
       });
     }
-  };
+  }, [isManuallyPaused, isYoutube, isReady]);
 
   useEffect(() => {
     if (isYoutube && isReady && pendingPlay && !isManuallyPaused) {
       startPlayback();
     }
-  }, [isYoutube, isReady, pendingPlay, isManuallyPaused]);
+  }, [isYoutube, isReady, pendingPlay, isManuallyPaused, startPlayback]);
 
   useEffect(() => {
     if (forcePlay && !isPlaying && !isManuallyPaused && (isReady || !isYoutube)) {
       startPlayback();
     }
-  }, [forcePlay, isPlaying, isManuallyPaused, isReady, isYoutube]);
+  }, [forcePlay, isPlaying, isManuallyPaused, isReady, isYoutube, startPlayback]);
 
   // Heartbeat to ensure music is playing if it should be
   useEffect(() => {
@@ -156,7 +156,7 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [forcePlay, isPlaying, isManuallyPaused]);
+  }, [forcePlay, isPlaying, isManuallyPaused, startPlayback]);
 
   useEffect(() => {
     const handleStartMusic = () => {
@@ -176,7 +176,7 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
       window.removeEventListener('click', handleStartMusic);
       window.removeEventListener('touchstart', handleStartMusic);
     };
-  }, [forcePlay, isManuallyPaused]);
+  }, [forcePlay, isManuallyPaused, isPlaying, startPlayback]);
 
   const toggleMusic = () => {
     if (isYoutube && ytPlayerRef.current) {

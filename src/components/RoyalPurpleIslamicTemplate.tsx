@@ -2,13 +2,50 @@
 
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Sparkles, Music, VolumeX, Clock, MapPin } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Sparkles, Clock, MapPin } from "lucide-react";
+import { useMemo } from "react";
 
 import { Countdown } from "./Countdown";
 
+interface Particle {
+  size: number;
+  duration: number;
+  delay: number;
+  left: number;
+  color: string;
+}
+
+const getParticle = (i: number): Particle => ({
+  size: (i * 5.17 % 1.5) + 1,
+  duration: (i * 11.23 % 10) + 10,
+  delay: (i * 17.31 % 20) - 20,
+  left: (i * 31.47 % 100),
+  color: i % 2 === 0 ? '#D4AF37' : '#E6C76B'
+});
+
+interface Wedding {
+  id: string;
+  template_id: string;
+  wedding_date: string;
+  bride_name: string;
+  groom_name: string;
+  venue_name: string;
+  host_selection: string;
+  bride_father_name?: string;
+  bride_mother_name?: string;
+  bride_place?: string;
+  groom_father_name?: string;
+  groom_mother_name?: string;
+  groom_place?: string;
+  nikah_date?: string;
+  nikah_time?: string;
+  nikah_islamic_date?: string;
+  nikah_location?: string;
+  [key: string]: unknown;
+}
+
 interface TemplateProps {
-  wedding: any;
+  wedding: Wedding;
   onAttend?: () => void;
   onNotAttend?: () => void;
 }
@@ -104,7 +141,7 @@ const GoldArc = () => (
           transition={{ delay: 1.1 }}
           className="text-white font-cinzel font-medium text-[12px] md:text-[14px] tracking-[0.2em] uppercase"
         >
-          "AND WE CREATED YOU IN PAIRS"
+          &quot;AND WE CREATED YOU IN PAIRS&quot;
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -119,45 +156,40 @@ const GoldArc = () => (
   </div>
 );
 
-const GoldDustBackground = () => (
+const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     {/* Base Background Gradient */}
     <div className="absolute inset-0 bg-gradient-to-br from-[#251a36] via-[#2b1e3f] to-[#3a2455] animate-gradient-slow" />
 
     {/* Golden Dust Layers */}
-    {[...Array(30)].map((_, i) => {
-      const size = Math.random() * 1.5 + 1;
-      const duration = Math.random() * 10 + 10;
-      const opacity = 0.2;
-      const delay = Math.random() * -20;
-
-      return (
-        <div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: `${size}px`,
-            height: `${size}px`,
-            left: `${Math.random() * 100}%`,
-            top: '110%',
-            backgroundColor: i % 2 === 0 ? '#D4AF37' : '#E6C76B',
-            opacity: opacity,
-            animation: `floatDust ${duration}s linear infinite`,
-            animationDelay: `${delay}s`,
-            willChange: "transform"
-          }}
-        />
-      );
-    })}
+    {particles.map((particle, i) => (
+      <div
+        key={i}
+        className="absolute rounded-full"
+        style={{
+          width: `${particle.size}px`,
+          height: `${particle.size}px`,
+          left: `${particle.left}%`,
+          top: '110%',
+          backgroundColor: particle.color,
+          opacity: 0.2,
+          animation: `floatDust ${particle.duration}s linear infinite`,
+          animationDelay: `${particle.delay}s`,
+          willChange: "transform"
+        }}
+      />
+    ))}
   </div>
 );
 
 export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: TemplateProps) {
   const date = new Date(wedding.wedding_date);
 
+  const particles = useMemo(() => [...Array(30)].map((_, i) => getParticle(i)), []);
+
   return (
     <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-2 md:p-6 lg:p-10">
-      <GoldDustBackground />
+      <GoldDustBackground particles={particles} />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
@@ -445,7 +477,7 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
                   onClick={onAttend}
                   className="w-full py-3 lg:py-4 border border-gold text-gold font-bold rounded-xl lg:rounded-2xl tracking-widest uppercase text-[11px] lg:text-xs transition-colors bg-gold/10 shadow-lg shadow-gold/5"
                 >
-                  Insha'Allah will attend
+                  Insha&apos;Allah will attend
                 </motion.button>
 
                 <motion.button
@@ -454,7 +486,7 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
                   onClick={onNotAttend}
                   className="w-full py-3 lg:py-4 border border-white/20 text-white/60 font-bold rounded-xl lg:rounded-2xl tracking-widest uppercase text-[11px] lg:text-xs transition-colors hover:text-white"
                 >
-                  No, we can't
+                  No, we can&apos;t
                 </motion.button>
               </div>
             </div>
@@ -507,14 +539,5 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
   );
 }
 
-// Helper for date formatting
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
-};
 
 export default RoyalPurpleIslamicTemplate;

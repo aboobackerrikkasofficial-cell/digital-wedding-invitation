@@ -3,8 +3,15 @@
 import { motion } from "framer-motion";
 import { Sparkles, MailOpen } from "lucide-react";
 
+interface Wedding {
+  template_id: string;
+  groom_name: string;
+  bride_name: string;
+  [key: string]: unknown;
+}
+
 interface EntrySplashScreenProps {
-  wedding: any;
+  wedding: Wedding;
   onOpen: () => void;
 }
 
@@ -29,26 +36,34 @@ export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
       
       {/* Floating Gold Dust */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ 
-              opacity: Math.random() * 0.3,
-              x: Math.random() * 100 + "%",
-              y: Math.random() * 100 + "%"
-            }}
-            animate={{ 
-              opacity: [0.1, 0.4, 0.1],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{ 
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute w-1 h-1 bg-gold rounded-full blur-[1px]"
-          />
-        ))}
+        {[...Array(20)].map((_, i) => {
+          const p = {
+            opacity: (i * 3.17 % 0.3),
+            x: (i * 17.13 % 100) + "%",
+            y: (i * 13.57 % 100) + "%",
+            duration: (i * 5.23 % 5) + 5
+          };
+          return (
+            <motion.div
+              key={i}
+              initial={{ 
+                opacity: p.opacity,
+                x: p.x,
+                y: p.y
+              }}
+              animate={{ 
+                opacity: [0.1, 0.4, 0.1],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{ 
+                duration: p.duration,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute w-1 h-1 bg-gold rounded-full blur-[1px]"
+            />
+          );
+        })}
       </div>
 
       <div className="relative flex flex-col items-center text-center px-6 max-w-md md:max-w-2xl">

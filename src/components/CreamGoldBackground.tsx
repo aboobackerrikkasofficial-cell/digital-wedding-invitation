@@ -1,22 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
+
+interface Particle {
+  id: number;
+  size: number;
+  left: number;
+  duration: number;
+  delay: number;
+  drift: number;
+}
 
 export function CreamGoldBackground() {
-  const [particles, setParticles] = useState<any[]>([]);
-
-  useEffect(() => {
-    const p = [...Array(25)].map((_, i) => ({
-      id: i,
-      size: Math.random() * 8 + 4, // 4px to 12px
-      left: Math.random() * 100,
-      duration: Math.random() * 10 + 10, // 10s to 20s
-      delay: Math.random() * -20,
-      drift: (Math.random() - 0.5) * 40,
-    }));
-    setParticles(p);
-  }, []);
+  const particles = useMemo<Particle[]>(() => [...Array(25)].map((_, i) => ({
+    id: i,
+    size: (i * 7.13 % 8) + 4,
+    left: (i * 13.17 % 100),
+    duration: (i * 19.23 % 10) + 10,
+    delay: (i * 37.41 % 20) - 20,
+    drift: (i * 5.57 % 40) - 20,
+  })), []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#fffcf2]">

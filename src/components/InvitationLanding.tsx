@@ -1,16 +1,29 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { MapPin, Calendar, Volume2, VolumeX, Heart, Sparkles } from "lucide-react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { MapPin, Calendar, Sparkles } from "lucide-react";
 import { format } from "date-fns";
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { ElegantIslamicTemplate } from "./ElegantIslamicTemplate";
 import { RoyalPurpleIslamicTemplate } from "./RoyalPurpleIslamicTemplate";
 import { CreamGoldIslamicTemplate } from "./CreamGoldIslamicTemplate";
 import { PeachFloralTemplate } from "./PeachFloralTemplate";
 
+interface Wedding {
+  id: string;
+  template_id: string;
+  wedding_date: string;
+  bride_name: string;
+  groom_name: string;
+  venue_name: string;
+  google_maps_url?: string;
+  custom_message?: string;
+  islamic_date?: string;
+  [key: string]: unknown;
+}
+
 interface InvitationLandingProps {
-  wedding: any;
+  wedding: Wedding;
   onAttend: () => void;
   onNotAttend: () => void;
 }
@@ -39,29 +52,40 @@ const Bismillah = () => (
 
 // Particle Component for the background
 const Particles = () => {
+  const getParticle = (i: number) => ({
+    x: (i * 13.57 % 100) + "%",
+    y: (i * 17.13 % 100) + "%",
+    opacity: (i * 7.41 % 0.5) + 0.2,
+    duration: (i * 11.23 % 10) + 10,
+    delay: (i * 5.17 % 10)
+  });
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-gold/30 rounded-full"
-          initial={{ 
-            x: Math.random() * 100 + "%", 
-            y: Math.random() * 100 + "%",
-            opacity: Math.random() * 0.5 + 0.2
-          }}
-          animate={{ 
-            y: ["-10%", "110%"],
-            opacity: [0, 0.5, 0]
-          }}
-          transition={{ 
-            duration: Math.random() * 10 + 10, 
-            repeat: Infinity, 
-            ease: "linear",
-            delay: Math.random() * 10
-          }}
-        />
-      ))}
+      {[...Array(20)].map((_, i) => {
+        const p = getParticle(i);
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-gold/30 rounded-full"
+            initial={{ 
+              x: p.x, 
+              y: p.y,
+              opacity: p.opacity
+            }}
+            animate={{ 
+              y: ["-10%", "110%"],
+              opacity: [0, 0.5, 0]
+            }}
+            transition={{ 
+              duration: p.duration, 
+              repeat: Infinity, 
+              ease: "linear",
+              delay: p.delay
+            }}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -77,7 +101,7 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = window.event as any || e;
+      const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
       mouseX.set((clientX / innerWidth - 0.5) * 40);
       mouseY.set((clientY / innerHeight - 0.5) * 40);
@@ -153,7 +177,7 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
 
                 {wedding.custom_message && (
                   <p className="max-w-md mx-auto text-gray-500 text-sm md:text-base font-serif italic leading-relaxed mt-8 opacity-80">
-                      "{wedding.custom_message}"
+                      &quot;{wedding.custom_message}&quot;
                   </p>
                 )}
             </motion.div>

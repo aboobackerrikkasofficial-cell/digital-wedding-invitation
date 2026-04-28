@@ -5,12 +5,32 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Sparkles, Clock, MapPin, ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import { Countdown } from "./Countdown";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
+interface Wedding {
+  wedding_date: string;
+  bride_name: string;
+  groom_name: string;
+  venue_name: string;
+  host_selection: string;
+  bride_father_name?: string;
+  bride_mother_name?: string;
+  bride_place?: string;
+  groom_father_name?: string;
+  groom_mother_name?: string;
+  groom_place?: string;
+  venue_address?: string;
+  nikah_date?: string;
+  nikah_time?: string;
+  nikah_islamic_date?: string;
+  nikah_location?: string;
+  [key: string]: unknown;
+}
+
 interface TemplateProps {
-  wedding: any;
+  wedding: Wedding;
   onAttend?: () => void;
   onNotAttend?: () => void;
 }
@@ -298,7 +318,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                 onClick={onAttend}
                 className="w-full py-4 bg-gold-muted text-white font-poppins font-semibold rounded-xl tracking-widest uppercase text-[10px] lg:text-xs transition-shadow shadow-lg shadow-gold-muted/20 hover:shadow-gold-muted/40"
               >
-                Insha'Allah will attend
+                Insha&apos;Allah will attend
               </motion.button>
 
               <motion.button
@@ -307,7 +327,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                 onClick={onNotAttend}
                 className="w-full py-4 border border-gold-muted/30 text-gold-muted font-poppins font-semibold rounded-xl tracking-widest uppercase text-[10px] lg:text-xs hover:bg-gold-muted/5 transition-colors"
               >
-                No, we can't
+                No, we can&apos;t
               </motion.button>
             </div>
           </div>

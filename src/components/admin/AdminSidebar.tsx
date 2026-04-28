@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { LayoutDashboard, PlusCircle, LogOut, Settings, Menu, X, Sparkles, Eye } from "lucide-react";
+import { LayoutDashboard, PlusCircle, LogOut, Menu, X, Sparkles, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ export function AdminSidebar() {
 
   const handleSignOut = async () => {
     localStorage.removeItem("isAdmin");
-    const { error } = await supabase.auth.signOut();
+    await supabase.auth.signOut();
     router.push("/admin/login");
   };
 

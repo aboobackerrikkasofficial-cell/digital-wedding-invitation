@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -12,12 +12,18 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#d4af37",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "Smart Wedding Invitation System",
   description: "Elegant digital wedding invitations with integrated RSVP",
   manifest: "/manifest.json",
-  themeColor: "#d4af37",
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

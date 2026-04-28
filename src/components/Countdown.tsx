@@ -10,6 +10,22 @@ interface CountdownProps {
   separatorClassName?: string;
 }
 
+const TimeUnit = ({ value, label, numberClassName, labelClassName }: { value: number; label: string; numberClassName?: string; labelClassName?: string }) => (
+  <div className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
+    <motion.div 
+      key={value}
+      initial={{ y: 5, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className={`text-2xl md:text-3xl tabular-nums ${numberClassName || 'font-bold text-gold'}`}
+    >
+      {String(value).padStart(2, '0')}
+    </motion.div>
+    <div className={`text-[10px] uppercase tracking-widest mt-1 ${labelClassName || 'text-white/50 font-sans'}`}>
+      {label}
+    </div>
+  </div>
+);
+
 export function Countdown({ targetDate, numberClassName, labelClassName, separatorClassName }: CountdownProps) {
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
@@ -41,31 +57,16 @@ export function Countdown({ targetDate, numberClassName, labelClassName, separat
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
-      <motion.div 
-        key={value}
-        initial={{ y: 5, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className={`text-2xl md:text-3xl tabular-nums ${numberClassName || 'font-bold text-gold'}`}
-      >
-        {String(value).padStart(2, '0')}
-      </motion.div>
-      <div className={`text-[10px] uppercase tracking-widest mt-1 ${labelClassName || 'text-white/50 font-sans'}`}>
-        {label}
-      </div>
-    </div>
-  );
 
   return (
     <div className="flex justify-center items-center">
-      <TimeUnit value={timeLeft.days} label="Days" />
+      <TimeUnit value={timeLeft.days} label="Days" numberClassName={numberClassName} labelClassName={labelClassName} />
       <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
-      <TimeUnit value={timeLeft.hours} label="Hours" />
+      <TimeUnit value={timeLeft.hours} label="Hours" numberClassName={numberClassName} labelClassName={labelClassName} />
       <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
-      <TimeUnit value={timeLeft.minutes} label="Minutes" />
+      <TimeUnit value={timeLeft.minutes} label="Minutes" numberClassName={numberClassName} labelClassName={labelClassName} />
       <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
-      <TimeUnit value={timeLeft.seconds} label="Seconds" />
+      <TimeUnit value={timeLeft.seconds} label="Seconds" numberClassName={numberClassName} labelClassName={labelClassName} />
     </div>
   );
 }

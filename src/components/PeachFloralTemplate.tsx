@@ -5,8 +5,18 @@ import { format } from "date-fns";
 import { MapPin, Calendar, MousePointer2, Sparkles, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 
+interface Wedding {
+  id: string;
+  bride_name: string;
+  groom_name: string;
+  wedding_date: string;
+  venue_name: string;
+  google_maps_url?: string;
+  [key: string]: unknown;
+}
+
 interface PeachFloralTemplateProps {
-  wedding: any;
+  wedding: Wedding;
   onAttend: () => void;
   onNotAttend: () => void;
 }
@@ -16,7 +26,8 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   if (!mounted) return null;
@@ -58,7 +69,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
             {/* YOU'RE INVITED Badge */}
             <div className="mb-10">
               <span className="bg-[#2B4570] text-[#F4C542] font-black px-8 py-2.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-md border-2 border-[#F4C542]/20">
-                YOU'RE INVITED!
+                YOU&apos;RE INVITED!
               </span>
             </div>
 
@@ -135,7 +146,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
                   onClick={onNotAttend}
                   className="bg-[#D1D5DB] text-[#4B5563] font-black py-5 px-10 rounded-[2rem] hover:bg-[#C4C9D1] transition-all active:scale-[0.98] text-xs uppercase tracking-widest"
                 >
-                  Sorry, I can't make it
+                  Sorry, I can&apos;t make it
                 </button>
               </div>
             </div>

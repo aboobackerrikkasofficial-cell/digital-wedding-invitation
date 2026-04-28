@@ -2,10 +2,20 @@
 
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { MapPin, Calendar, Heart } from "lucide-react";
+import { MapPin } from "lucide-react";
+
+interface Wedding {
+  wedding_date: string;
+  bride_name: string;
+  groom_name: string;
+  venue_name: string;
+  google_maps_url?: string;
+  custom_message?: string;
+  [key: string]: unknown;
+}
 
 interface ElegantTemplateProps {
-  wedding: any;
+  wedding: Wedding;
   onAttend: () => void;
   onNotAttend: () => void;
 }
@@ -134,7 +144,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
             {wedding.custom_message && (
                 <div className="max-w-lg mx-auto py-8">
                     <p className="text-gray-500 italic text-base leading-relaxed">
-                        "{wedding.custom_message}"
+                        &quot;{wedding.custom_message}&quot;
                     </p>
                 </div>
             )}

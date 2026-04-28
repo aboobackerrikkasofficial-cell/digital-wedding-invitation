@@ -1,40 +1,68 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { MapPin, Calendar, Heart, Sparkles, Navigation } from "lucide-react";
 import { format } from "date-fns";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
-interface ThankYouPageProps {
-  wedding: any;
-  rsvpData: any;
+interface Particle {
+  size: number;
+  duration: number;
+  delay: number;
+  left: number;
+  color: string;
 }
 
-const GoldDustBackground = () => (
+const getParticle = (i: number): Particle => ({
+  size: (i * 7.13 % 2) + 1,
+  duration: (i * 13.17 % 15) + 10,
+  delay: (i * 19.23 % 20) - 20,
+  left: (i * 37.41 % 100),
+  color: i % 2 === 0 ? '#D4AF37' : '#E6C76B'
+});
+
+interface Wedding {
+  id: string;
+  template_id: string;
+  wedding_date: string;
+  bride_name: string;
+  groom_name: string;
+  venue_name: string;
+  google_maps_url?: string;
+  [key: string]: unknown;
+}
+
+interface RsvpData {
+  is_attending: boolean;
+  name?: string;
+  [key: string]: unknown;
+}
+
+interface ThankYouPageProps {
+  wedding: Wedding;
+  rsvpData: RsvpData;
+}
+
+const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-[#251a36] via-[#2b1e3f] to-[#3a2455] animate-gradient-slow" />
-    {[...Array(40)].map((_, i) => {
-      const size = Math.random() * 2 + 1;
-      const duration = Math.random() * 15 + 10;
-      const delay = Math.random() * -20;
-      return (
-        <div
-          key={i}
-          className="absolute rounded-full bg-gold opacity-20"
-          style={{
-            width: `${size}px`,
-            height: `${size}px`,
-            left: `${Math.random() * 100}%`,
-            top: '110%',
-            animation: `floatDust ${duration}s linear infinite`,
-            animationDelay: `${delay}s`,
-            backgroundColor: i % 2 === 0 ? '#D4AF37' : '#E6C76B',
-          }}
-        />
-      );
-    })}
+    {particles.map((particle, i) => (
+      <div
+        key={i}
+        className="absolute rounded-full bg-gold opacity-20"
+        style={{
+          width: `${particle.size}px`,
+          height: `${particle.size}px`,
+          left: `${particle.left}%`,
+          top: '110%',
+          animation: `floatDust ${particle.duration}s linear infinite`,
+          animationDelay: `${particle.delay}s`,
+          backgroundColor: particle.color,
+        }}
+      />
+    ))}
   </div>
 );
 
@@ -43,6 +71,8 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
   const isCreamGold = wedding.template_id === 'muslim-3';
   const isAttending = rsvpData?.is_attending ?? true;
   const date = new Date(wedding.wedding_date);
+
+  const particles = useMemo(() => [...Array(40)].map((_, i) => getParticle(i)), []);
 
   useEffect(() => {
     if (isAttending) {
@@ -73,7 +103,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
     <div className={`relative h-[100dvh] w-full overflow-hidden flex items-center justify-center font-serif p-2 md:p-10 ${
       isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
-      {isRoyal ? <GoldDustBackground /> : isCreamGold ? (
+      {isRoyal ? <GoldDustBackground particles={particles} /> : isCreamGold ? (
         <CreamGoldBackground />
       ) : null}
 

@@ -2,18 +2,29 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, Plus, Minus, ArrowLeft, Send, Sparkles } from "lucide-react";
+import { Plus, Minus, ArrowLeft, Send, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useToast } from "./Toast";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
+interface Wedding {
+  id: string;
+  template_id: string;
+  [key: string]: unknown;
+}
+
+interface RsvpData {
+  name: string;
+  guestCount: number;
+}
+
 interface RsvpFlowProps {
-  wedding: any;
-  onComplete: (data: any) => void;
+  wedding: Wedding;
+  onComplete: (data: RsvpData) => void;
   onBack: () => void;
 }
 
-const liquidEase = [0.16, 1, 0.3, 1] as any;
+const liquidEase = [0.16, 1, 0.3, 1];
 
 export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   const { showToast } = useToast();
@@ -23,7 +34,6 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   const isRoyal = wedding.template_id === 'royal';
   const isCreamGold = wedding.template_id === 'muslim-3';
-  const isPremium = isRoyal || isCreamGold;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +53,8 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
       if (error) throw error;
       
       onComplete({ name: finalName, guestCount });
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
       console.error("Error submitting RSVP:", error);
       if ("vibrate" in navigator) navigator.vibrate(200);
       showToast("Failed to submit RSVP. Please try again.", "error");
@@ -119,7 +130,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, ease: liquidEase as any }}
+            transition={{ delay: 0.2, ease: liquidEase }}
             className="space-y-2"
           >
             <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isCreamGold ? 'font-poppins' : ''}`}>
