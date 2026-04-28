@@ -65,7 +65,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   return (
     <div className={`min-h-[100dvh] flex items-center justify-center p-4 md:p-6 overflow-hidden relative ${
-      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#fce4ec]' : 'bg-[#fdfbf0]'
+      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
       <div className="absolute inset-0 z-0">
           {isRoyal ? (
@@ -146,7 +146,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                       isRoyal 
                         ? 'bg-white/5 border-white/10 text-white focus:border-gold placeholder:text-white/20' 
                         : isCreamGold
-                          ? 'bg-[#fce4ec]/50 border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
+                          ? 'bg-[#fffcf2]/50 border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
                           : 'bg-white border-gray-100 text-gray-900 focus:border-gold placeholder:text-gray-200'
                     }`}
                 />
@@ -166,7 +166,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
               How many guests will attend?
             </label>
             <div className={`flex items-center justify-between rounded-xl lg:rounded-[2.5rem] p-1.5 lg:p-3 border shadow-sm ${
-              isRoyal ? 'bg-white/5 border-white/10' : isCreamGold ? 'bg-[#fce4ec]/50 border-gold/10' : 'bg-white border-gray-100'
+              isRoyal ? 'bg-white/5 border-white/10' : isCreamGold ? 'bg-[#fffcf2]/50 border-gold/10' : 'bg-white border-gray-100'
             }`}>
               <motion.button
                 type="button"
