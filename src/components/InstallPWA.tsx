@@ -1,121 +1,169 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Download, Smartphone, Info, X } from "lucide-react";
 
-/**
- * PWA Install Button Component
- * Strictly follows the requirements:
- * - Dynamic JS-based creation
- * - Listens for beforeinstallprompt
- * - Handles visibility based on event availability
- * - Works only on supported browsers (not iOS)
- */
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{
+    outcome: "accepted" | "dismissed";
+    platform: string;
+  }>;
+  prompt(): Promise<void>;
+}
+
 export function InstallPWA() {
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+
   useEffect(() => {
-    // 1. Initial Visibility & Standalone Check
+    // 1. Check if already standalone
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches ||
       (window.navigator as any).standalone === true;
     
-    // 2. Check for iOS (Apple devices)
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    if (isStandalone) return;
 
-    if (isStandalone || isIOS) {
-      console.log("PWA install prompt not available (already installed or unsupported browser/iOS)");
-      return;
-    }
+    // 2. Check for iOS
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    setIsIOS(iOS);
 
-    let deferredPrompt: any = null;
-    let installBtn: HTMLButtonElement | null = null;
-
-    // 3. Define Button Creation Logic
-    const createButton = () => {
-      if (installBtn) return installBtn;
-
-      const btn = document.createElement("button");
-      btn.innerText = "Install App";
-      
-      // Strict UI Requirements (JS Styles)
-      Object.assign(btn.style, {
-        position: "fixed",
-        bottom: "20px",
-        right: "20px",
-        zIndex: "9999",
-        padding: "8px 12px",
-        backgroundColor: "#C5A059", // Match gold theme
-        color: "#ffffff",
-        border: "none",
-        borderRadius: "8px",
-        fontSize: "12px",
-        fontWeight: "bold",
-        cursor: "pointer",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-        transition: "all 0.3s ease",
-        opacity: "0",
-        transform: "translateY(10px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      });
-
-      // Hover Effects
-      btn.onmouseenter = () => { btn.style.backgroundColor = "#B48E48"; btn.style.transform = "translateY(-2px)"; };
-      btn.onmouseleave = () => { btn.style.backgroundColor = "#C5A059"; btn.style.transform = "translateY(0)"; };
-
-      btn.onclick = async () => {
-        if (deferredPrompt) {
-          console.log("Triggering PWA install prompt...");
-          deferredPrompt.prompt();
-          const { outcome } = await deferredPrompt.userChoice;
-          console.log(`User response to install prompt: ${outcome}`);
-          
-          // Hide button after interaction
-          btn.style.opacity = "0";
-          btn.style.pointerEvents = "none";
-          setTimeout(() => btn.remove(), 300);
-          deferredPrompt = null;
-        }
-      };
-
-      document.body.appendChild(btn);
-      
-      // Trigger smooth fade-in
-      requestAnimationFrame(() => {
-        btn.style.opacity = "1";
-        btn.style.transform = "translateY(0)";
-      });
-
-      console.log("PWA Install Button shown to user");
-      return btn;
-    };
-
-    // 4. Listen for Native Install Event
+    // 3. Listen for native prompt
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Mandatory: Prevent default behavior
       e.preventDefault();
-      
-      // Mandatory: Store event
-      deferredPrompt = e;
-      console.log("PWA beforeinstallprompt event captured");
-
-      // Mandatory: ONLY show after this event fires
-      installBtn = createButton();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setIsVisible(true);
+      console.log("PWA: Native install prompt available");
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    // Failsafe Timeout
-    const failsafe = setTimeout(() => {
-      if (!deferredPrompt) {
-        console.log("PWA install prompt not available (Event did not fire within failsafe period)");
-      }
+    // 4. Force visibility after delay (Fallback for all devices)
+    const timer = setTimeout(() => {
+        if (!isStandalone) {
+            setIsVisible(true);
+            console.log("PWA: Showing install option (Fallback/Manual mode)");
+        }
     }, 5000);
 
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-      clearTimeout(failsafe);
-      if (installBtn) installBtn.remove();
+      clearTimeout(timer);
     };
   }, []);
 
-  return null; // This component renders nothing itself, only manipulates the DOM via JS
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      console.log("PWA: Triggering native prompt");
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`PWA: Installation outcome: ${outcome}`);
+      if (outcome === 'accepted') setIsVisible(false);
+      setDeferredPrompt(null);
+    } else {
+      console.log("PWA: Native prompt unavailable, showing manual instructions");
+      setShowInstructions(true);
+    }
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <>
+      <AnimatePresence>
+        {isVisible && !showInstructions && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="fixed bottom-6 right-6 z-[9999] flex items-center gap-2 pointer-events-none"
+          >
+            <button
+              onClick={handleInstallClick}
+              className="pointer-events-auto flex items-center gap-2 bg-[#C5A059] hover:bg-[#B48E48] text-white px-4 py-2.5 rounded-lg shadow-xl shadow-black/20 border border-white/10 transition-all active:scale-95"
+            >
+              <Download size={16} />
+              <span className="text-[12px] font-bold uppercase tracking-widest whitespace-nowrap">Install App</span>
+            </button>
+            <button 
+              onClick={() => setIsVisible(false)}
+              className="pointer-events-auto p-2.5 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-lg text-white/60 hover:text-white transition-all border border-white/5"
+            >
+              <X size={14} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showInstructions && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center p-6 bg-black/80 backdrop-blur-md">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="bg-[#1a1a1a] w-full max-w-md rounded-2xl border border-white/10 p-8 text-center relative"
+            >
+              <button 
+                onClick={() => setShowInstructions(false)}
+                className="absolute top-6 right-6 p-2 text-white/20 hover:text-white"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-[#C5A059]">
+                <Info size={32} />
+              </div>
+
+              <h3 className="text-white text-xl font-bold mb-4">
+                {isIOS ? "Install on iOS" : "Install App"}
+              </h3>
+              
+              <div className="space-y-6 text-left">
+                {isIOS ? (
+                  <>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 bg-gold/20 text-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                      <p className="text-white/70 text-sm leading-relaxed">
+                        Tap the <strong>Share</strong> button (box with arrow) at the bottom of Safari.
+                      </p>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 bg-gold/20 text-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                      <p className="text-white/70 text-sm leading-relaxed">
+                        Scroll down and tap <strong>&quot;Add to Home Screen&quot;</strong>.
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 bg-gold/20 text-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                      <p className="text-white/70 text-sm leading-relaxed">
+                        Tap the <strong>three dots</strong> (menu) in your browser corner.
+                      </p>
+                    </div>
+                    <div className="flex gap-4 items-start">
+                      <div className="w-8 h-8 bg-gold/20 text-[#C5A059] rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                      <p className="text-white/70 text-sm leading-relaxed">
+                        Select <strong>&quot;Install App&quot;</strong> or <strong>&quot;Add to Home Screen&quot;</strong>.
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <button
+                onClick={() => setShowInstructions(false)}
+                className="w-full mt-8 bg-[#C5A059] hover:bg-[#B48E48] text-white py-4 rounded-xl font-bold transition-all"
+              >
+                Got it
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
