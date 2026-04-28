@@ -1,97 +1,121 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Download, X } from "lucide-react";
+import { useEffect } from "react";
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
-
+/**
+ * PWA Install Button Component
+ * Strictly follows the requirements:
+ * - Dynamic JS-based creation
+ * - Listens for beforeinstallprompt
+ * - Handles visibility based on event availability
+ * - Works only on supported browsers (not iOS)
+ */
 export function InstallPWA() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    // 1. Detect if app is already installed
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-      (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
+    // 1. Initial Visibility & Standalone Check
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as any).standalone === true;
     
-    if (isStandalone) return;
+    // 2. Check for iOS (Apple devices)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
 
-    // 2. Listen for the native install prompt event (Chrome, Edge, Android)
+    if (isStandalone || isIOS) {
+      console.log("PWA install prompt not available (already installed or unsupported browser/iOS)");
+      return;
+    }
+
+    let deferredPrompt: any = null;
+    let installBtn: HTMLButtonElement | null = null;
+
+    // 3. Define Button Creation Logic
+    const createButton = () => {
+      if (installBtn) return installBtn;
+
+      const btn = document.createElement("button");
+      btn.innerText = "Install App";
+      
+      // Strict UI Requirements (JS Styles)
+      Object.assign(btn.style, {
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        zIndex: "9999",
+        padding: "8px 12px",
+        backgroundColor: "#C5A059", // Match gold theme
+        color: "#ffffff",
+        border: "none",
+        borderRadius: "8px",
+        fontSize: "12px",
+        fontWeight: "bold",
+        cursor: "pointer",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+        transition: "all 0.3s ease",
+        opacity: "0",
+        transform: "translateY(10px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      });
+
+      // Hover Effects
+      btn.onmouseenter = () => { btn.style.backgroundColor = "#B48E48"; btn.style.transform = "translateY(-2px)"; };
+      btn.onmouseleave = () => { btn.style.backgroundColor = "#C5A059"; btn.style.transform = "translateY(0)"; };
+
+      btn.onclick = async () => {
+        if (deferredPrompt) {
+          console.log("Triggering PWA install prompt...");
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to install prompt: ${outcome}`);
+          
+          // Hide button after interaction
+          btn.style.opacity = "0";
+          btn.style.pointerEvents = "none";
+          setTimeout(() => btn.remove(), 300);
+          deferredPrompt = null;
+        }
+      };
+
+      document.body.appendChild(btn);
+      
+      // Trigger smooth fade-in
+      requestAnimationFrame(() => {
+        btn.style.opacity = "1";
+        btn.style.transform = "translateY(0)";
+      });
+
+      console.log("PWA Install Button shown to user");
+      return btn;
+    };
+
+    // 4. Listen for Native Install Event
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent the default browser-provided prompt
+      // Mandatory: Prevent default behavior
       e.preventDefault();
-      // Store the event for later trigger
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
-      // Show the button only when installation is actually possible
-      setIsVisible(true);
+      
+      // Mandatory: Store event
+      deferredPrompt = e;
+      console.log("PWA beforeinstallprompt event captured");
+
+      // Mandatory: ONLY show after this event fires
+      installBtn = createButton();
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
+    // Failsafe Timeout
+    const failsafe = setTimeout(() => {
+      if (!deferredPrompt) {
+        console.log("PWA install prompt not available (Event did not fire within failsafe period)");
+      }
+    }, 5000);
+
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      clearTimeout(failsafe);
+      if (installBtn) installBtn.remove();
     };
   }, []);
 
-  const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
-
-    // Trigger the native install prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user's response
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      setIsVisible(false);
-    }
-    
-    // Clear the prompt event
-    setDeferredPrompt(null);
-  };
-
-  const handleDismiss = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsVisible(false);
-  };
-
-  // Only render for supported browsers when prompt is available
-  if (!isVisible) return null;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.8, y: 20 }}
-        className="fixed bottom-6 right-6 z-[9999] flex items-center gap-2"
-      >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleInstallClick}
-          className="flex items-center gap-2 bg-[#9E7E45] hover:bg-[#735B32] text-white px-4 py-2.5 rounded-full shadow-lg shadow-black/20 border border-white/10 transition-all group pointer-events-auto"
-        >
-          <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
-          <span className="text-[11px] font-bold uppercase tracking-widest whitespace-nowrap">Install App</span>
-        </motion.button>
-
-        <button 
-          onClick={handleDismiss}
-          className="p-2 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white/60 hover:text-white transition-all border border-white/5 pointer-events-auto"
-          title="Dismiss"
-        >
-          <X size={14} />
-        </button>
-      </motion.div>
-    </AnimatePresence>
-  );
+  return null; // This component renders nothing itself, only manipulates the DOM via JS
 }
