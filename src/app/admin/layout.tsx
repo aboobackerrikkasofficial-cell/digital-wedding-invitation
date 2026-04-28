@@ -45,11 +45,12 @@ export default function AdminLayout({
           console.log("Admin Access Verified.");
           setAuthorized(true);
         } else {
-          console.warn("No valid admin session.");
-          setAuthorized(false);
           if (!isLoginPage) {
-            console.log("Not on login page, redirecting...");
+            console.warn("No valid admin session. Redirecting...");
+            setAuthorized(false);
             router.push("/admin/login");
+          } else {
+            setAuthorized(false);
           }
         }
       } catch (err: any) {
