@@ -82,7 +82,7 @@ export default function TrackingPage() {
       console.log("Tracking data received:", weddingData);
       
       setWedding(weddingData);
-      setRsvps(weddingData.rsvps || []);
+      setRsvps(weddingData?.rsvps || []);
 
     } catch (err) {
       console.error("Error fetching tracking data:", err);

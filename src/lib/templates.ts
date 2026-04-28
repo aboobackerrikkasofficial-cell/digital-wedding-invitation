@@ -11,7 +11,7 @@ export interface WeddingTemplate {
 export const WEDDING_TEMPLATES: WeddingTemplate[] = [
   {
     id: 'default',
-    name: 'Classic White & Gold',
+    name: 'Pink Panther',
     category: 'default',
     primaryColor: '#d4af37',
     bgColor: '#ffffff',
