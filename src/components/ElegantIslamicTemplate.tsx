@@ -65,7 +65,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
   }, []);
 
   return (
-    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fce4ec] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:pt-[50px] lg:pb-[50px] lg:px-10 cream-gold-theme">
+    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#FF99CC] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:pt-[50px] lg:pb-[50px] lg:px-10 cream-gold-theme">
       <BackgroundDecor />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
