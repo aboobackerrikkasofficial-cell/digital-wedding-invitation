@@ -75,7 +75,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/pinkpanther.png" 
+              src="/invitationletter.jpg" 
               alt="Background" 
               className="w-full h-full object-cover"
             />
