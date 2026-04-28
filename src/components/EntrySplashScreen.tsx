@@ -16,7 +16,7 @@ interface EntrySplashScreenProps {
 }
 
 export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
-  const isCreamGold = wedding.template_id === 'muslim-3';
+  const isCreamGold = wedding.template_id === 'muslim-3' || wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
 
   return (
     <motion.div 

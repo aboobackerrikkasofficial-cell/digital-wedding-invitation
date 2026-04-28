@@ -68,7 +68,7 @@ const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
 
 export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
   const isRoyal = wedding.template_id === 'royal';
-  const isCreamGold = wedding.template_id === 'muslim-3';
+  const isCreamGold = wedding.template_id === 'muslim-3' || wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
   const isAttending = rsvpData?.is_attending ?? true;
   const date = new Date(wedding.wedding_date);
 

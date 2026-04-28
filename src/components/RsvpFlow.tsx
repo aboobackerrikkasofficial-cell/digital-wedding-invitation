@@ -33,7 +33,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isRoyal = wedding.template_id === 'royal';
-  const isCreamGold = wedding.template_id === 'muslim-3';
+  const isCreamGold = wedding.template_id === 'muslim-3' || wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
