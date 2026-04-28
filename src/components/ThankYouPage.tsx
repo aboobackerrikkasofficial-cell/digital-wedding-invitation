@@ -67,7 +67,7 @@ const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
 );
 
 export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
-  const isRoyal = wedding.template_id === 'royal';
+  const isRoyal = wedding.template_id === 'royal' || wedding.template_id === 'muslim-royal';
   const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
   const isCreamGold = wedding.template_id === 'muslim-3';
   const isAnyGold = isPinkTheme || isCreamGold;

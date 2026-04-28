@@ -207,7 +207,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                       
                       {/* Line 2: Date, Time & Islamic Date */}
                       <p className="text-gold-primary font-poppins text-[11px] lg:text-[12px] font-bold uppercase tracking-widest leading-tight mb-0.5">
-                        {format(new Date(wedding.nikah_date), "EEEE, MMMM do")} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time}`), "h:mm a") : ""}
+                        {wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, MMMM do") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}
                       </p>
                       <p className="text-gold-muted font-poppins text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.15em] mb-1.5">
                         {wedding.nikah_islamic_date}

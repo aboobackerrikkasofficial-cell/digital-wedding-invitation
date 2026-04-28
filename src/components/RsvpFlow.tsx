@@ -34,6 +34,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
   const isCreamGold = wedding.template_id === 'muslim-3';
+  const isRoyal = wedding.template_id === 'muslim-royal';
   const isAnyGold = isPinkTheme || isCreamGold;
 
   const handleSubmit = async (e: React.FormEvent) => {

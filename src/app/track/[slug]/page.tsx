@@ -75,7 +75,7 @@ export default function TrackingPage() {
         .select("*, rsvps(*)")
         .eq("slug", slug)
         .order('created_at', { referencedTable: 'rsvps', ascending: false })
-        .single();
+        .maybeSingle();
         
       if (weddingError) throw weddingError;
       
