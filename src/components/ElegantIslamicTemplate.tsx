@@ -35,8 +35,8 @@ interface ElegantTemplateProps {
   onNotAttend?: () => void;
 }
 
-const BackgroundDecor = () => (
-  <CreamGoldBackground />
+const BackgroundDecor = ({ bgColor }: { bgColor?: string }) => (
+  <CreamGoldBackground bgColor={bgColor} />
 );
 
 const DiamondJewel = ({ className = "", animate = true }) => (
@@ -65,8 +65,8 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
   }, []);
 
   return (
-    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:pt-[50px] lg:pb-[50px] lg:px-10 cream-gold-theme">
-      <BackgroundDecor />
+    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#FF8DA1] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:pt-[50px] lg:pb-[50px] lg:px-10 cream-gold-theme">
+      <BackgroundDecor bgColor="#FF8DA1" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
@@ -75,7 +75,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/invitationletter.jpg" 
+              src="/pinkpanther3d.png" 
               alt="Background" 
               className="w-full h-full object-cover"
             />
@@ -207,7 +207,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
                       
                       {/* Line 2: Date, Time & Islamic Date */}
                       <p className="text-gold-primary font-poppins text-[11px] lg:text-[12px] font-bold uppercase tracking-widest leading-tight mb-0.5">
-                        {format(new Date(wedding.nikah_date), "EEEE, MMMM do")} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time}`), "h:mm a") : ""}
+                        {wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, MMMM do") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}
                       </p>
                       <p className="text-gold-muted font-poppins text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.15em] mb-1.5">
                         {wedding.nikah_islamic_date}
@@ -335,7 +335,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
       </div>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
         .font-script { font-family: 'Great Vibes', cursive; }
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-poppins { font-family: 'Poppins', sans-serif; }
@@ -407,3 +407,5 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
     </div>
   );
 }
+
+export default ElegantIslamicTemplate;

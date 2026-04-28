@@ -103,10 +103,10 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
 
   return (
     <div className={`relative h-[100dvh] w-full overflow-hidden flex items-center justify-center font-serif p-2 md:p-10 ${
-      isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#fffcf2]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
+      isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
       {isRoyal ? <GoldDustBackground particles={particles} /> : isAnyGold ? (
-        <CreamGoldBackground />
+        <CreamGoldBackground bgColor={isPinkTheme ? "#FF8DA1" : "#fffcf2"} />
       ) : null}
 
       <motion.div

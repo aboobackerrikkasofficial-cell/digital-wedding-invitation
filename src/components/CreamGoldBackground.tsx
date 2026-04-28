@@ -12,7 +12,7 @@ interface Particle {
   drift: number;
 }
 
-export function CreamGoldBackground() {
+export function CreamGoldBackground({ bgColor = "#fffcf2" }: { bgColor?: string }) {
   const particles = useMemo<Particle[]>(() => [...Array(25)].map((_, i) => ({
     id: i,
     size: (i * 7.13 % 8) + 4,
@@ -23,9 +23,9 @@ export function CreamGoldBackground() {
   })), []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#fffcf2]">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" style={{ backgroundColor: bgColor }}>
       {/* Background base layer to ensure visibility */}
-      <div className="absolute inset-0 bg-[#fffcf2] opacity-100" />
+      <div className="absolute inset-0 opacity-100" style={{ backgroundColor: bgColor }} />
       
       {/* Noise Texture for Premium Feel */}
       <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" 
