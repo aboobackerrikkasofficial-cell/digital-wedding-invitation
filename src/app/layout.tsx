@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 };
 
 import { ToastProvider } from "@/components/Toast";
+import { InstallPWA } from "@/components/InstallPWA";
 
 export default function RootLayout({
   children,
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <ToastProvider>
           {children}
+          <InstallPWA />
         </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
