@@ -28,11 +28,9 @@ export function InstallPWA() {
     
     setIsStandalone(isStandaloneMode);
 
-    // Check if dismissed before
-    const dismissed = localStorage.getItem("pwa-prompt-dismissed");
+    // Check if dismissed before in this session
+    const dismissed = sessionStorage.getItem("pwa-prompt-dismissed");
     if (dismissed && !isStandaloneMode) {
-        // We still check if dismissed, but maybe we show it again after some time?
-        // For now, let's honor the dismiss but allow manual check
         setIsDismissed(true);
     }
 
@@ -55,7 +53,7 @@ export function InstallPWA() {
 
     // Show popup anyway on all mobile/desktop if not standalone after a delay
     const timer = setTimeout(() => {
-        if (!isStandaloneMode && !dismissed) {
+        if (!isStandaloneMode) {
             setShowPopup(true);
         }
     }, 3000);
@@ -82,12 +80,11 @@ export function InstallPWA() {
 
   const handleDismiss = () => {
       setShowPopup(false);
-      localStorage.setItem("pwa-prompt-dismissed", "true");
+      sessionStorage.setItem("pwa-prompt-dismissed", "true");
       setIsDismissed(true);
   };
 
   if (isStandalone) return null;
-  if (isDismissed && !showInstructions) return null;
 
   return (
     <>
