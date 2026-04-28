@@ -56,9 +56,15 @@ export function InstallPWA() {
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    // Auto-show iOS instructions if not standalone and not dismissed
-    if (iOS && !isStandaloneMode && !dismissed) {
-        const timer = setTimeout(() => setShowPopup(true), 3000);
+    // Auto-show instructions if not standalone and not dismissed
+    // We show it for both iOS and other mobile devices after a short delay
+    const isMobile = iOS || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile && !isStandaloneMode && !dismissed) {
+        const timer = setTimeout(() => {
+          setShowPopup(true);
+          console.log("Auto-showing PWA prompt for mobile");
+        }, 5000); // 5 second delay for better UX
         return () => clearTimeout(timer);
     }
 
@@ -123,13 +129,17 @@ export function InstallPWA() {
                         <Share size={12} className="text-blue-400" />
                         <span>Tap Share &gt; Add to Home Screen</span>
                     </div>
-                ) : (
+                ) : deferredPrompt ? (
                     <button
                         onClick={handleInstallClick}
                         className="bg-gold text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-gold/90 transition-all active:scale-95 shadow-lg shadow-gold/20 whitespace-nowrap"
                     >
                         Install
                     </button>
+                ) : (
+                    <div className="hidden sm:flex items-center gap-3 text-[10px] text-white/40 uppercase tracking-tighter font-bold">
+                        <span>Tap Menu &gt; Install App</span>
+                    </div>
                 )}
                 
                 <button 
@@ -141,10 +151,14 @@ export function InstallPWA() {
               </div>
             </div>
             
-            {/* iOS specific mobile instruction (tiny footer) */}
-            {isIOS && (
+            {/* Mobile specific instructions (tiny footer) */}
+            {isIOS ? (
                 <div className="sm:hidden bg-white/5 px-6 py-2 border-t border-white/5 text-[9px] text-center text-white/60 font-medium">
                    Tap <Share size={10} className="inline mx-0.5 text-blue-400" /> then <Plus size={10} className="inline mx-0.5" /> &quot;Add to Home Screen&quot;
+                </div>
+            ) : !deferredPrompt && (
+                <div className="sm:hidden bg-white/5 px-6 py-2 border-t border-white/5 text-[9px] text-center text-white/60 font-medium">
+                   Tap the browser menu (three dots) then &quot;Install App&quot; or &quot;Add to Home screen&quot;
                 </div>
             )}
           </div>
