@@ -32,8 +32,9 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   const [guestCount, setGuestCount] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isRoyal = wedding.template_id === 'royal';
-  const isCreamGold = wedding.template_id === 'muslim-3' || wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
+  const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
+  const isCreamGold = wedding.template_id === 'muslim-3';
+  const isAnyGold = isPinkTheme || isCreamGold;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,7 +66,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   return (
     <div className={`min-h-[100dvh] flex items-center justify-center p-4 md:p-6 overflow-hidden relative ${
-      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#E3B0B5]' : 'bg-[#fdfbf0]'
+      isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#E3B0B5]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
       <div className="absolute inset-0 z-0">
           {isRoyal ? (
@@ -77,7 +78,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                     }} 
                />
              </>
-          ) : isCreamGold ? (
+          ) : isAnyGold ? (
             <CreamGoldBackground />
           ) : (
              <>
@@ -110,7 +111,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
           whileHover={{ x: -5 }}
           onClick={onBack}
           className={`inline-flex items-center mb-4 md:mb-6 lg:mb-8 transition-colors font-bold text-[10px] uppercase tracking-widest group ${
-            isRoyal ? 'text-white/40 hover:text-gold' : isCreamGold ? 'text-gray-400 hover:text-gold' : 'text-gray-400 hover:text-gold'
+            isRoyal ? 'text-white/40 hover:text-gold' : isAnyGold ? 'text-gray-400 hover:text-gold' : 'text-gray-400 hover:text-gold'
           }`}
         >
           <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -118,10 +119,10 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
         </motion.button>
 
         <div className="mb-4 md:mb-6 lg:mb-10 text-center">
-            <h2 className={`text-xl md:text-2xl lg:text-4xl font-bold mb-0.5 ${isRoyal ? 'text-gold font-serif' : isCreamGold ? 'text-gray-900 font-poppins' : 'text-gray-900 font-serif'}`}>RSVP Details</h2>
+            <h2 className={`text-xl md:text-2xl lg:text-4xl font-bold mb-0.5 ${isRoyal ? 'text-gold font-serif' : isAnyGold ? 'text-gray-900 font-poppins' : 'text-gray-900 font-serif'}`}>RSVP Details</h2>
             <p className={`text-sm lg:text-lg tracking-tight ${
               isRoyal ? 'text-white/60 font-serif italic' : 
-              isCreamGold ? 'text-gray-500 font-poppins' : 
+              isAnyGold ? 'text-gray-500 font-poppins' : 
               'text-gray-500 font-serif italic'
             }`}>Confirm your presence with us.</p>
         </div>
@@ -133,7 +134,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             transition={{ delay: 0.2, ease: liquidEase }}
             className="space-y-2"
           >
-            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isCreamGold ? 'font-poppins' : ''}`}>
+            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isAnyGold ? 'font-poppins' : ''}`}>
               Your Name (Optional)
             </label>
             <div className="relative group">
@@ -145,8 +146,10 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                     className={`w-full px-4 lg:px-5 py-3 lg:py-5 rounded-xl lg:rounded-3xl border outline-none transition-all text-base lg:text-xl placeholder:text-opacity-20 shadow-sm focus:shadow-xl ${
                       isRoyal 
                         ? 'bg-white/5 border-white/10 text-white focus:border-gold placeholder:text-white/20' 
-                        : isCreamGold
+                        : isPinkTheme
                           ? 'bg-[#E3B0B5]/50 border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
+                          : isCreamGold
+                            ? 'bg-[#fffcf2]/50 border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
                           : 'bg-white border-gray-100 text-gray-900 focus:border-gold placeholder:text-gray-200'
                     }`}
                 />
@@ -162,11 +165,11 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             transition={{ delay: 0.4, ease: liquidEase }}
             className="space-y-2 md:space-y-4"
           >
-            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isCreamGold ? 'font-poppins' : ''}`}>
+            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isAnyGold ? 'font-poppins' : ''}`}>
               How many guests will attend?
             </label>
             <div className={`flex items-center justify-between rounded-xl lg:rounded-[2.5rem] p-1.5 lg:p-3 border shadow-sm ${
-              isRoyal ? 'bg-white/5 border-white/10' : isCreamGold ? 'bg-[#E3B0B5]/50 border-gold/10' : 'bg-white border-gray-100'
+              isRoyal ? 'bg-white/5 border-white/10' : isPinkTheme ? 'bg-[#E3B0B5]/50 border-gold/10' : isCreamGold ? 'bg-[#fffcf2]/50 border-gold/10' : 'bg-white border-gray-100'
             }`}>
               <motion.button
                 type="button"
@@ -179,7 +182,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                   isRoyal 
                     ? 'bg-white/10 text-white/40 hover:text-red-400 hover:bg-red-400/10' 
                     : isCreamGold
-                      ? 'bg-white text-gray-400 hover:text-red-500 hover:bg-red-50'
+                      ? 'bg-white text-gray-400 hover:text-gold hover:bg-gold/5'
                       : 'bg-gray-50 text-gray-400 hover:text-red-500 hover:bg-red-50'
                 }`}
               >
@@ -195,7 +198,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                         exit={{ opacity: 0, y: -10 }}
                         className={`text-2xl lg:text-5xl font-bold ${
                           isRoyal ? 'text-white font-serif' : 
-                          isCreamGold ? 'text-gray-900 font-poppins' : 
+                          isAnyGold ? 'text-gray-900 font-poppins' : 
                           'text-gray-900 font-serif'
                         }`}
                     >
@@ -204,7 +207,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                 </AnimatePresence>
                 <span className={`text-[8px] font-bold uppercase tracking-widest mt-0.5 ${
                   isRoyal ? 'text-gold font-serif' : 
-                  isCreamGold ? 'text-gray-400 font-poppins' : 
+                  isAnyGold ? 'text-gray-400 font-poppins' : 
                   'text-gray-400'
                 }`}>Guests</span>
               </div>
@@ -235,7 +238,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             type="submit"
             disabled={isSubmitting}
             className={`w-full bg-gold text-white font-bold py-4 lg:py-7 rounded-xl lg:rounded-[2.5rem] shadow-2xl shadow-gold/20 hover:bg-gold/90 transition-all flex items-center justify-center gap-3 text-base lg:text-xl relative overflow-hidden group ${
-              isCreamGold ? 'font-poppins' : ''
+              isAnyGold ? 'font-poppins' : ''
             }`}
           >
             <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />

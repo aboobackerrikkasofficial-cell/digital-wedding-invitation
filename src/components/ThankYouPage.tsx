@@ -68,7 +68,9 @@ const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
 
 export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
   const isRoyal = wedding.template_id === 'royal';
-  const isCreamGold = wedding.template_id === 'muslim-3' || wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
+  const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
+  const isCreamGold = wedding.template_id === 'muslim-3';
+  const isAnyGold = isPinkTheme || isCreamGold;
   const isAttending = rsvpData?.is_attending ?? true;
   const date = new Date(wedding.wedding_date);
 
@@ -101,9 +103,9 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
 
   return (
     <div className={`relative h-[100dvh] w-full overflow-hidden flex items-center justify-center font-serif p-2 md:p-10 ${
-      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#E3B0B5]' : 'bg-[#fdfbf0]'
+      isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#E3B0B5]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
-      {isRoyal ? <GoldDustBackground particles={particles} /> : isCreamGold ? (
+      {isRoyal ? <GoldDustBackground particles={particles} /> : isAnyGold ? (
         <CreamGoldBackground />
       ) : null}
 
@@ -114,13 +116,13 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         className={`relative z-10 w-full max-w-2xl h-fit max-h-[98dvh] flex flex-col items-center justify-start lg:justify-center p-4 lg:p-12 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden pt-4 lg:pt-12 ${
           isRoyal 
             ? 'bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)]' 
-            : isCreamGold
+            : isAnyGold
               ? 'bg-white border-gold/20 shadow-[0_20px_50px_rgba(197,160,89,0.1)]'
               : 'bg-white/70 backdrop-blur-md border-white shadow-xl'
         }`}
       >
         {/* Animated Heart Icon */}
-        {!isCreamGold && (
+        {!isAnyGold && (
           <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -132,10 +134,10 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
 
         {/* Message Header */}
         <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-6 tracking-wider px-2 pt-2 ${
-          isCreamGold ? 'text-gray-900 mt-[10px] font-poppins font-normal' : 'text-white font-cinzel'
+          isAnyGold ? 'text-gray-900 mt-[10px] font-poppins font-normal' : 'text-white font-cinzel'
         }`}>
           <span className={`block text-[clamp(1rem,5vw,2.375rem)] mb-0.5 lg:mb-2 text-wrap-balance leading-[1.3] py-0.5 ${
-            isCreamGold ? 'text-[#9E7E45] font-poppins' : 'text-gold font-script'
+            isAnyGold ? 'text-[#9E7E45] font-poppins' : 'text-gold font-script'
           }`}>
             {isAttending ? "Alhamdulillah!" : "Thank You"}
           </span>
@@ -143,7 +145,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         </h1>
 
         <p className={`text-[clamp(11px,3vw,16px)] lg:text-xl mb-3 lg:mb-8 px-4 leading-relaxed max-w-lg mx-auto break-words ${
-          isCreamGold ? 'text-gray-700 font-poppins' : 'text-white/80 font-cinzel italic'
+          isAnyGold ? 'text-gray-700 font-poppins' : 'text-white/80 font-cinzel italic'
         }`}>
           {isAttending 
             ? `We are honored to have you join us for our celebration, ${rsvpData?.name || "Guest"}.`
@@ -151,7 +153,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
           }
         </p>
 
-        {isCreamGold && (
+        {isAnyGold && (
           <div className="flex flex-col items-center gap-1 mb-3">
             <div className="flex items-center gap-3 opacity-40">
               <div className="h-px w-10 bg-[#9E7E45]" />
@@ -167,15 +169,15 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         {isAttending && (
           <div className="w-full space-y-3 lg:space-y-6 mb-2 lg:mb-4">
             {/* Logistic Detail Rows */}
-            <div className={`flex flex-col items-center gap-0.5 ${isCreamGold ? 'mt-[10px]' : ''}`}>
+            <div className={`flex flex-col items-center gap-0.5 ${isAnyGold ? 'mt-[10px]' : ''}`}>
               <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold ${
-                isCreamGold ? 'text-[#735B32] opacity-100 font-poppins' : 'text-gold opacity-60'
+                isAnyGold ? 'text-[#735B32] opacity-100 font-poppins' : 'text-gold opacity-60'
               }`}>
                 <Calendar size={10} />
                 <span>Save The Date</span>
               </div>
               <p className={`${isRoyal ? 'text-white' : 'text-gray-900'} text-[13px] lg:text-2xl break-words px-4 ${
-                isCreamGold ? 'font-poppins font-medium' : 'font-cinzel font-bold'
+                isAnyGold ? 'font-poppins font-medium' : 'font-cinzel font-bold'
               }`}>
                 {format(date, "EEEE, d MMMM yyyy")}
               </p>
@@ -183,13 +185,13 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
  
             <div className="flex flex-col items-center gap-0.5 mt-1">
               <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold ${
-                isCreamGold ? 'text-[#735B32] opacity-100 font-poppins' : 'text-gold opacity-60'
+                isAnyGold ? 'text-[#735B32] opacity-100 font-poppins' : 'text-gold opacity-60'
               }`}>
                 <MapPin size={10} />
                 <span>The Venue</span>
               </div>
               <p className={`${isRoyal ? 'text-white' : 'text-gray-900'} text-[13px] lg:text-2xl leading-tight break-words px-8 max-w-[320px] lg:max-w-md mx-auto ${
-                isCreamGold ? 'font-poppins font-medium' : 'font-cinzel font-bold'
+                isAnyGold ? 'font-poppins font-medium' : 'font-cinzel font-bold'
               }`}>
                 {wedding.venue_name}
               </p>
@@ -203,7 +205,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 px-6 py-2.5 lg:py-5 border-2 font-black rounded-full tracking-[0.1em] uppercase text-[9px] lg:text-sm transition-all mt-3 ${
-                  isCreamGold 
+                  isAnyGold 
                     ? 'border-[#9E7E45] text-[#9E7E45] bg-[#9E7E45]/5 hover:bg-[#9E7E45]/10 font-poppins' 
                     : 'border-gold text-gold bg-gold/10 hover:bg-gold/20'
                 }`}
@@ -216,7 +218,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         )}
 
         <div className="flex flex-col items-center opacity-40">
-           {isCreamGold ? (
+           {isAnyGold ? (
              <div className="flex items-center gap-2">
                <div className="w-1 h-1 rounded-full bg-[#9E7E45] opacity-40" />
                <div className="w-1.5 h-1.5 rounded-full bg-[#9E7E45] opacity-60" />
@@ -231,7 +233,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         </div>
 
         <p className={`uppercase leading-relaxed ${
-          isCreamGold 
+          isAnyGold 
             ? 'text-[#735B32] opacity-100 font-poppins font-bold text-[8px] lg:text-[12px] mt-[20px] mb-0 pb-0 whitespace-nowrap tracking-[0.1em] px-4' 
             : 'tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-1 mb-2 pb-2'
         }`}>
