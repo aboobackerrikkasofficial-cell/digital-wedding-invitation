@@ -101,7 +101,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
 
   return (
     <div className={`relative h-[100dvh] w-full overflow-hidden flex items-center justify-center font-serif p-2 md:p-10 ${
-      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
+      isRoyal ? 'bg-[#2b1e3f]' : isCreamGold ? 'bg-[#fce4ec]' : 'bg-[#fdfbf0]'
     }`}>
       {isRoyal ? <GoldDustBackground particles={particles} /> : isCreamGold ? (
         <CreamGoldBackground />
