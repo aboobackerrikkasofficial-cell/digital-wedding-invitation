@@ -107,7 +107,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         transition={{ duration: 1 }}
         className={`relative z-10 w-full max-w-2xl h-fit max-h-[80dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden ${
           isRoyal 
-            ? 'bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)] py-12 lg:py-20' 
+            ? 'bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)]' 
             : isAnyGold
               ? 'bg-white border-gold/20 shadow-[0_20px_50px_rgba(197,160,89,0.1)]'
               : 'bg-white/70 backdrop-blur-md border-white shadow-xl'
@@ -118,7 +118,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
           <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className={`text-gold mb-2 lg:mb-10 pt-5`}
+            className={`text-gold mb-2 lg:mb-10`}
           >
             <Heart size={36} className={`lg:w-[60px] lg:h-[60px] fill-gold drop-shadow-[0_0_15px_rgba(158,126,69,0.3)]`} />
           </motion.div>
@@ -223,10 +223,10 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
            )}
         </div>
 
-        <p className={`uppercase leading-relaxed pb-5 ${
+        <p className={`uppercase leading-relaxed ${
           isAnyGold 
-            ? 'text-[#735B32] opacity-100 font-poppins font-bold text-[8px] lg:text-[12px] mt-[20px] mb-0 whitespace-nowrap tracking-[0.1em] px-4' 
-            : 'tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-2 mb-0'
+            ? 'text-[#735B32] opacity-100 font-poppins font-bold text-[8px] lg:text-[12px] mt-[20px] mb-0 pb-0 whitespace-nowrap tracking-[0.1em] px-4' 
+            : 'tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-2 mb-0 pb-0'
         }`}>
            {wedding.groom_name} & {wedding.bride_name}
         </p>
