@@ -184,7 +184,7 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full py-4">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-[1px] border-gold/30 rounded-[2.5rem] bg-[#2b1e3f] shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col justify-between text-center border-[1px] border-gold/30 rounded-[2.5rem] bg-[#2b1e3f] shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden">
 
           <GoldArc />
 

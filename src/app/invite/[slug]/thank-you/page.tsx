@@ -37,10 +37,27 @@ export default function ThankYouSubPage() {
     }
   }, [searchParams, wedding.slug]);
 
+  useEffect(() => {
+    // Lock scrolling on this specific page
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyOverflow = document.body.style.overflow;
+    
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    
+    return () => {
+      // Restore scrolling when leaving the page
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+    };
+  }, []);
+
   return (
-    <ThankYouPage 
-      wedding={wedding} 
-      rsvpData={rsvpData} 
-    />
+    <div className="h-[calc(100dvh-2rem)] w-full overflow-hidden relative">
+      <ThankYouPage 
+        wedding={wedding} 
+        rsvpData={rsvpData} 
+      />
+    </div>
   );
 }
