@@ -26,7 +26,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
   if (!mounted) return null;
 
   return (
-    <div className="peach-theme relative min-h-[calc(100dvh-2rem)] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
+    <div className="peach-theme relative h-full w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
       
       {/* 1. MANDATORY BACKGROUND (CLONE ENFORCEMENT) */}
       <div className="fixed inset-0 z-0">
@@ -46,14 +46,14 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
       </div>
 
       {/* 2. LAYOUT CONTAINER (EXACT OVERLAY MATCH) */}
-      <div className="relative z-10 w-full min-h-[calc(100dvh-2rem)] flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-6 md:p-20">
+      <div className="relative z-10 w-full h-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-6 md:p-10 lg:p-20">
         
         {/* LEFT SECTION: INVITATION CARD */}
         <motion.main 
           initial={{ opacity: 0, x: -100, rotate: -2 }}
           animate={{ opacity: 1, x: 0, rotate: -1.5 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-full max-w-[500px] bg-[#FDF5E6] rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 md:p-12 border-[0.8rem] border-white/40 md:ml-10"
+          className="relative w-full max-w-[500px] h-full max-h-[750px] bg-[#FDF5E6] rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 md:p-12 border-[0.8rem] border-white/40 md:ml-10 flex flex-col overflow-hidden flex-shrink"
         >
           {/* Multi-color Dotted Perimeter Border */}
           <div className="absolute inset-2 border-[6px] border-dotted border-[#8B5A2B]/15 rounded-[0.8rem] pointer-events-none" />

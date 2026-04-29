@@ -78,7 +78,7 @@ export default function InviteLayout({
   }, [pathname, slug]);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="h-[calc(100dvh-2rem)] w-full overflow-hidden">
       <BackgroundMusic musicUrl={wedding?.music_url || ""} forcePlay={isOpened} />
       <WeddingProvider wedding={wedding}>
         <motion.div
@@ -86,12 +86,13 @@ export default function InviteLayout({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15, ease: "easeOut" }}
-          className="w-full"
+          className="w-full h-full"
         >
           {children}
         </motion.div>
       </WeddingProvider>
     </div>
+
   );
 }
 

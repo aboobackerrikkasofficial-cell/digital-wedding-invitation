@@ -48,12 +48,12 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
   }, []);
 
   return (
-    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10 cream-gold-theme">
+    <div className="relative h-full w-full bg-[#fffcf2] overflow-hidden flex items-center justify-center font-serif p-4 lg:p-10 cream-gold-theme">
       <BackgroundDecor bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full py-4">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[712px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden flex-shrink">
           
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
@@ -235,7 +235,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
         </div>
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
-        <aside className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-transparent lg:bg-white lg:shadow-[0_20px_50px_rgba(197,160,89,0.1)] overflow-visible gap-5 lg:gap-0 border-none lg:border-[1px] border-[#c5a059]/20">
+        <aside className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-full lg:max-h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-transparent lg:bg-white lg:shadow-[0_20px_50px_rgba(197,160,89,0.1)] overflow-visible gap-5 lg:gap-0 border-none lg:border-[1px] border-[#c5a059]/20 flex-shrink">
           
           {/* Countdown */}
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-gold-muted/30 bg-white lg:bg-transparent shadow-xl lg:shadow-none">
