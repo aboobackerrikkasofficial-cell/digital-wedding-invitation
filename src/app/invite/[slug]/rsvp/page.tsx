@@ -3,6 +3,7 @@
 import { RsvpFlow } from "@/components/RsvpFlow";
 import { useParams, useRouter } from "next/navigation";
 import { useWedding } from "../WeddingContext";
+import { useEffect } from "react";
 
 export default function RsvpPage() {
   const { slug } = useParams();
