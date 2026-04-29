@@ -1,14 +1,14 @@
 {
   "name": "Smart Wedding Invitation",
   "short_name": "SmartWedding",
-  "description": "Luxury digital wedding invitations with cinematic animations.",
+  "description": "Luxury digital wedding invitations with cinematic animations and RSVP tracking.",
   "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "fullscreen"],
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#d4af37",
+  "background_color": "#fffcf2",
+  "theme_color": "#C5A059",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -35,14 +35,29 @@
       "purpose": "maskable"
     }
   ],
-  "categories": ["social", "lifestyle"],
+  "categories": ["social", "lifestyle", "events"],
+  "shortcuts": [
+    {
+      "name": "Admin Dashboard",
+      "url": "/admin",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
   "screenshots": [
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Invitation Preview"
+      "label": "Luxury Wedding Invitation"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Luxury Wedding Invitation"
     }
   ]
 }
+

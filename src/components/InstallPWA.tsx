@@ -30,7 +30,14 @@ export function InstallPWA() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     setIsIOS(iOS);
 
-    // 3. Listen for native prompt
+    // 3. Check for early captured prompt from layout.tsx
+    if ((window as any).deferredPrompt) {
+      setDeferredPrompt((window as any).deferredPrompt);
+      setIsVisible(true);
+      console.log("PWA: Using early captured prompt");
+    }
+
+    // 4. Listen for native prompt (for later firing)
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -40,11 +47,15 @@ export function InstallPWA() {
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    // 4. Force visibility after delay (Fallback for all devices)
+    // 5. Force visibility after delay (Fallback for all devices)
     const timer = setTimeout(() => {
         if (!isStandalone) {
             setIsVisible(true);
-            console.log("PWA: Showing install option (Fallback/Manual mode)");
+            const isSecure = window.isSecureContext;
+            console.log(`PWA: Showing install option (Fallback mode). Secure context: ${isSecure}`);
+            if (!isSecure && !iOS) {
+              console.warn("PWA: Direct install is unavailable on mobile because this is not a secure (HTTPS) context.");
+            }
         }
     }, 5000);
 
@@ -55,13 +66,23 @@ export function InstallPWA() {
   }, []);
 
   const handleInstallClick = async () => {
-    if (deferredPrompt) {
+    // Check global window object again just in case state is stale
+    const promptToUse = deferredPrompt || (window as any).deferredPrompt;
+
+    if (promptToUse) {
       console.log("PWA: Triggering native prompt");
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log(`PWA: Installation outcome: ${outcome}`);
-      if (outcome === 'accepted') setIsVisible(false);
-      setDeferredPrompt(null);
+      try {
+        await promptToUse.prompt();
+        const { outcome } = await promptToUse.userChoice;
+        console.log(`PWA: Installation outcome: ${outcome}`);
+        if (outcome === 'accepted') {
+          setIsVisible(false);
+          (window as any).deferredPrompt = null;
+        }
+      } catch (err) {
+        console.error("PWA: Error during prompt:", err);
+        setShowInstructions(true);
+      }
     } else {
       console.log("PWA: Native prompt unavailable, showing manual instructions");
       setShowInstructions(true);
@@ -82,10 +103,13 @@ export function InstallPWA() {
           >
             <button
               onClick={handleInstallClick}
-              className="pointer-events-auto flex items-center gap-2 bg-[#C5A059] hover:bg-[#B48E48] text-white px-4 py-2.5 rounded-lg shadow-xl shadow-black/20 border border-white/10 transition-all active:scale-95"
+              className="pointer-events-auto flex items-center gap-2 bg-[#C5A059] hover:bg-[#B48E48] text-white px-4 py-2.5 rounded-lg shadow-xl shadow-black/20 border border-white/10 transition-all active:scale-95 group"
             >
-              <Download size={16} />
-              <span className="text-[12px] font-bold uppercase tracking-widest whitespace-nowrap">Install App</span>
+              <Download size={16} className="group-hover:bounce" />
+              <div className="flex flex-col items-start leading-none">
+                <span className="text-[10px] opacity-70 font-medium uppercase tracking-tighter">Get App</span>
+                <span className="text-[13px] font-bold uppercase tracking-widest whitespace-nowrap">Install Now</span>
+              </div>
             </button>
             <button 
               onClick={() => setIsVisible(false)}

@@ -139,16 +139,6 @@ export default function InvitePage() {
             transition={{ duration: 0.8 }}
           >
             {/* Admin Back to Dashboard Button */}
-            {isAdmin && slug === "demo" && (
-              <Link 
-                href="/admin"
-                className="fixed top-6 left-6 z-[100] flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white rounded-full font-bold text-xs transition-all shadow-xl shadow-black/20"
-              >
-                <LayoutDashboard size={14} />
-                Back to Dashboard
-              </Link>
-            )}
-
             {step === "invitation" && (
               <InvitationLanding 
                 wedding={wedding} 

@@ -242,28 +242,6 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
             </motion.div>
           </motion.div>
           
-          {/* Admin Dashboard Navigation (Preview Mode Only) */}
-          {typeof window !== 'undefined' && window.location.search.includes('preview=true') && (
-            <Link 
-              href="/admin"
-              className="fixed top-4 left-4 z-[150] flex items-center gap-2 px-4 py-2 bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/40 text-gold-dark rounded-full font-bold text-xs transition-all shadow-xl shadow-gold-dark/10"
-            >
-              <LayoutDashboard size={14} />
-              Back to Dashboard
-            </Link>
-          )}
-
-          {/* Back Button for mobile side preview (non-admin) */}
-          {typeof window !== 'undefined' && !window.location.search.includes('preview=true') && window.location.search.includes('side=') && (
-            <div className="lg:hidden absolute top-4 left-4 z-[100]">
-              <button 
-                onClick={() => window.history.back()}
-                className="bg-gold-dark/90 backdrop-blur-sm p-2 rounded-full shadow-md text-white hover:bg-gold-dark"
-              >
-                <ArrowLeft size={20} />
-              </button>
-            </div>
-          )}
         </main>
 
         {/* 6. DIVIDER */}

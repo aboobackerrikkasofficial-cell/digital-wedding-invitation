@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#d4af37",
+  themeColor: "#C5A059",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -27,17 +27,28 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "SmartWedding",
+    title: "Smart Wedding",
     startupImage: "/icons/icon-512x512.png",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "Smart Wedding",
+    "format-detection": "telephone=no",
+    "msapplication-TileColor": "#C5A059",
+    "msapplication-tap-highlight": "no",
   },
   icons: {
     apple: "/icons/icon-192x192.png",
     shortcut: "/icons/icon-192x192.png",
+    icon: "/icons/icon-192x192.png",
   },
 };
 
 import { ToastProvider } from "@/components/Toast";
 import { InstallPWA } from "@/components/InstallPWA";
+import { BackButton } from "@/components/BackButton";
 
 export default function RootLayout({
   children,
@@ -53,10 +64,18 @@ export default function RootLayout({
         <ToastProvider>
           {children}
           <InstallPWA />
+          <BackButton />
         </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
             __html: `
+              window.deferredPrompt = null;
+              window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                window.deferredPrompt = e;
+                console.log('PWA: Early prompt captured');
+              });
+
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js').then(
