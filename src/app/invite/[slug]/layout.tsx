@@ -43,29 +43,38 @@ export default function InviteLayout({
         return;
       }
 
-      const { data, error } = await supabase
-        .from("weddings")
-        .select("*")
-        .eq("slug", slug)
-        .maybeSingle();
-        
-      if (error) {
-        console.error("Supabase error fetching wedding:", error);
-        setError("Database error. Please try again later.");
-      } else if (!data) {
-        console.error("No wedding data found for slug:", slug);
-        setError("Wedding invitation not found.");
-      } else {
-        console.log("Wedding data successfully fetched:", data);
-        const sideParam = new URLSearchParams(window.location.search).get('side');
-        if (data) {
-          if (sideParam === 'bride') {
-            data.host_selection = 'bride_side';
-          } else if (sideParam === 'groom') {
-            data.host_selection = 'groom_side';
+      try {
+        const { data, error } = await supabase
+          .from("weddings")
+          .select("*")
+          .eq("slug", slug)
+          .maybeSingle();
+          
+        if (error) {
+          console.error("Supabase error fetching wedding:", error);
+          setError("Database error. Please try again later.");
+        } else if (!data) {
+          console.error("No wedding data found for slug:", slug);
+          setError("Wedding invitation not found.");
+        } else {
+          console.log("Wedding data successfully fetched:", data);
+          const sideParam = new URLSearchParams(window.location.search).get('side');
+          if (data) {
+            if (sideParam === 'bride') {
+              data.host_selection = 'bride_side';
+            } else if (sideParam === 'groom') {
+              data.host_selection = 'groom_side';
+            }
           }
+          setWedding(data);
         }
-        setWedding(data);
+      } catch (err: any) {
+        console.error("Critical error in fetchWedding:", err);
+        if (err.message?.includes('Failed to fetch')) {
+          setError("Network Error: Could not connect to Supabase. Please check your internet connection and verify that your NEXT_PUBLIC_SUPABASE_URL in .env.local is correct. (You may need to restart your dev server if you recently changed it)");
+        } else {
+          setError("An unexpected error occurred while loading the invitation.");
+        }
       }
       setLoading(false);
     }
