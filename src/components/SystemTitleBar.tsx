@@ -16,7 +16,8 @@ export function SystemTitleBar() {
 
   useEffect(() => {
     // Hide back button on the very first landing/login page
-    const hideOn = ["/", "/admin/login"];
+    // Also hide on the main admin dashboard to avoid overlapping the sidebar
+    const hideOn = ["/", "/admin/login", "/admin"];
     setCanGoBack(!hideOn.includes(pathname));
   }, [pathname]);
 
@@ -25,7 +26,7 @@ export function SystemTitleBar() {
     if (typeof window !== "undefined" && window.history.length > 1) {
       window.history.back();
     } else {
-      // Fallback for direct links - using router.push to avoid full page reload
+      // Fallback for direct links
       router.push(pathname.startsWith("/admin") ? "/admin" : "/");
     }
   };
@@ -34,23 +35,26 @@ export function SystemTitleBar() {
   if (!canGoBack) return null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-8 bg-[#C5A059] flex items-center px-3 z-[10000] select-none shadow-sm">
-      <button
-        onClick={handleBack}
-        className="hover:bg-black/10 rounded p-1 transition-colors text-white/90 hover:text-white flex items-center gap-2"
-        title="Go back"
-      >
-        <ArrowLeft size={16} strokeWidth={2.5} />
-        <span className="text-[11px] font-black text-white tracking-widest uppercase font-sans">
-          Back
-        </span>
-      </button>
-      
-      <div className="flex-1 text-center pr-10">
-        <span className="text-[9px] font-black text-white/60 tracking-[0.3em] uppercase font-sans">
-          Smart Wedding Invitation System
-        </span>
-      </div>
-    </header>
+    <>
+      <div className="h-8 w-full flex-shrink-0" /> {/* Spacer to prevent content overlap */}
+      <header className="fixed top-0 left-0 right-0 h-8 bg-[#C5A059] flex items-center px-3 z-[10000] select-none shadow-sm">
+        <button
+          onClick={handleBack}
+          className="hover:bg-black/10 rounded p-1 transition-colors text-white/90 hover:text-white flex items-center gap-2"
+          title="Go back"
+        >
+          <ArrowLeft size={16} strokeWidth={2.5} />
+          <span className="text-[11px] font-black text-white tracking-widest uppercase font-sans">
+            Back
+          </span>
+        </button>
+        
+        <div className="flex-1 text-center pr-10">
+          <span className="text-[9px] font-black text-white/60 tracking-[0.3em] uppercase font-sans">
+            Smart Wedding Invitation System
+          </span>
+        </div>
+      </header>
+    </>
   );
 }

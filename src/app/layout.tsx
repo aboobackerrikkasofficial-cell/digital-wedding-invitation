@@ -62,7 +62,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans pt-8">
+      <body className="min-h-full flex flex-col font-sans">
+
         <SystemTitleBar />
         <ToastProvider>
 
