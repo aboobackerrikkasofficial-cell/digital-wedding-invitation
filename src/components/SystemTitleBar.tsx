@@ -25,10 +25,11 @@ export function SystemTitleBar() {
     if (typeof window !== "undefined" && window.history.length > 1) {
       window.history.back();
     } else {
-      // Fallback for direct links
-      window.location.href = pathname.startsWith("/admin") ? "/admin" : "/";
+      // Fallback for direct links - using router.push to avoid full page reload
+      router.push(pathname.startsWith("/admin") ? "/admin" : "/");
     }
   };
+
 
   if (!canGoBack) return null;
 

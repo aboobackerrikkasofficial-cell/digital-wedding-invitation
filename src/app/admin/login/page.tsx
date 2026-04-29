@@ -73,8 +73,9 @@ export default function AdminLogin() {
         localStorage.setItem("isAdmin", "true");
         
         showToast("Access granted!", "success");
-        router.replace("/admin");
+        router.push("/admin");
       }
+
     } catch (err: any) {
       console.error("Login error:", err);
       let errorMessage = "Invalid credentials. Please try again.";
