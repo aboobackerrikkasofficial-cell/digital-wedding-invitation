@@ -15,10 +15,27 @@ export function SystemTitleBar() {
   const [canGoBack, setCanGoBack] = useState(false);
 
   useEffect(() => {
+    // Check if running as a standalone PWA
+    const isStandalone = typeof window !== 'undefined' && 
+      (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+
     // Hide back button on the very first landing/login page
     // Also hide on the main admin dashboard to avoid overlapping the sidebar
     const hideOn = ["/", "/admin/login", "/admin"];
-    setCanGoBack(!hideOn.includes(pathname));
+    
+    if (hideOn.includes(pathname)) {
+      setCanGoBack(false);
+      return;
+    }
+
+    // For invitation links, only show the back bar if we are in the "Web App" (Standalone)
+    // If it's a regular browser, hide it to keep the invitation clean.
+    if (pathname.startsWith('/invite')) {
+      setCanGoBack(!!isStandalone);
+    } else {
+      // For all other pages (Admin, etc.), show the back bar normally
+      setCanGoBack(true);
+    }
   }, [pathname]);
 
   const handleBack = () => {
