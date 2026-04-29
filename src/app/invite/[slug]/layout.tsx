@@ -27,6 +27,7 @@ export default function InviteLayout({
       // Handle demo case
       if (slug === "demo") {
         setWedding({
+          id: "00000000-0000-0000-0000-000000000000",
           bride_name: "Sarah",
           groom_name: "Deepak",
           wedding_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),

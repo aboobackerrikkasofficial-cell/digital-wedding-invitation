@@ -37,6 +37,13 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!wedding?.id) {
+      console.error("Cannot submit RSVP: Wedding ID is missing.");
+      showToast("Could not find the wedding record. Please try refreshing.", "error");
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -50,12 +57,15 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
           is_attending: true
         });
         
-      if (error) throw error;
+      if (error) {
+        console.error("Supabase RSVP Error:", error.message, error.details, error.hint);
+        throw error;
+      }
       
       onComplete({ name: finalName, guestCount });
     } catch (err) {
-      const error = err as Error;
-      console.error("Error submitting RSVP:", error);
+      const error = err as any;
+      console.error("Error submitting RSVP:", error.message || error, error);
       if ("vibrate" in navigator) navigator.vibrate(200);
       showToast("Failed to submit RSVP. Please try again.", "error");
     } finally {
