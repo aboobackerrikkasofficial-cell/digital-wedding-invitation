@@ -32,7 +32,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
 
   const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
   const isCreamGold = wedding.template_id === 'muslim-3';
-  const isRoyal = wedding.template_id === 'muslim-royal';
+  const isRoyal = wedding.template_id === 'muslim-royal' || wedding.template_id === 'royal';
   const isAnyGold = isPinkTheme || isCreamGold;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -239,9 +239,11 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gold text-white font-bold py-4 lg:py-7 rounded-xl lg:rounded-[2.5rem] shadow-2xl shadow-gold/20 hover:bg-gold/90 transition-all flex items-center justify-center gap-3 text-base lg:text-xl relative overflow-hidden group ${
-              isAnyGold ? 'font-poppins' : ''
-            }`}
+            className={`w-full font-bold py-4 lg:py-7 rounded-xl lg:rounded-[2.5rem] shadow-2xl transition-all flex items-center justify-center gap-3 text-base lg:text-xl relative overflow-hidden group ${
+              isRoyal 
+                ? 'bg-transparent border-2 border-gold/50 text-white hover:bg-gold/10 shadow-gold/10' 
+                : 'bg-gold text-white hover:bg-gold/90 shadow-gold/20'
+            } ${isAnyGold ? 'font-poppins' : ''}`}
           >
             <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
             
