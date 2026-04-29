@@ -23,30 +23,27 @@ export function BackButton() {
   return (
     <AnimatePresence>
       <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         onClick={() => {
-            // Priority 1: Use router back
-            router.back();
-            
-            // Priority 2: Fallback if no history (direct link)
-            // We wait a tiny bit to see if pathname changed
-            setTimeout(() => {
-                if (window.location.pathname === pathname) {
-                    router.push(isAdminPage ? "/admin" : "/");
-                }
-            }, 100);
+            // Priority: Real browser back
+            if (typeof window !== "undefined" && window.history.length > 1) {
+                router.back();
+            } else {
+                // Fallback for direct links
+                router.push(isAdminPage ? "/admin" : "/");
+            }
         }}
         className={cn(
-            "fixed z-[2000] flex items-center justify-center w-10 h-10 bg-white/80 hover:bg-white backdrop-blur-xl border border-gray-200 text-gray-900 rounded-full shadow-lg transition-all active:scale-90 group",
+            "fixed z-[3000] flex items-center justify-center w-8 h-8 hover:bg-gray-100 rounded-md transition-all active:scale-90 text-gray-500 hover:text-black",
             isAdminPage 
-              ? "top-4 md:left-[300px] left-4" 
-              : "top-4 left-4"
+              ? "top-3 md:left-[288px] left-3" // Aligned exactly with sidebar top
+              : "top-3 left-3"
         )}
         title="Go Back"
       >
-        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+        <ArrowLeft size={20} />
       </motion.button>
     </AnimatePresence>
   );

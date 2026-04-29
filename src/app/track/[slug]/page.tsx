@@ -153,12 +153,6 @@ export default function TrackingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-6">
             <div>
-              {isAdminView && (
-                <Link href="/admin" className="inline-flex items-center text-white/60 hover:text-white mb-4 text-[10px] font-black uppercase tracking-[0.2em] transition-colors">
-                  <ArrowLeft size={16} className="mr-2" />
-                  Admin Dashboard
-                </Link>
-              )}
               <p className="text-gold font-black text-[10px] uppercase tracking-[0.3em] mb-2">Guest Tracking for</p>
               <h1 className="text-2xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
                 {wedding.bride_name} & {wedding.groom_name}
