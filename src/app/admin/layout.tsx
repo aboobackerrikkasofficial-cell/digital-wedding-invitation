@@ -28,10 +28,19 @@ export default function AdminLayout({
         
         if (sessionError) {
           console.error("Supabase Session Error:", sessionError);
+          // If it's a refresh token error, just clear it and redirect to login instead of crashing
+          if (sessionError.message.includes("refresh_token_not_found") || sessionError.message.includes("refresh token")) {
+            console.warn("Refresh token expired, clearing session...");
+            await supabase.auth.signOut();
+            setAuthorized(false);
+            if (!isLoginPage) router.push("/admin/login");
+            return;
+          }
           setError(sessionError.message);
           setAuthorized(false);
           return;
         }
+
 
         const userEmail = session?.user?.email?.toLowerCase() || "";
         const expectedEmail = adminEmail?.toLowerCase()?.trim() || "";

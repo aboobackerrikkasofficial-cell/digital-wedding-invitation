@@ -21,7 +21,25 @@ export default function AdminLogin() {
     if (!adminEmail) {
       setEnvError(true);
     }
+
+    // Fix for "Invalid Refresh Token" error:
+    // If we're on the login page and Supabase has a stale session it can't refresh,
+    // we should clear it to prevent the error overlay.
+    const clearStaleSession = async () => {
+      try {
+        const { error } = await supabase.auth.getSession();
+        if (error && (error.message.includes("refresh_token_not_found") || error.message.includes("refresh token"))) {
+          console.warn("Stale session detected, clearing...");
+          await supabase.auth.signOut();
+          localStorage.removeItem("isAdmin");
+        }
+      } catch (e) {
+        console.error("Error checking session:", e);
+      }
+    };
+    clearStaleSession();
   }, [adminEmail]);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
