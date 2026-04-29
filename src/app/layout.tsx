@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 import { ToastProvider } from "@/components/Toast";
 import { InstallPWA } from "@/components/InstallPWA";
-import { SystemTitleBar } from "@/components/SystemTitleBar";
+
 
 export default function RootLayout({
   children,
@@ -60,9 +60,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans pt-8">
-        <SystemTitleBar />
+      <body className="min-h-full flex flex-col font-sans">
         <ToastProvider>
+
           {children}
           <InstallPWA />
         </ToastProvider>
