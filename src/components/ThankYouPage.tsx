@@ -194,7 +194,6 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href={wedding.google_maps_url}
-                target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 px-6 py-2.5 lg:py-5 border-2 font-black rounded-full tracking-[0.1em] uppercase text-[9px] lg:text-sm transition-all mt-3 ${
                   isAnyGold 

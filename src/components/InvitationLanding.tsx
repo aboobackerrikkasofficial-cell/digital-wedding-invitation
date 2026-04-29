@@ -195,7 +195,6 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
                     {wedding.google_maps_url && (
                         <a 
                           href={wedding.google_maps_url} 
-                          target="_blank" 
                           className="inline-flex items-center gap-2 text-[10px] text-gold font-black tracking-widest uppercase hover:text-gray-900 transition-colors"
                         >
                           View Map <Sparkles size={10} />

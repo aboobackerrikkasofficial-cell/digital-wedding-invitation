@@ -204,10 +204,10 @@ export default function AdminDashboard() {
                       </button>
                       <Link 
                         href={`/invite/${w.slug}`} 
-                        target="_blank" 
                         className="p-2.5 hover:bg-gray-100 rounded-xl text-gray-400 transition-colors"
                         title="View Invitation"
                       >
+
                         <Eye size={18}/>
                       </Link>
                       <button 
@@ -268,9 +268,9 @@ export default function AdminDashboard() {
                 </Link>
                 <Link 
                   href={`/invite/${w.slug}`} 
-                  target="_blank" 
                   className="flex flex-col items-center gap-1 p-3 bg-gray-50 rounded-2xl text-gray-400 active:bg-gray-100 transition-colors"
                 >
+
                   <Eye size={18}/>
                   <span className="text-[10px] font-bold uppercase">View</span>
                 </Link>
