@@ -183,19 +183,7 @@ export default function AdminLogin() {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-gray-100">
-            <details className="group">
-              <summary className="flex items-center justify-center gap-2 cursor-pointer text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-gold transition-colors list-none">
-                <span>Need help with login?</span>
-                <ArrowRight size={12} className="group-open:rotate-90 transition-transform" />
-              </summary>
-              <div className="mt-4 p-4 bg-gray-50 rounded-xl text-[10px] text-gray-500 space-y-2 leading-relaxed">
-                <p>1. Ensure <code className="bg-gray-200 px-1 rounded">{adminEmail}</code> is created in your <strong>Supabase Dashboard &gt; Authentication</strong> section.</p>
-                <p>2. Verify that the password you are using matches the one set in Supabase.</p>
-                <p>3. If you haven't created the user yet, click <strong>"Add User"</strong> in Supabase and use the email above.</p>
-              </div>
-            </details>
-          </div>
+
         </form>
       </div>
     </div>
