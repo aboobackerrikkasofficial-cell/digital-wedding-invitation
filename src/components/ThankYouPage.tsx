@@ -105,7 +105,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className={`relative z-10 w-full max-w-2xl h-fit max-h-[98dvh] flex flex-col items-center justify-start lg:justify-center p-4 lg:p-12 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden pt-4 lg:pt-12 ${
+        className={`relative z-10 w-full max-w-2xl h-fit max-h-[92dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden ${
           isRoyal 
             ? 'bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)]' 
             : isAnyGold
@@ -118,14 +118,14 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
           <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className={`mb-2 lg:mb-10 ${isRoyal ? 'text-gold mt-8 mb-1 lg:mb-6' : 'text-gold mb-2 lg:mb-10'}`}
+            className={`text-gold mb-2 lg:mb-10`}
           >
             <Heart size={36} className={`lg:w-[60px] lg:h-[60px] fill-gold drop-shadow-[0_0_15px_rgba(158,126,69,0.3)]`} />
           </motion.div>
         )}
 
         {/* Message Header */}
-        <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-6 tracking-wider px-2 pt-2 ${
+        <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-6 tracking-wider px-2 ${
           isAnyGold ? 'text-gray-900 mt-[10px] font-poppins font-normal' : 'text-white font-cinzel'
         }`}>
           <span className={`block text-[clamp(1rem,5vw,2.375rem)] mb-0.5 lg:mb-2 text-wrap-balance leading-[1.3] py-0.5 ${
@@ -226,7 +226,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         <p className={`uppercase leading-relaxed ${
           isAnyGold 
             ? 'text-[#735B32] opacity-100 font-poppins font-bold text-[8px] lg:text-[12px] mt-[20px] mb-0 pb-0 whitespace-nowrap tracking-[0.1em] px-4' 
-            : 'tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-1 mb-2 pb-2'
+            : 'tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-2 mb-0 pb-0'
         }`}>
            {wedding.groom_name} & {wedding.bride_name}
         </p>
