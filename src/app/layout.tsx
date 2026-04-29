@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 
 import { ToastProvider } from "@/components/Toast";
 import { InstallPWA } from "@/components/InstallPWA";
+import { GlobalBackButton } from "@/components/GlobalBackButton";
 
 export default function RootLayout({
   children,
@@ -63,6 +64,7 @@ export default function RootLayout({
         <ToastProvider>
           {children}
           <InstallPWA />
+          <GlobalBackButton />
         </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
