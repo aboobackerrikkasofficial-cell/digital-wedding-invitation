@@ -9,25 +9,8 @@ import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import { Countdown } from "./Countdown";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
-interface Wedding {
-  wedding_date: string;
-  bride_name: string;
-  groom_name: string;
-  venue_name: string;
-  host_selection: string;
-  bride_father_name?: string;
-  bride_mother_name?: string;
-  bride_place?: string;
-  groom_father_name?: string;
-  groom_mother_name?: string;
-  groom_place?: string;
-  venue_address?: string;
-  nikah_date?: string;
-  nikah_time?: string;
-  nikah_islamic_date?: string;
-  nikah_location?: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface ElegantTemplateProps {
   wedding: Wedding;

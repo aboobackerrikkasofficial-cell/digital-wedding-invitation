@@ -5,15 +5,8 @@ import { format } from "date-fns";
 import { MapPin, Calendar, MousePointer2, Sparkles, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 
-interface Wedding {
-  id: string;
-  bride_name: string;
-  groom_name: string;
-  wedding_date: string;
-  venue_name: string;
-  google_maps_url?: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface PeachFloralTemplateProps {
   wedding: Wedding;

@@ -23,26 +23,8 @@ const getParticle = (i: number): Particle => ({
   color: i % 2 === 0 ? '#D4AF37' : '#E6C76B'
 });
 
-interface Wedding {
-  id: string;
-  template_id: string;
-  wedding_date: string;
-  bride_name: string;
-  groom_name: string;
-  venue_name: string;
-  host_selection: string;
-  bride_father_name?: string;
-  bride_mother_name?: string;
-  bride_place?: string;
-  groom_father_name?: string;
-  groom_mother_name?: string;
-  groom_place?: string;
-  nikah_date?: string;
-  nikah_time?: string;
-  nikah_islamic_date?: string;
-  nikah_location?: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface TemplateProps {
   wedding: Wedding;

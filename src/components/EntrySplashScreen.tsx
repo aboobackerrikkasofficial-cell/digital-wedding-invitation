@@ -3,12 +3,8 @@
 import { motion } from "framer-motion";
 import { Sparkles, MailOpen } from "lucide-react";
 
-interface Wedding {
-  template_id: string;
-  groom_name: string;
-  bride_name: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface EntrySplashScreenProps {
   wedding: Wedding;

@@ -9,18 +9,8 @@ import { RoyalPurpleIslamicTemplate } from "./RoyalPurpleIslamicTemplate";
 import { CreamGoldIslamicTemplate } from "./CreamGoldIslamicTemplate";
 import { PeachFloralTemplate } from "./PeachFloralTemplate";
 
-interface Wedding {
-  id: string;
-  template_id: string;
-  wedding_date: string;
-  bride_name: string;
-  groom_name: string;
-  venue_name: string;
-  google_maps_url?: string;
-  custom_message?: string;
-  islamic_date?: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface InvitationLandingProps {
   wedding: Wedding;

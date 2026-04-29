@@ -23,16 +23,8 @@ const getParticle = (i: number): Particle => ({
   color: i % 2 === 0 ? '#D4AF37' : '#E6C76B'
 });
 
-interface Wedding {
-  id: string;
-  template_id: string;
-  wedding_date: string;
-  bride_name: string;
-  groom_name: string;
-  venue_name: string;
-  google_maps_url?: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface RsvpData {
   is_attending: boolean;

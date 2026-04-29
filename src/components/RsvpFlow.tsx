@@ -7,11 +7,8 @@ import { supabase } from "@/lib/supabase";
 import { useToast } from "./Toast";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
-interface Wedding {
-  id: string;
-  template_id: string;
-  [key: string]: unknown;
-}
+import { Wedding } from "@/types/wedding";
+
 
 interface RsvpData {
   name: string;
@@ -24,7 +21,8 @@ interface RsvpFlowProps {
   onBack: () => void;
 }
 
-const liquidEase = [0.16, 1, 0.3, 1];
+const liquidEase = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
 
 export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   const { showToast } = useToast();
@@ -108,16 +106,6 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
               : 'bg-white/70 backdrop-blur-3xl border-white'
         }`}
       >
-        <motion.button 
-          whileHover={{ x: -5 }}
-          onClick={onBack}
-          className={`inline-flex items-center mb-4 md:mb-6 lg:mb-8 transition-colors font-bold text-[10px] uppercase tracking-widest group ${
-            isRoyal ? 'text-white/40 hover:text-gold' : isAnyGold ? 'text-gray-400 hover:text-gold' : 'text-gray-400 hover:text-gold'
-          }`}
-        >
-          <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-          Back to Invitation
-        </motion.button>
 
         <div className="mb-4 md:mb-6 lg:mb-10 text-center">
             <h2 className={`text-xl md:text-2xl lg:text-4xl font-bold mb-0.5 ${isRoyal ? 'text-gold font-serif' : isAnyGold ? 'text-gray-900 font-poppins' : 'text-gray-900 font-serif'}`}>RSVP Details</h2>
