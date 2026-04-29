@@ -105,41 +105,32 @@ export default function AdminLayout({
     );
   }
 
-  // While checking /admin, show spinner
-  if (authorized === null) {
-    return (
-      <div className="min-h-screen bg-[#fdfbf0] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-6">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-widest text-gold font-bold mb-2">Securing Session...</p>
-            <button 
-                onClick={() => setRetryCount(prev => prev + 1)}
-                className="text-[10px] text-gray-400 underline uppercase tracking-tighter"
-            >
-                Taking too long? Click to retry
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // If not authorized and not on login page, we'll be redirecting anyway, but show a message
-  if (authorized === false && !isLoginPage) {
-    return (
-        <div className="min-h-screen bg-[#fdfbf0] flex items-center justify-center">
-            <p className="text-xs text-gray-500">Redirecting to login...</p>
-        </div>
-    );
-  }
-
   return (
     <div className="flex min-h-screen bg-gray-50 text-gray-900">
       <AdminSidebar />
       <main className="flex-1 w-full md:ml-72 p-4 pt-20 md:p-8">
-        {children}
+        {authorized === null ? (
+          <div className="h-full flex flex-col items-center justify-center gap-6">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
+            <div className="text-center">
+              <p className="text-[10px] uppercase tracking-widest text-gold font-bold mb-2">Securing Session...</p>
+              <button 
+                  onClick={() => setRetryCount(prev => prev + 1)}
+                  className="text-[10px] text-gray-400 underline uppercase tracking-tighter"
+              >
+                  Taking too long? Click to retry
+              </button>
+            </div>
+          </div>
+        ) : authorized === false ? (
+          <div className="h-full flex items-center justify-center">
+            <p className="text-xs text-gray-500">Redirecting to login...</p>
+          </div>
+        ) : (
+          children
+        )}
       </main>
     </div>
   );
 }
+

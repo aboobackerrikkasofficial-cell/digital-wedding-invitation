@@ -9,6 +9,14 @@ export default function RsvpPage() {
   const router = useRouter();
   const wedding = useWedding();
 
+  if (!wedding) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-gold" />
+      </div>
+    );
+  }
+
   const handleComplete = (data: any) => {
     // Store RSVP data in session storage to pass to thank you page if needed
     // or just rely on the database and show a generic thank you.

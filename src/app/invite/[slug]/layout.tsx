@@ -77,41 +77,22 @@ export default function InviteLayout({
     }
   }, [pathname, slug]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold"></div>
-      </div>
-    );
-  }
-
-  if (error || !wedding) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
-        <h1 className="text-3xl font-serif mb-4">Oops!</h1>
-        <p className="text-gray-600">{error || "Something went wrong."}</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
-      <BackgroundMusic musicUrl={wedding.music_url} forcePlay={isOpened} />
+      <BackgroundMusic musicUrl={wedding?.music_url || ""} forcePlay={isOpened} />
       <WeddingProvider wedding={wedding}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full"
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
+          className="w-full"
+        >
+          {children}
+        </motion.div>
       </WeddingProvider>
     </div>
   );
 }
+
 

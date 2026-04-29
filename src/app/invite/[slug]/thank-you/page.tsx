@@ -7,6 +7,15 @@ import { useEffect, useState } from "react";
 
 export default function ThankYouSubPage() {
   const wedding = useWedding();
+
+  if (!wedding) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-gold" />
+      </div>
+    );
+  }
+
   const searchParams = useSearchParams();
   const [rsvpData, setRsvpData] = useState<any>({ is_attending: true });
 

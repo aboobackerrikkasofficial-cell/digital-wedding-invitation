@@ -177,20 +177,22 @@ export default function EditWedding() {
     setSaving(false);
   };
 
-  if (loading) return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
-    </div>
-  );
-
   return (
-    <div className="max-w-6xl mx-auto pt-[3px] pb-2 px-2 md:px-4 selection:bg-gold/30">
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden"
-      >
+    <div className="max-w-6xl mx-auto pt-[3px] pb-2 px-2 md:px-4 selection:bg-gold/30">
+      {loading ? (
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
+        </div>
+      ) : (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.15 }}
+          className="bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden"
+        >
+
+
         <div className="bg-black p-6 text-center text-white relative">
             <h1 className="text-2xl md:text-3xl font-serif font-bold mb-1">Edit Invitation</h1>
             <p className="text-white/60 text-[9px] uppercase tracking-[0.2em] font-black">Update the details for {formData.brideName} & {formData.groomName}</p>
@@ -410,6 +412,8 @@ export default function EditWedding() {
           </div>
         </form>
       </motion.div>
+      )}
     </div>
   );
 }
+

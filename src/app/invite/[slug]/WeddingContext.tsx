@@ -4,12 +4,12 @@ import { createContext, useContext, ReactNode } from "react";
 import { Wedding } from "@/types/wedding";
 
 interface WeddingContextType {
-  wedding: Wedding;
+  wedding: Wedding | null;
 }
 
 const WeddingContext = createContext<WeddingContextType | undefined>(undefined);
 
-export function WeddingProvider({ children, wedding }: { children: ReactNode; wedding: Wedding }) {
+export function WeddingProvider({ children, wedding }: { children: ReactNode; wedding: Wedding | null }) {
   return (
     <WeddingContext.Provider value={{ wedding }}>
       {children}
@@ -24,3 +24,4 @@ export function useWedding() {
   }
   return context.wedding;
 }
+
