@@ -42,6 +42,11 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+  
+  // BYPASS Supabase and API requests - let the network handle them directly
+  if (url.hostname.includes('supabase.co') || url.pathname.startsWith('/api')) {
+    return;
+  }
 
   // For navigation requests, try network first, then cache, then offline fallback
   if (event.request.mode === 'navigate') {

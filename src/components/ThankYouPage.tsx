@@ -94,7 +94,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
   }, [isAttending]);
 
   return (
-    <div className={`relative min-h-[calc(100dvh-2rem)] lg:min-h-[calc(100dvh-2rem)] w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 ${
+    <div className={`relative h-[calc(100dvh-32px)] w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 ${
       isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
     }`}>
       {isRoyal ? <GoldDustBackground particles={particles} /> : isAnyGold ? (
@@ -105,7 +105,7 @@ export function ThankYouPage({ wedding, rsvpData }: ThankYouPageProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className={`relative z-10 w-full max-w-2xl h-fit max-h-[85dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden ${
+        className={`relative z-10 w-full max-w-2xl h-fit max-h-[80dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden ${
           isRoyal 
             ? 'bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)]' 
             : isAnyGold
