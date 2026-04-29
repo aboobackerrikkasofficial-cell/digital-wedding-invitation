@@ -142,12 +142,6 @@ export default function CreateWedding() {
 
   return (
     <div className="max-w-6xl mx-auto pt-[3px] pb-2 px-2 md:px-4 selection:bg-gold/30">
-      <div className="mb-4">
-        <Link href="/admin" className="inline-flex items-center text-gray-400 hover:text-gray-900 transition-colors font-bold text-sm uppercase tracking-widest">
-          <ArrowLeft size={14} className="mr-2" />
-          BACK TO DASHBOARD
-        </Link>
-      </div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
