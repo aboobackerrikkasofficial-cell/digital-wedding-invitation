@@ -4,6 +4,7 @@ import { InvitationLanding } from "@/components/InvitationLanding";
 import { useParams, useRouter } from "next/navigation";
 import { useWedding } from "../WeddingContext";
 import { supabase } from "@/lib/supabase";
+import { useEffect } from "react";
 
 export default function InvitationPage() {
   const { slug } = useParams();
@@ -39,11 +40,28 @@ export default function InvitationPage() {
     router.push(`/invite/${slug}/thank-you?status=declined`);
   };
 
+  useEffect(() => {
+    // Lock scrolling on this specific page
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyOverflow = document.body.style.overflow;
+    
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    
+    return () => {
+      // Restore scrolling when leaving the page
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+    };
+  }, []);
+
   return (
-    <InvitationLanding 
-      wedding={wedding} 
-      onAttend={handleAttend} 
-      onNotAttend={handleNotAttend}
-    />
+    <div className="h-[calc(100dvh-2rem)] w-full overflow-hidden relative">
+      <InvitationLanding 
+        wedding={wedding} 
+        onAttend={handleAttend} 
+        onNotAttend={handleNotAttend}
+      />
+    </div>
   );
 }

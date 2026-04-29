@@ -73,6 +73,11 @@ export default function InviteLayout({
     fetchWedding();
   }, [slug]);
 
+  // Debug wedding state changes
+  useEffect(() => {
+    console.log("InviteLayout: Wedding state updated:", wedding?.id || 'NO_ID', wedding);
+  }, [wedding]);
+
   // Handle the "Opened" state for music
   useEffect(() => {
     // If we are not on the root slug page, it means we've already opened the splash

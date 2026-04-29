@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { Sparkles, Clock, MapPin } from "lucide-react";
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import { Countdown } from "./Countdown";
 
@@ -169,13 +169,22 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
 
   const particles = useMemo(() => [...Array(30)].map((_, i) => getParticle(i)), []);
 
+  useEffect(() => {
+    // Lock body scroll only for this page to ensure single-page experience
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   return (
-    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10">
+    <div className="relative h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#1a0f2e] overflow-hidden flex items-center justify-center font-serif p-4 lg:p-10 royal-purple-theme selection:bg-gold/30">
       <GoldDustBackground particles={particles} />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full py-4">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[95svh] lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden pt-4 lg:pt-[20px] pb-0 px-0">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-[1px] border-gold/30 rounded-[2.5rem] bg-[#2b1e3f] shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden">
 
           <GoldArc />
 

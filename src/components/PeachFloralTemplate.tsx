@@ -20,13 +20,19 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(frame);
+    // Lock body scroll only for this page to ensure single-page experience
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      cancelAnimationFrame(frame);
+      document.body.style.overflow = originalStyle;
+    };
   }, []);
 
   if (!mounted) return null;
 
   return (
-    <div className="peach-theme relative min-h-[calc(100dvh-2rem)] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
+    <div className="peach-theme relative h-[calc(100dvh-2rem)] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
       
       {/* 1. MANDATORY BACKGROUND (CLONE ENFORCEMENT) */}
       <div className="fixed inset-0 z-0">
