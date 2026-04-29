@@ -48,7 +48,7 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
   }, []);
 
   return (
-    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif pt-6 px-4 pb-2 md:p-6 lg:pt-[50px] lg:pb-[50px] lg:px-10 cream-gold-theme">
+    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#fffcf2] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10 cream-gold-theme">
       <BackgroundDecor />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">

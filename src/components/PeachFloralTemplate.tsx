@@ -26,7 +26,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
   if (!mounted) return null;
 
   return (
-    <div className="peach-theme relative min-h-[100dvh] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
+    <div className="peach-theme relative min-h-[calc(100dvh-2rem)] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
       
       {/* 1. MANDATORY BACKGROUND (CLONE ENFORCEMENT) */}
       <div className="fixed inset-0 z-0">
@@ -46,7 +46,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
       </div>
 
       {/* 2. LAYOUT CONTAINER (EXACT OVERLAY MATCH) */}
-      <div className="relative z-10 w-full min-h-[100dvh] flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-6 md:p-20">
+      <div className="relative z-10 w-full min-h-[calc(100dvh-2rem)] flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-6 md:p-20">
         
         {/* LEFT SECTION: INVITATION CARD */}
         <motion.main 

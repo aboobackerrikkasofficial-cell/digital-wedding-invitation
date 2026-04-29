@@ -170,7 +170,7 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
   const particles = useMemo(() => [...Array(30)].map((_, i) => getParticle(i)), []);
 
   return (
-    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-2 md:p-6 lg:p-10">
+    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10">
       <GoldDustBackground particles={particles} />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">

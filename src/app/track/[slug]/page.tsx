@@ -130,9 +130,9 @@ export default function TrackingPage() {
   const totalDeclined = rsvps.filter(r => !r.is_attending).length;
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-12">
+    <div className="h-[calc(100dvh-2rem)] bg-gray-50 overflow-hidden">
       {loading ? (
-        <div className="flex items-center justify-center py-20">
+        <div className="flex items-center justify-center h-full">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
         </div>
       ) : (
@@ -140,14 +140,16 @@ export default function TrackingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
+          className="h-full"
         >
           {!wedding ? (
-            <div className="min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="h-full flex flex-col items-center justify-center p-4">
               <h1 className="text-2xl font-bold text-gray-800 mb-4">Invitation Not Found</h1>
               <Link href="/admin" className="text-gold font-bold underline">Back to Admin</Link>
             </div>
           ) : (
-            <div className="h-[100dvh] bg-[#fafafa] flex flex-col overflow-hidden">
+            <div className="h-full bg-[#fafafa] flex flex-col overflow-hidden p-4 lg:p-8">
+
               {/* Header - Restored Font Sizes */}
               <div className="bg-black text-white py-6 px-4 flex-shrink-0">
                 <div className="max-w-5xl mx-auto">
@@ -180,8 +182,9 @@ export default function TrackingPage() {
               </div>
 
               {/* Content - Fixed Height with Internal Scroll */}
-              <div className="flex-1 max-w-5xl w-full mx-auto px-2 md:px-4 pb-4 overflow-hidden -mt-10">
+              <div className="flex-1 max-w-5xl w-full mx-auto px-2 md:px-4 overflow-hidden -mt-10">
                 <div className="bg-white h-full rounded-[2rem] md:rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden flex flex-col">
+
                   
                   {/* Table Controls */}
                   <div className="p-4 md:px-8 md:py-6 border-b border-gray-50 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 flex-shrink-0">
@@ -290,9 +293,10 @@ export default function TrackingPage() {
                         )}
                         {/* Bottom Spacer */}
                         <tr>
-                          <td colSpan={4} className="h-20"></td>
+                          <td colSpan={4} className="h-10"></td>
                         </tr>
                       </tbody>
+
 
                     </table>
                   </div>
