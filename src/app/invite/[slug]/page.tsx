@@ -3,6 +3,7 @@
 import { EntrySplashScreen } from "@/components/EntrySplashScreen";
 import { useParams, useRouter } from "next/navigation";
 import { useWedding } from "./WeddingContext";
+import { useEffect } from "react";
 
 export default function EntryPage() {
   const { slug } = useParams();
