@@ -38,8 +38,10 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log("RsvpFlow: Attempting to submit. Wedding object:", wedding);
+    
     if (!wedding?.id) {
-      console.error("Cannot submit RSVP: Wedding ID is missing.");
+      console.error("RsvpFlow Error: Wedding ID is missing from object:", wedding);
       showToast("Could not find the wedding record. Please try refreshing.", "error");
       return;
     }
@@ -48,6 +50,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
     
     try {
       const finalName = name.trim() || "Honored Guest";
+      console.log("RsvpFlow: Inserting RSVP for wedding", wedding.id, "with name", finalName);
       const { error } = await supabase
         .from("rsvps")
         .insert({

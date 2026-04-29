@@ -15,6 +15,7 @@ export default function InviteLayout({
 }) {
   const { slug } = useParams();
   const pathname = usePathname();
+  const router = useRouter();
   const [wedding, setWedding] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -49,11 +50,13 @@ export default function InviteLayout({
         .maybeSingle();
         
       if (error) {
-        console.error("Error fetching wedding:", error);
+        console.error("Supabase error fetching wedding:", error);
         setError("Database error. Please try again later.");
       } else if (!data) {
+        console.error("No wedding data found for slug:", slug);
         setError("Wedding invitation not found.");
       } else {
+        console.log("Wedding data successfully fetched:", data);
         const sideParam = new URLSearchParams(window.location.search).get('side');
         if (data) {
           if (sideParam === 'bride') {
@@ -77,6 +80,29 @@ export default function InviteLayout({
       setIsOpened(true);
     }
   }, [pathname, slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full bg-[#fdfbf0] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-gold" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen w-full bg-[#fdfbf0] flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-2xl font-serif font-bold text-gray-900 mb-4">Invitation Not Found</h2>
+        <p className="text-gray-500 mb-8">{error}</p>
+        <button 
+          onClick={() => router.push('/')}
+          className="bg-gold text-white px-8 py-3 rounded-xl font-bold"
+        >
+          Go to Home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
