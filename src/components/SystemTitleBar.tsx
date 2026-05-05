@@ -22,8 +22,8 @@ export function SystemTitleBar() {
     
     const isApp = !!(isNative || isStandalone);
 
-    // Hide on the very first landing/login page
-    const hideOn = ["/", "/admin/login"];
+    // Hide on the dashboard, landing, and login pages
+    const hideOn = ["/", "/admin/login", "/admin"];
     
     if (hideOn.includes(pathname) || !isApp) {
       setCanGoBack(false);
