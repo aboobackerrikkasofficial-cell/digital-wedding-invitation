@@ -105,11 +105,6 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
                  </div>
                  <p className="text-[10px] uppercase font-black text-[#2B4570]/40 tracking-widest mt-2 mb-2">Where</p>
                  <p className="font-black text-[#2B4570] text-lg mb-3">{wedding.venue_name}</p>
-                 {wedding.google_maps_url && (
-                    <a href={wedding.google_maps_url} className="bg-[#2B4570]/10 text-[#2B4570] text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest hover:bg-[#2B4570]/20 transition-all flex items-center gap-2">
-                        Open in Maps <Sparkles size={10} />
-                    </a>
-                 )}
               </div>
             </div>
           </div>

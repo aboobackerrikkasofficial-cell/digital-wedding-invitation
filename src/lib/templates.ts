@@ -13,9 +13,10 @@ export const WEDDING_TEMPLATES: WeddingTemplate[] = [
     id: 'default',
     name: 'Pink Panther',
     category: 'default',
-    primaryColor: '#d4af37',
-    bgColor: '#ffffff',
+    primaryColor: '#E91E63',
+    bgColor: '#FF8DA1',
     fontFamily: 'serif',
+    thumbnail: '/pink-panther-thumbnail.png',
   },
   {
     id: 'muslim-1',

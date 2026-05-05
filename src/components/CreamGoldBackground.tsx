@@ -12,7 +12,9 @@ interface Particle {
   drift: number;
 }
 
-export function CreamGoldBackground({ bgColor = "#fffcf2" }: { bgColor?: string }) {
+export function CreamGoldBackground({ bgColor = "#fffcf2", particleImage }: { bgColor?: string; particleImage?: string }) {
+  const isPinkTheme = bgColor === "#FF8DA1";
+
   const particles = useMemo<Particle[]>(() => [...Array(25)].map((_, i) => ({
     id: i,
     size: (i * 7.13 % 8) + 4,
@@ -45,7 +47,7 @@ export function CreamGoldBackground({ bgColor = "#fffcf2" }: { bgColor?: string 
           animate={{ 
             y: "-10vh",
             x: [`${p.left}vw`, `${p.left + p.drift}vw`],
-            opacity: [0, 0.4, 0]
+            opacity: [0, isPinkTheme ? 0.6 : 0.4, 0]
           }}
           transition={{ 
             duration: p.duration,
@@ -53,15 +55,26 @@ export function CreamGoldBackground({ bgColor = "#fffcf2" }: { bgColor?: string 
             delay: p.delay,
             ease: "linear"
           }}
-          className="absolute rounded-full"
+          className="absolute"
           style={{
-            width: p.size,
-            height: p.size,
-            background: "#D4AF37",
-            filter: "blur(0.5px)",
+            width: isPinkTheme ? p.size * 2.5 : p.size,
+            height: isPinkTheme ? p.size * 2.5 : p.size,
             willChange: "transform"
           }}
-        />
+        >
+          {particleImage ? (
+            <img 
+              src={particleImage} 
+              alt="" 
+              className="w-full h-full object-contain" 
+            />
+          ) : (
+            <div 
+              className="w-full h-full rounded-full" 
+              style={{ background: "#D4AF37", filter: "blur(0.5px)" }} 
+            />
+          )}
+        </motion.div>
       ))}
     </div>
   );

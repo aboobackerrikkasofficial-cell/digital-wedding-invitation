@@ -23,7 +23,10 @@ export default function InviteLayout({
 
   useEffect(() => {
     async function fetchWedding() {
-      if (!slug) return;
+      if (!slug) {
+        setLoading(false);
+        return;
+      }
       
       // Handle demo case
       if (slug === "demo") {
@@ -75,8 +78,9 @@ export default function InviteLayout({
         } else {
           setError("An unexpected error occurred while loading the invitation.");
         }
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     
     fetchWedding();
@@ -120,7 +124,11 @@ export default function InviteLayout({
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
-      <BackgroundMusic musicUrl={wedding?.music_url || ""} forcePlay={isOpened} />
+      <BackgroundMusic 
+        musicUrl={wedding?.music_url || ""} 
+        forcePlay={isOpened} 
+        templateId={wedding?.template_id} 
+      />
       <WeddingProvider wedding={wedding}>
         <motion.div
           key={pathname}

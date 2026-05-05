@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, Navigation } from "lucide-react";
 import { Countdown } from "./Countdown";
 import { CreamGoldBackground } from "./CreamGoldBackground";
 
@@ -44,20 +44,22 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
   
   useEffect(() => {
     document.body.classList.add('cream-gold-active');
-    // Lock body scroll only for this page to ensure single-page experience
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = "hidden";
+    // Ensure scrolling is enabled
+    document.body.style.overflow = "auto";
     return () => {
       document.body.classList.remove('cream-gold-active');
-      document.body.style.overflow = originalStyle;
     };
   }, []);
 
+  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
+  const isStandalone = typeof window !== 'undefined' && 
+    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+
   return (
-    <div className="relative h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#fffcf2] overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10 cream-gold-theme">
+    <div className={`fixed left-0 right-0 z-40 w-full bg-[#fffcf2] overflow-hidden flex items-center justify-center font-serif p-4 lg:p-8 cream-gold-theme ${isStandalone ? 'top-8 h-[calc(100vh-2rem)]' : 'top-0 h-screen'}`}>
       <BackgroundDecor />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-fit">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <main className="relative w-full max-w-[420px] lg:max-w-lg h-[712px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
           
@@ -176,13 +178,13 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
                      ))}
                    </p>
                   {wedding.venue_address && (
-                     <p className={`text-gold-primary font-cinzel uppercase tracking-[0.08em] font-normal leading-relaxed max-w-[320px] ${hasNikah ? 'text-[9px] lg:text-[10px]' : 'text-[11px] lg:text-[12px]'}`}>
-                       {wedding.venue_address.split(' ').map((word: string, i: number) => (
-                         <span key={i} className="inline-block mx-[0.1em]">
-                           <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
-                         </span>
-                       ))}
-                     </p>
+                    <p className={`text-gold-primary font-cinzel uppercase tracking-[0.08em] font-normal leading-relaxed max-w-[320px] ${hasNikah ? 'text-[9px] lg:text-[10px]' : 'text-[11px] lg:text-[12px]'}`}>
+                      {wedding.venue_address.split(' ').map((word: string, i: number) => (
+                        <span key={i} className="inline-block mx-[0.1em]">
+                          <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
+                        </span>
+                      ))}
+                    </p>
                   )}
                 </div>
 
@@ -314,14 +316,6 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
         @media (max-width: 768px) {
           .cream-gold-theme .in-the-name-of-allah {
             margin-top: 36px !important;
-          }
-
-          /* Theme override for Music Button */
-          body.cream-gold-active button.fixed.z-\[100\] {
-            background-color: #735B32 !important;
-            color: white !important;
-            border-color: #735B32 !important;
-            box-shadow: 0 10px 25px rgba(115, 91, 50, 0.3) !important;
           }
 
           .cream-gold-theme .friends-family {

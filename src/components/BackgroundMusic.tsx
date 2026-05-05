@@ -7,9 +7,14 @@ import { Music, VolumeX } from "lucide-react";
 interface BackgroundMusicProps {
   musicUrl: string;
   forcePlay?: boolean;
+  templateId?: string;
 }
 
-export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
+export function BackgroundMusic({ musicUrl, forcePlay, templateId }: BackgroundMusicProps) {
+  const isPinkTheme = templateId?.includes('default') || templateId?.includes('muslim-1') || templateId?.includes('muslim-2');
+  const primaryColor = isPinkTheme ? '#E91E63' : '#d4af37';
+  const shadowColor = isPinkTheme ? 'rgba(233,30,99,0.2)' : 'rgba(212,175,55,0.2)';
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const ytPlayerRef = useRef<any>(null); // Keeping any for YouTube Player since it's an external library without easy types here
   const [isPlaying, setIsPlaying] = useState(false);
@@ -222,8 +227,16 @@ export function BackgroundMusic({ musicUrl, forcePlay }: BackgroundMusicProps) {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={toggleMusic}
-        className="fixed top-6 right-6 lg:top-auto lg:right-auto lg:bottom-10 lg:left-10 z-[100] w-12 h-12 rounded-full border-2 border-[#d4af37]/40 bg-white/10 backdrop-blur-md flex items-center justify-center text-[#d4af37] shadow-lg shadow-[#d4af37]/20"
-        whileHover={{ scale: 1.1, borderColor: '#d4af37' }}
+        className="fixed z-[100] w-12 h-12 rounded-full border-2 backdrop-blur-md flex items-center justify-center shadow-lg"
+        style={{ 
+          bottom: 'calc(1.5rem + env(safe-area-inset-bottom))',
+          left: 'calc(1.5rem + env(safe-area-inset-left))',
+          borderColor: `${primaryColor}40`, 
+          backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+          color: primaryColor,
+          boxShadow: `0 10px 25px ${shadowColor}`
+        }}
+        whileHover={{ scale: 1.1, borderColor: primaryColor }}
         whileTap={{ scale: 0.9 }}
       >
         {isPlaying ? (

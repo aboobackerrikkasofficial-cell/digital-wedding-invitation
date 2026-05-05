@@ -448,62 +448,62 @@ export default function CreateWedding() {
                 />
               </div>
             </section>
+          </div>
 
-            {/* THEME SELECTION SECTION */}
-            <div className="bg-gold/5 p-8 rounded-[2.5rem] border border-gold/10">
-               <div className="flex items-center gap-3 mb-6">
-                  <Sparkles className="text-gold" size={20} />
-                  <h3 className="text-sm font-black uppercase tracking-widest text-gray-900">Invitation Theme</h3>
-               </div>
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {WEDDING_TEMPLATES.map((template) => (
-                    <button
-                      key={template.id}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, template: template.id })}
-                      className={cn(
-                        "relative p-4 rounded-2xl border-2 transition-all text-left group",
-                        formData.template === template.id 
-                          ? "border-gold bg-white shadow-xl shadow-gold/10" 
-                          : "border-transparent bg-white/50 hover:border-gray-200"
+          {/* THEME SELECTION SECTION */}
+          <div className="bg-gold/5 p-8 rounded-[2.5rem] border border-gold/10">
+             <div className="flex items-center gap-3 mb-6">
+                <Sparkles className="text-gold" size={20} />
+                <h3 className="text-sm font-black uppercase tracking-widest text-gray-900">Invitation Theme</h3>
+             </div>
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {WEDDING_TEMPLATES.map((template) => (
+                  <button
+                    key={template.id}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, template: template.id })}
+                    className={cn(
+                      "relative p-4 rounded-2xl border-2 transition-all text-left group",
+                      formData.template === template.id 
+                        ? "border-gold bg-white shadow-xl shadow-gold/10" 
+                        : "border-transparent bg-white/50 hover:border-gray-200"
+                    )}
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <p className={cn(
+                        "text-[10px] font-black uppercase tracking-widest",
+                        formData.template === template.id ? "text-gold" : "text-gray-400"
+                      )}>
+                        {template.name}
+                      </p>
+                      {formData.template === template.id && (
+                        <div className="w-4 h-4 bg-gold rounded-full flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                        </div>
                       )}
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <p className={cn(
-                          "text-[10px] font-black uppercase tracking-widest",
-                          formData.template === template.id ? "text-gold" : "text-gray-400"
-                        )}>
-                          {template.name}
-                        </p>
-                        {formData.template === template.id && (
-                          <div className="w-4 h-4 bg-gold rounded-full flex items-center justify-center">
-                            <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                          </div>
-                        )}
-                      </div>
-                      <div className="h-20 bg-gray-100 rounded-lg mb-2 overflow-hidden relative">
-                         {template.thumbnail ? (
-                           <img 
-                             src={template.thumbnail} 
-                             alt={template.name} 
-                             className="w-full h-full object-cover"
-                           />
-                         ) : (
-                           <>
-                             <div className={cn(
-                               "absolute inset-0 opacity-40",
-                               template.id === 'royal' ? "bg-purple-900" : "bg-gold/20"
-                             )} />
-                             <div className="absolute inset-0 flex items-center justify-center">
-                                <Sparkles className="text-gold/20" size={24} />
-                             </div>
-                           </>
-                         )}
-                      </div>
-                    </button>
-                  ))}
-               </div>
-            </div>
+                    </div>
+                    <div className="h-20 bg-gray-100 rounded-lg mb-2 overflow-hidden relative">
+                       {template.thumbnail ? (
+                         <img 
+                           src={template.thumbnail} 
+                           alt={template.name} 
+                           className="w-full h-full object-cover"
+                         />
+                       ) : (
+                         <>
+                           <div className={cn(
+                             "absolute inset-0 opacity-40",
+                             template.id === 'royal' ? "bg-purple-900" : "bg-gold/20"
+                           )} />
+                           <div className="absolute inset-0 flex items-center justify-center">
+                              <Sparkles className="text-gold/20" size={24} />
+                           </div>
+                         </>
+                       )}
+                    </div>
+                  </button>
+                ))}
+             </div>
           </div>
 
           {/* Bottom row now empty as music moved to top */}

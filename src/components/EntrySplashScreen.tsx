@@ -12,8 +12,9 @@ interface EntrySplashScreenProps {
 }
 
 export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
-  const isPinkTheme = wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default';
-  const isCreamGold = wedding.template_id === 'muslim-3';
+  const tid = wedding.template_id?.toLowerCase() || 'default';
+  const isPinkTheme = tid === 'default';
+  const isCreamGold = tid === 'muslim-3' || tid === 'cream-gold';
   const isAnyGold = isPinkTheme || isCreamGold;
 
   return (
@@ -71,23 +72,27 @@ export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
           className="mb-6 md:mb-8"
         >
           <div className={`w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br rounded-full flex items-center justify-center shadow-2xl mx-auto mb-4 md:mb-6 border-2 ${
-            isAnyGold ? 'from-[#9E7E45] to-[#735B32] shadow-[#9E7E45]/30 border-[#9E7E45]/20' : 'from-gold to-gold/60 shadow-gold/30 border-white/20'
+            isPinkTheme ? 'from-[#ffb6c1] to-[#ff8da1] shadow-[#ff8da1]/30 border-white/40' :
+            isCreamGold ? 'from-[#9E7E45] to-[#735B32] shadow-[#9E7E45]/30 border-[#9E7E45]/20' : 
+            'from-gold to-gold/60 shadow-gold/30 border-white/20'
           }`}>
             <MailOpen className="text-white" size={28} />
           </div>
           
           <h2 className={`text-[10px] tracking-[0.3em] uppercase mb-2 px-4 ${
-            isAnyGold ? 'text-gray-900 font-poppins' : 'text-white/80 font-sans'
+            isPinkTheme ? 'text-white font-poppins' :
+            isCreamGold ? 'text-gray-900 font-poppins' : 
+            'text-white/80 font-sans'
           }`}>
              You are invited to the wedding of
           </h2>
           
           <h1 className={`text-3xl md:text-5xl drop-shadow-lg mb-1 ${isAnyGold ? 'font-poppins font-bold' : 'font-script text-white'}`}>
-            <span className={isAnyGold ? 'text-gray-900' : 'text-gold'}>{wedding.groom_name}</span> 
-            <span className={`block my-1 opacity-60 ${isAnyGold ? 'text-gray-900 text-base uppercase tracking-widest' : 'text-lg font-cinzel text-white'}`}>
+            <span className={isPinkTheme ? 'text-white' : isCreamGold ? 'text-gray-900' : 'text-gold'}>{wedding.groom_name}</span> 
+            <span className={`block my-1 opacity-60 ${isPinkTheme ? 'text-white text-base uppercase tracking-widest' : isCreamGold ? 'text-gray-900 text-base uppercase tracking-widest' : 'text-lg font-cinzel text-white'}`}>
               {isAnyGold ? 'and' : 'and'}
             </span>
-            <span className={isAnyGold ? 'text-gray-900' : 'text-gold'}>{wedding.bride_name}</span>
+            <span className={isPinkTheme ? 'text-white' : isCreamGold ? 'text-gray-900' : 'text-gold'}>{wedding.bride_name}</span>
           </h1>
         </motion.div>
 
@@ -108,9 +113,9 @@ export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
             onOpen();
           }}
           className={`group relative px-8 py-3.5 md:px-10 md:py-4 font-bold rounded-full overflow-hidden shadow-xl transition-all ${
-            isAnyGold 
-              ? 'bg-[#9E7E45] text-white shadow-[#9E7E45]/20 hover:bg-[#735B32] font-poppins' 
-              : 'bg-gold text-white shadow-gold/20 hover:bg-gold/90'
+            isPinkTheme ? 'bg-[#ffb6c1] text-white shadow-[#ff8da1]/20 hover:bg-[#ffa1b2] font-poppins' :
+            isCreamGold ? 'bg-[#9E7E45] text-white shadow-[#9E7E45]/20 hover:bg-[#735B32] font-poppins' :
+            'bg-gold text-white shadow-gold/20 hover:bg-gold/90'
           }`}
         >
           <span className="relative z-10 flex items-center gap-3 tracking-[0.2em] uppercase text-[10px]">
@@ -124,7 +129,7 @@ export function EntrySplashScreen({ wedding, onOpen }: EntrySplashScreenProps) {
           />
         </motion.button>
         
-        <p className={`mt-6 text-[9px] tracking-widest uppercase ${isAnyGold ? 'text-gray-900/40 font-poppins' : 'text-white/30 font-sans'}`}>
+        <p className={`mt-6 text-[9px] tracking-widest uppercase ${isPinkTheme ? 'text-white/60 font-poppins' : isCreamGold ? 'text-gray-900/40 font-poppins' : 'text-white/30 font-sans'}`}>
            Click to experience the cinematic journey
         </p>
       </div>

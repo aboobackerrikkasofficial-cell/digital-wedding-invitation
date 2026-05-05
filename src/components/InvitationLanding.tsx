@@ -102,20 +102,27 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
 
 
   // Switch to specialized templates
-  if (wedding.template_id === 'muslim-1' || wedding.template_id === 'muslim-2' || wedding.template_id === 'default') {
+  const tid = wedding.template_id?.toLowerCase() || 'default';
+
+  if (tid === 'default') {
     return <ElegantIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   }
 
-  if (wedding.template_id === 'royal' || wedding.template_id === 'muslim-royal') {
+  if (tid === 'royal' || tid === 'muslim-royal' || tid === 'muslim-purple') {
     return <RoyalPurpleIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   }
 
-  if (wedding.template_id === 'muslim-3') {
+  if (tid === 'muslim-3' || tid === 'cream-gold') {
     return <CreamGoldIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   }
 
-  if (wedding.template_id === 'non-muslim-1') {
+  if (tid === 'non-muslim-1' || tid === 'peach-floral') {
     return <PeachFloralTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
+  }
+  
+  // Unified premium redesign for all other templates (including muslim-1, muslim-2 if not specialized)
+  if (tid === 'muslim-1' || tid === 'muslim-2') {
+    // These now use the unified redesign which is more appropriate than Pink Panther
   }
   
   // Unified premium redesign for all other templates
@@ -192,14 +199,6 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
                   <MapPin className="text-gold mb-4 group-hover/item:scale-110 transition-transform" size={28} strokeWidth={1.5} />
                   <div className="font-serif w-full px-4">
                     <p className="font-black text-gray-900 text-sm md:text-base tracking-wide uppercase mb-2 truncate">{wedding.venue_name}</p>
-                    {wedding.google_maps_url && (
-                        <a 
-                          href={wedding.google_maps_url} 
-                          className="inline-flex items-center gap-2 text-[10px] text-gold font-black tracking-widest uppercase hover:text-gray-900 transition-colors"
-                        >
-                          View Map <Sparkles size={10} />
-                        </a>
-                    )}
                   </div>
                </div>
             </motion.div>

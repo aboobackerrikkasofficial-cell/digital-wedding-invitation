@@ -54,15 +54,33 @@
   }
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  /* NATIVE MOBILE APP OPTIMIZATIONS */
+  html, body {
+    /* Prevent bouncing and scrolling bugs on mobile */
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Allow text selection only in inputs/textareas */
+  input, textarea, [contenteditable="true"] {
+    user-select: text;
+  }
+
+  /* Smooth Native-like scrolling */
+  .custom-scrollbar {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -74,7 +92,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  margin: 0;
+  padding: 0;
 }
 
 .wedding-card {

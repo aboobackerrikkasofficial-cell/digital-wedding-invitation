@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { ArrowLeft, Minus, Square, X } from "lucide-react";
+import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -15,27 +15,22 @@ export function SystemTitleBar() {
   const [canGoBack, setCanGoBack] = useState(false);
 
   useEffect(() => {
-    // Check if running as a standalone PWA
+    // STRICT DETECTION: Only show if running as a Native App (Capacitor) or an Installed PWA (Standalone)
+    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform;
     const isStandalone = typeof window !== 'undefined' && 
       (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-
-    // Hide back button on the very first landing/login page
-    // Also hide on the main admin dashboard to avoid overlapping the sidebar
-    const hideOn = ["/", "/admin/login", "/admin"];
     
-    if (hideOn.includes(pathname)) {
+    const isApp = !!(isNative || isStandalone);
+
+    // Hide on the very first landing/login page
+    const hideOn = ["/", "/admin/login"];
+    
+    if (hideOn.includes(pathname) || !isApp) {
       setCanGoBack(false);
       return;
     }
 
-    // For invitation links, only show the back bar if we are in the "Web App" (Standalone)
-    // If it's a regular browser, hide it to keep the invitation clean.
-    if (pathname.startsWith('/invite')) {
-      setCanGoBack(!!isStandalone);
-    } else {
-      // For all other pages (Admin, etc.), show the back bar normally
-      setCanGoBack(true);
-    }
+    setCanGoBack(true);
   }, [pathname]);
 
   const handleBack = () => {
@@ -66,11 +61,23 @@ export function SystemTitleBar() {
           </span>
         </button>
         
-        <div className="flex-1 text-center pr-10">
+        <div className="flex-1 text-center">
           <span className="text-[9px] font-black text-white/60 tracking-[0.3em] uppercase font-sans">
             Smart Wedding Invitation System
           </span>
         </div>
+
+        {/* Dashboard Button */}
+        <button
+          onClick={() => router.push("/admin")}
+          className="hover:bg-black/10 rounded px-2 py-1 transition-colors text-white/90 hover:text-white flex items-center gap-2"
+          title="Go to Dashboard"
+        >
+          <span className="text-[10px] font-black text-white tracking-widest uppercase font-sans">
+            Dashboard
+          </span>
+          <LayoutDashboard size={14} strokeWidth={2.5} />
+        </button>
       </header>
     </>
   );

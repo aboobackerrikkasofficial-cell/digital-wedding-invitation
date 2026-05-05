@@ -31,32 +31,48 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const { data: weddingsData, error } = await supabase
-        .from("weddings")
-        .select("*")
-        .order("created_at", { ascending: false });
+      // Timeout for mobile networks
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Dashboard fetch timeout")), 45000)
+      );
 
-      if (error) throw error;
+      const fetchPromise = (async () => {
+        const { data: weddingsData, error } = await supabase
+          .from("weddings")
+          .select("*")
+          .order("created_at", { ascending: false });
 
-      // Fetch stats separately to avoid join issues
-      const { data: rsvpsData } = await supabase
-        .from("rsvps")
-        .select("guest_count, is_attending");
+        if (error) throw error;
 
-      const totalWeddings = weddingsData?.length || 0;
-      let totalRsvps = 0;
-      let totalGuests = 0;
+        // Fetch stats separately to avoid join issues
+        const { data: rsvpsData } = await supabase
+          .from("rsvps")
+          .select("guest_count, is_attending");
 
-      if (rsvpsData) {
-        const attending = rsvpsData.filter(r => r.is_attending);
-        totalRsvps = attending.length;
-        totalGuests = attending.reduce((acc, curr) => acc + (curr.guest_count || 0), 0);
-      }
+        const totalWeddings = weddingsData?.length || 0;
+        let totalRsvps = 0;
+        let totalGuests = 0;
 
-      setStats({ weddings: totalWeddings, rsvps: totalRsvps, guests: totalGuests });
-      setWeddings(weddingsData || []);
+        if (rsvpsData) {
+          const attending = rsvpsData.filter((r: any) => r.is_attending);
+          totalRsvps = attending.length;
+          totalGuests = attending.reduce((acc: number, curr: any) => acc + (curr.guest_count || 0), 0);
+        }
+
+        return { weddingsData, totalWeddings, totalRsvps, totalGuests };
+      })();
+
+      const result: any = await Promise.race([fetchPromise, timeoutPromise]);
+      
+      setStats({ 
+        weddings: result.totalWeddings, 
+        rsvps: result.totalRsvps, 
+        guests: result.totalGuests 
+      });
+      setWeddings(result.weddingsData || []);
     } catch (err: any) {
       console.error("Dashboard data fetch error:", err);
+      showToast("Connection slow. Showing cached or partial data.", "error");
     } finally {
       setLoading(false);
     }
@@ -101,13 +117,25 @@ export default function AdminDashboard() {
     }
   };
 
+  const getBaseUrl = () => {
+    // Priority 1: Environment variable
+    if (process.env.NEXT_PUBLIC_BASE_URL) {
+      return process.env.NEXT_PUBLIC_BASE_URL.replace(/\/$/, "");
+    }
+    // Priority 2: Current window origin (fallback)
+    if (typeof window !== "undefined") {
+      return window.location.origin;
+    }
+    return "";
+  };
+
   const copyLink = (slug: string) => {
-    const url = `${window.location.origin}/invite/${slug}`;
+    const url = `${getBaseUrl()}/invite/${slug}`;
     copyToClipboard(url, "Invitation link copied to clipboard!");
   };
 
   const copyTrackingLink = (slug: string) => {
-    const url = `${window.location.origin}/track/${slug}`;
+    const url = `${getBaseUrl()}/track/${slug}`;
     copyToClipboard(url, "Tracking link copied! Share this with your client.");
   };
 
@@ -130,15 +158,24 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
           <div className="p-3 bg-blue-50 text-blue-500 rounded-xl"><Calendar size={24}/></div>
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Weddings</p><p className="text-2xl font-bold text-gray-900">{stats.weddings}</p></div>
+          <div>
+            <p className="text-xs text-gray-500 uppercase font-bold">Weddings</p>
+            {loading ? <div className="h-8 w-12 bg-gray-100 animate-pulse rounded mt-1" /> : <p className="text-2xl font-bold text-gray-900">{stats.weddings}</p>}
+          </div>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
           <div className="p-3 bg-pink-50 text-pink-500 rounded-xl"><Users size={24}/></div>
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Total RSVPs</p><p className="text-2xl font-bold text-gray-900">{stats.rsvps}</p></div>
+          <div>
+            <p className="text-xs text-gray-500 uppercase font-bold">Total RSVPs</p>
+            {loading ? <div className="h-8 w-12 bg-gray-100 animate-pulse rounded mt-1" /> : <p className="text-2xl font-bold text-gray-900">{stats.rsvps}</p>}
+          </div>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
           <div className="p-3 bg-green-50 text-green-500 rounded-xl"><Users size={24}/></div>
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Total Guests</p><p className="text-2xl font-bold text-gray-900">{stats.guests}</p></div>
+          <div>
+            <p className="text-xs text-gray-500 uppercase font-bold">Total Guests</p>
+            {loading ? <div className="h-8 w-12 bg-gray-100 animate-pulse rounded mt-1" /> : <p className="text-2xl font-bold text-gray-900">{stats.guests}</p>}
+          </div>
         </div>
       </div>
 
@@ -244,41 +281,47 @@ export default function AdminDashboard() {
                 {formatDate(w.wedding_date, "MMMM d, yyyy")}
               </div>
 
-              <div className="grid grid-cols-5 gap-2 pt-2">
+              <div className="grid grid-cols-3 gap-2 pt-2">
                 <button 
                   onClick={() => copyLink(w.slug)} 
-                  className="flex flex-col items-center gap-1 p-3 bg-gray-50 rounded-2xl text-gray-500 active:bg-gray-100 transition-colors"
+                  className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-600 active:bg-gray-100 transition-colors"
                 >
-                  <LinkIcon size={18}/>
-                  <span className="text-[10px] font-bold uppercase">Link</span>
-                </button>
-                <button 
-                  onClick={() => copyTrackingLink(w.slug)} 
-                  className="flex flex-col items-center gap-1 p-3 bg-gold/5 rounded-2xl text-gold active:bg-gold/10 transition-colors"
-                >
-                  <Users size={18}/>
-                  <span className="text-[10px] font-bold uppercase">Share</span>
+                  <LinkIcon size={16}/>
+                  <span className="text-[10px] font-bold uppercase">Copy Link</span>
                 </button>
                 <Link 
-                  href={`/admin/edit/${w.id}`} 
-                  className="flex flex-col items-center gap-1 p-3 bg-blue-50 rounded-2xl text-blue-600 active:bg-blue-100 transition-colors"
+                  href={`/track/${w.slug}?source=admin`}
+                  className="flex items-center justify-center gap-2 p-3 bg-gold/5 rounded-xl text-gold active:bg-gold/10 transition-colors"
                 >
-                  <Pencil size={18}/>
-                  <span className="text-[10px] font-bold uppercase">Edit</span>
+                  <Users size={16}/>
+                  <span className="text-[10px] font-bold uppercase">Track</span>
                 </Link>
                 <Link 
                   href={`/invite/${w.slug}`} 
-                  className="flex flex-col items-center gap-1 p-3 bg-gray-50 rounded-2xl text-gray-400 active:bg-gray-100 transition-colors"
+                  className="flex items-center justify-center gap-2 p-3 bg-blue-50/50 rounded-xl text-blue-600 active:bg-blue-100 transition-colors"
                 >
-
-                  <Eye size={18}/>
+                  <Eye size={16}/>
                   <span className="text-[10px] font-bold uppercase">View</span>
                 </Link>
+                <Link 
+                  href={`/admin/edit/${w.id}`} 
+                  className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-500 active:bg-gray-100 transition-colors"
+                >
+                  <Pencil size={16}/>
+                  <span className="text-[10px] font-bold uppercase">Edit</span>
+                </Link>
+                <button 
+                  onClick={() => copyTrackingLink(w.slug)} 
+                  className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-500 active:bg-gray-100 transition-colors"
+                >
+                  <Download size={16}/>
+                  <span className="text-[10px] font-bold uppercase">Share</span>
+                </button>
                 <button 
                   onClick={() => deleteWedding(w.id)} 
-                  className="flex flex-col items-center gap-1 p-3 bg-red-50 rounded-2xl text-red-500 active:bg-red-100 transition-colors"
+                  className="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-500 active:bg-red-100 transition-colors"
                 >
-                  <Trash2 size={18}/>
+                  <Trash2 size={16}/>
                   <span className="text-[10px] font-bold uppercase">Delete</span>
                 </button>
               </div>

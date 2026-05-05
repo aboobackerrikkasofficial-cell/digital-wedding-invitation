@@ -166,16 +166,19 @@ const GoldDustBackground = ({ particles }: { particles: Particle[] }) => (
 
 export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: TemplateProps) {
   const date = new Date(wedding.wedding_date);
-
   const particles = useMemo(() => [...Array(30)].map((_, i) => getParticle(i)), []);
 
+  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
+  const isStandalone = typeof window !== 'undefined' && 
+    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+
   return (
-    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:p-10">
+    <div className={`fixed left-0 right-0 z-40 w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:py-2 lg:px-8 ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'}`}>
       <GoldDustBackground particles={particles} />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[95svh] lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden pt-4 lg:pt-[20px] pb-0 px-0">
+        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[95svh] lg:h-full max-h-[850px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden pt-4 lg:pt-[20px] pb-0 px-0">
 
           <GoldArc />
 
@@ -417,7 +420,7 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
         </div>
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
-        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[calc(89dvh+25px)] max-h-[850px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-5 lg:gap-0">
+        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-full max-h-[850px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-5 lg:gap-0">
 
           {/* Block 1: Countdown - Card on mobile, Transparent on Desktop */}
           <div className="w-full flex-shrink-0 flex flex-col items-center justify-center p-6 lg:p-0 border-2 lg:border-none border-gold/25 rounded-[2.5rem] lg:rounded-none bg-white/5 lg:bg-transparent backdrop-blur-sm lg:backdrop-filter-none shadow-xl lg:shadow-none">

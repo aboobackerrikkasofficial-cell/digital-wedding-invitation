@@ -14,15 +14,23 @@ try {
   console.error("Supabase Initialization Error:", e);
   // Fallback to a proxy that doesn't throw but returns errors
   supabase = {
-    from: () => ({
-      select: () => ({
-        eq: () => ({
-          maybeSingle: async () => ({ data: null, error: { message: "Supabase not configured correctly" } }),
-          single: async () => ({ data: null, error: { message: "Supabase not configured correctly" } })
-        })
-      }),
-      insert: async () => ({ error: { message: "Supabase not configured correctly" } })
-    }),
+    from: () => {
+      const chain: any = {
+        select: () => chain,
+        eq: () => chain,
+        order: () => chain,
+        limit: () => chain,
+        single: async () => ({ data: null, error: { message: "Supabase not configured" } }),
+        maybeSingle: async () => ({ data: null, error: { message: "Supabase not configured" } }),
+        // Allow the chain to be awaited
+        then: (onfulfilled: any) => Promise.resolve({ data: [], error: { message: "Supabase not configured" } }).then(onfulfilled)
+      };
+      return {
+        ...chain,
+        insert: async () => ({ error: { message: "Supabase not configured" } }),
+        delete: () => chain
+      };
+    },
     auth: {
       getSession: async () => ({ data: { session: null }, error: null }),
       onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })

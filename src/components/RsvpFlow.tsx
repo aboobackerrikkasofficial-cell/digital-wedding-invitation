@@ -50,6 +50,16 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
     
     try {
       const finalName = name.trim() || "Honored Guest";
+      
+      // Handle demo case: Skip database insert for the hardcoded demo ID
+      if (wedding.id === "00000000-0000-0000-0000-000000000000") {
+        console.log("RsvpFlow: Demo mode detected. Skipping database insert.");
+        // Small artificial delay for realism
+        await new Promise(resolve => setTimeout(resolve, 800));
+        onComplete({ name: finalName, guestCount });
+        return;
+      }
+
       console.log("RsvpFlow: Inserting RSVP for wedding", wedding.id, "with name", finalName);
       const { error } = await supabase
         .from("rsvps")
@@ -76,9 +86,15 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
     }
   };
 
+  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
+  const isStandalone = typeof window !== 'undefined' && 
+    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+
   return (
-    <div className={`min-h-[100dvh] flex items-center justify-center p-4 md:p-6 overflow-hidden relative ${
-      isRoyal ? 'bg-[#2b1e3f]' : isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'
+    <div className={`flex items-center justify-center p-4 md:p-6 overflow-hidden ${
+      isRoyal 
+        ? `fixed left-0 right-0 z-40 ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'} bg-[#2b1e3f]` 
+        : `min-h-[100dvh] relative ${isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'}`
     }`}>
       <div className="absolute inset-0 z-0">
           {isRoyal ? (
@@ -91,7 +107,10 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                />
              </>
           ) : isAnyGold ? (
-            <CreamGoldBackground bgColor={isPinkTheme ? "#FF8DA1" : "#fffcf2"} />
+            <CreamGoldBackground 
+              bgColor={isPinkTheme ? "#FF8DA1" : "#fffcf2"} 
+              particleImage={isPinkTheme ? "/pinkpantherlogo.png" : undefined}
+            />
           ) : (
              <>
                <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-white to-gold/10" />
@@ -111,7 +130,9 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1, ease: liquidEase }}
-        className={`relative z-10 w-full max-w-xl rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] p-5 md:p-10 shadow-2xl flex flex-col relative border ${
+        className={`relative z-10 w-full max-w-xl p-5 md:p-10 shadow-2xl flex flex-col relative border ${
+          isPinkTheme ? 'rounded-[5px]' : 'rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem]'
+        } ${
           isRoyal 
             ? 'bg-white/5 backdrop-blur-sm border-gold/10 shadow-gold/5' 
             : isCreamGold
@@ -121,10 +142,11 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
       >
 
         <div className="mb-4 md:mb-6 lg:mb-10 text-center">
-            <h2 className={`text-xl md:text-2xl lg:text-4xl font-bold mb-0.5 ${isRoyal ? 'text-gold font-serif' : isAnyGold ? 'text-gray-900 font-poppins' : 'text-gray-900 font-serif'}`}>RSVP Details</h2>
+            <h2 className={`text-xl md:text-2xl lg:text-4xl font-bold mb-0.5 ${isRoyal ? 'text-gold font-serif' : isPinkTheme ? 'text-[#AD1457] font-cartoon' : isCreamGold ? 'text-gray-900 font-poppins' : 'text-gray-900 font-serif'}`}>RSVP Details</h2>
             <p className={`text-sm lg:text-lg tracking-tight ${
               isRoyal ? 'text-white/60 font-serif italic' : 
-              isAnyGold ? 'text-gray-500 font-poppins' : 
+              isPinkTheme ? 'text-[#E91E63]/70 font-cartoon' :
+              isCreamGold ? 'text-gray-500 font-poppins' : 
               'text-gray-500 font-serif italic'
             }`}>Confirm your presence with us.</p>
         </div>
@@ -136,7 +158,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             transition={{ delay: 0.2, ease: liquidEase }}
             className="space-y-2"
           >
-            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isAnyGold ? 'font-poppins' : ''}`}>
+            <label className={`block text-[8px] font-bold uppercase tracking-[0.2em] ml-1 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'} ${isAnyGold ? 'font-poppins' : ''}`}>
               Your Name (Optional)
             </label>
             <div className="relative group">
@@ -145,18 +167,20 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Mitchell Ross"
-                    className={`w-full px-4 lg:px-5 py-3 lg:py-5 rounded-xl lg:rounded-3xl border outline-none transition-all text-base lg:text-xl placeholder:text-opacity-20 shadow-sm focus:shadow-xl ${
+                    className={`w-full px-4 lg:px-5 py-3 lg:py-5 border outline-none transition-all text-base lg:text-xl placeholder:text-opacity-20 shadow-sm focus:shadow-xl ${
+                      isPinkTheme ? 'rounded-[5px]' : 'rounded-xl lg:rounded-3xl'
+                    } ${
                       isRoyal 
                         ? 'bg-white/5 border-white/10 text-white focus:border-gold placeholder:text-white/20' 
                         : isPinkTheme
-                          ? 'bg-white border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
+                          ? 'bg-white border-[#E91E63]/20 text-[#AD1457] focus:border-[#E91E63] placeholder:text-[#E91E63]/20 font-cartoon'
                         : isCreamGold
                           ? 'bg-[#fffcf2]/50 border-gold/10 text-gray-900 focus:border-gold placeholder:text-gray-300'
                           : 'bg-white border-gray-100 text-gray-900 focus:border-gold placeholder:text-gray-200'
                     }`}
                 />
                 <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
-                    <Sparkles className="text-gold" size={20} />
+                    <Sparkles className={isPinkTheme ? "text-[#E91E63]" : "text-gold"} size={20} />
                 </div>
             </div>
           </motion.div>
@@ -167,11 +191,13 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             transition={{ delay: 0.4, ease: liquidEase }}
             className="space-y-2 md:space-y-4"
           >
-            <label className={`block text-[8px] font-bold text-gold uppercase tracking-[0.2em] ml-1 ${isAnyGold ? 'font-poppins' : ''}`}>
+            <label className={`block text-[8px] font-bold uppercase tracking-[0.2em] ml-1 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'} ${isAnyGold ? 'font-poppins' : ''}`}>
               How many guests will attend?
             </label>
-            <div className={`flex items-center justify-between rounded-xl lg:rounded-[2.5rem] p-1.5 lg:p-3 border shadow-sm ${
-              isRoyal ? 'bg-white/5 border-white/10' : isPinkTheme ? 'bg-white border-gold/10' : isCreamGold ? 'bg-[#fffcf2]/50 border-gold/10' : 'bg-white border-gray-100'
+            <div className={`flex items-center justify-between p-1.5 lg:p-3 border shadow-sm ${
+              isPinkTheme ? 'rounded-[5px]' : 'rounded-xl lg:rounded-[2.5rem]'
+            } ${
+              isRoyal ? 'bg-white/5 border-white/10' : isPinkTheme ? 'bg-white border-[#E91E63]/20' : isCreamGold ? 'bg-[#fffcf2]/50 border-gold/10' : 'bg-white border-gray-100'
             }`}>
               <motion.button
                 type="button"
@@ -180,9 +206,13 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                     setGuestCount(Math.max(1, guestCount - 1));
                     if ("vibrate" in navigator) navigator.vibrate(50);
                 }}
-                className={`w-10 h-10 lg:w-16 lg:h-16 flex items-center justify-center rounded-lg lg:rounded-2xl transition-all ${
+                className={`w-10 h-10 lg:w-16 lg:h-16 flex items-center justify-center transition-all ${
+                  isPinkTheme ? 'rounded-[5px]' : 'rounded-lg lg:rounded-2xl'
+                } ${
                   isRoyal 
                     ? 'bg-white/10 text-white/40 hover:text-red-400 hover:bg-red-400/10' 
+                    : isPinkTheme
+                      ? 'bg-[#E91E63]/5 text-[#E91E63] hover:bg-[#E91E63]/10'
                     : isCreamGold
                       ? 'bg-white text-gray-400 hover:text-gold hover:bg-gold/5'
                       : 'bg-gray-50 text-gray-400 hover:text-red-500 hover:bg-red-50'
@@ -200,6 +230,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                         exit={{ opacity: 0, y: -10 }}
                         className={`text-2xl lg:text-5xl font-bold ${
                           isRoyal ? 'text-white font-serif' : 
+                          isPinkTheme ? 'text-[#AD1457] font-cartoon' :
                           isAnyGold ? 'text-gray-900 font-poppins' : 
                           'text-gray-900 font-serif'
                         }`}
@@ -213,7 +244,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                   'text-gray-400'
                 }`}>Guests</span>
               </div>
-
+ 
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.8 }}
@@ -221,9 +252,13 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
                     setGuestCount(guestCount + 1);
                     if ("vibrate" in navigator) navigator.vibrate(50);
                 }}
-                className={`w-10 h-10 lg:w-16 lg:h-16 flex items-center justify-center rounded-lg lg:rounded-2xl transition-all ${
+                className={`w-10 h-10 lg:w-16 lg:h-16 flex items-center justify-center transition-all ${
+                  isPinkTheme ? 'rounded-[5px]' : 'rounded-lg lg:rounded-2xl'
+                } ${
                   isRoyal 
                     ? 'bg-white/10 text-white/40 hover:text-gold hover:bg-gold/10' 
+                    : isPinkTheme
+                      ? 'bg-[#E91E63]/5 text-[#E91E63] hover:bg-[#E91E63]/10'
                     : isCreamGold
                       ? 'bg-white text-gray-400 hover:text-gold hover:bg-gold/5'
                       : 'bg-gray-50 text-gray-400 hover:text-green-500 hover:bg-green-50'
@@ -239,11 +274,15 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className={`w-full font-bold py-4 lg:py-7 rounded-xl lg:rounded-[2.5rem] shadow-2xl transition-all flex items-center justify-center gap-3 text-base lg:text-xl relative overflow-hidden group ${
+            className={`w-full font-bold py-4 lg:py-7 shadow-2xl transition-all flex items-center justify-center gap-3 text-base lg:text-xl relative overflow-hidden group ${
+              isPinkTheme ? 'rounded-[5px]' : 'rounded-xl lg:rounded-[2.5rem]'
+            } ${
               isRoyal 
                 ? 'bg-transparent border-2 border-gold/50 text-white hover:bg-gold/10 shadow-gold/10' 
+                : isPinkTheme
+                  ? 'bg-[#E91E63] text-white hover:bg-[#AD1457] shadow-[#E91E63]/20 font-cartoon'
                 : 'bg-gold text-white hover:bg-gold/90 shadow-gold/20'
-            } ${isAnyGold ? 'font-poppins' : ''}`}
+            } ${isAnyGold && !isPinkTheme ? 'font-poppins' : ''}`}
           >
             <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
             
@@ -259,8 +298,9 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
         </form>
       </motion.div>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap');
         .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-cartoon { font-family: 'Fredoka', sans-serif; }
       `}</style>
     </div>
   );
