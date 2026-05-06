@@ -12,7 +12,7 @@ export function PinkPantherBackground({ bgColor = "#FF8DA1" }: { bgColor?: strin
   const [videoError, setVideoError] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden" style={{ backgroundColor: bgColor }}>
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" style={{ backgroundColor: bgColor }}>
       {/* Base Background Color Layer */}
       <div className="absolute inset-0 z-0" style={{ backgroundColor: bgColor }} />
 
