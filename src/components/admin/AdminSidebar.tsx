@@ -19,7 +19,12 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+  const [isNative, setIsNative] = useState(false);
+
+  useEffect(() => {
+    const native = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    setIsNative(!!native);
+  }, []);
 
   const handleSignOut = async () => {
     localStorage.removeItem("isAdmin");
