@@ -59,7 +59,7 @@ export function MobileScrollFix() {
         }
 
         /* Specifically target the invitation landing container */
-        .relative.min-h-\\[calc\\(100dvh-2rem\\)\\] {
+        .relative.min-h-\\[100dvh\\] {
           height: auto !important;
           min-height: 100vh !important;
           overflow: visible !important;

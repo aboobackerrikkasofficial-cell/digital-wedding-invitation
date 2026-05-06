@@ -49,12 +49,13 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
   }, [isAttending]);
 
   // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
-  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
+  const isStandalone = typeof window !== 'undefined' && 
+    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 ${
+    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 top-0 h-[100dvh] ${
       isPinkTheme ? 'bg-[#FF8DA1]' : 'bg-[#fdfbf0]'
-    } top-0 h-[100dvh]`}>
+    } ${isStandalone ? 'pt-8' : ''}`}>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -42,7 +42,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
   return (
     <div className={cn(
       "peach-theme font-fredoka selection:bg-[#F4C542]/30 w-full",
-      isNative ? "relative min-h-screen overflow-y-auto pt-24 pb-12" : "relative h-[calc(100dvh-2rem)] overflow-hidden"
+      isNative ? "relative min-h-screen overflow-y-auto pt-24 pb-12" : "relative h-[100dvh] overflow-hidden"
     )}>
       
       {/* 1. MANDATORY BACKGROUND (CLONE ENFORCEMENT) */}
@@ -65,7 +65,7 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
       {/* 2. LAYOUT CONTAINER (EXACT OVERLAY MATCH) */}
       <div className={cn(
         "relative z-10 w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-4 md:p-20",
-        isNative ? "min-h-min" : "min-h-[calc(100dvh-2rem)]"
+        isNative ? "min-h-min" : "min-h-[100dvh]"
       )}>
         
         {/* LEFT SECTION: INVITATION CARD */}

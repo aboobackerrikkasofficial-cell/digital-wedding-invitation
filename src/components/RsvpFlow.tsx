@@ -93,8 +93,8 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
   return (
     <div className={`flex items-center justify-center p-4 md:p-6 overflow-hidden ${
       isRoyal 
-        ? `fixed left-0 right-0 z-40 ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'} bg-[#2b1e3f]` 
-        : `min-h-[100dvh] relative ${isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'}`
+        ? `fixed left-0 right-0 z-40 top-0 h-[100dvh] bg-[#2b1e3f] ${isStandalone ? 'pt-8' : ''}` 
+        : `min-h-[100dvh] relative ${isPinkTheme ? 'bg-[#FF8DA1]' : isCreamGold ? 'bg-[#fffcf2]' : 'bg-[#fdfbf0]'} ${isStandalone ? 'pt-8' : ''}`
     }`}>
       <div className="absolute inset-0 z-0">
           {isRoyal ? (

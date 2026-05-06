@@ -90,7 +90,7 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
     (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 bg-[#2b1e3f] ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'}`}>
+    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 md:p-10 bg-[#2b1e3f] top-0 h-[100dvh] ${isStandalone ? 'pt-8' : ''}`}>
       <GoldDustBackground particles={particles} />
 
       <motion.div

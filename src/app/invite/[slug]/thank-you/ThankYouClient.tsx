@@ -54,7 +54,7 @@ export default function ThankYouClient() {
   }
 
   return (
-    <div className="h-[calc(100dvh-2rem)] w-full overflow-hidden relative">
+    <div className="h-[100dvh] w-full overflow-hidden relative">
       <ThankYouPage 
         wedding={wedding} 
         rsvpData={rsvpData} 

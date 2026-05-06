@@ -53,7 +53,7 @@ export function CreamGoldThankYou({ wedding, rsvpData }: ThankYouProps) {
   }, [isAttending]);
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 lg:p-10 bg-[#fffcf2] cream-gold-thank-you ${isStandalone ? 'top-8 h-[calc(100vh-2rem)]' : 'top-0 h-screen'}`}>
+    <div className={`fixed left-0 right-0 z-40 w-full overflow-hidden flex items-center justify-center font-serif p-4 lg:p-10 bg-[#fffcf2] cream-gold-thank-you top-0 h-[100dvh] ${isStandalone ? 'pt-8' : ''}`}>
       <CreamGoldBackground bgColor="#fffcf2" />
 
       <motion.div

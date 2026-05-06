@@ -46,7 +46,7 @@ export default function RsvpClient() {
   };
 
   return (
-    <div className="h-[calc(100dvh-2rem)] w-full overflow-hidden relative">
+    <div className="h-[100dvh] w-full overflow-hidden relative">
       <RsvpFlow 
         wedding={wedding}
         onComplete={handleComplete}

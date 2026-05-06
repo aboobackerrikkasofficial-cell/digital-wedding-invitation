@@ -129,7 +129,7 @@ export function InvitationLanding({ wedding, onAttend, onNotAttend }: Invitation
 
 
   return (
-    <div className="relative min-h-[calc(100dvh-2rem)] lg:h-[calc(100dvh-2rem)] w-full bg-[#fdfbf0] overflow-hidden flex items-center justify-center md:justify-start font-sans selection:bg-gold/30">
+    <div className="relative min-h-[100dvh] lg:h-[100dvh] w-full bg-[#fdfbf0] overflow-hidden flex items-center justify-center md:justify-start font-sans selection:bg-gold/30">
       
       {/* 1. CINEMATIC BACKGROUND */}
       <div className="fixed inset-0 z-0 pointer-events-none">
