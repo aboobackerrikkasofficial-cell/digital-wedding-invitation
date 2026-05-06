@@ -42,26 +42,33 @@ export function AdminSidebar() {
     <>
       {/* Mobile Top Bar */}
       <div className={cn(
-        "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex items-center justify-between px-4 z-[55] shadow-sm bg-white",
-        isNative ? "h-24 pt-8" : "h-16"
+        "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex flex-col z-[55] shadow-sm bg-white overflow-hidden",
+        isNative ? "h-24" : "h-16"
       )}>
-        <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-gradient-to-br from-gold to-gold/60 rounded-lg flex items-center justify-center shadow-md">
-                <Sparkles className="text-white" size={18} />
-            </div>
-            <div>
-                <h1 className="text-lg font-serif font-bold text-gray-900 leading-none">Wedding</h1>
-                <span className="text-[10px] uppercase tracking-wider text-gold font-bold">Admin Portal</span>
-            </div>
-        </div>
-        {!isOpen && (
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="p-2 hover:bg-gray-50 rounded-lg text-gray-600 transition-colors"
-          >
-            <Menu size={20} />
-          </button>
+        {isNative && (
+          <div className="h-8 bg-[#C5A059] flex items-center justify-center">
+            <span className="text-[9px] font-black text-white uppercase tracking-[0.4em]">Wedding Management Portal</span>
+          </div>
         )}
+        <div className="flex-1 flex items-center justify-between px-4">
+          <div className="flex items-center gap-2">
+              <div className="w-9 h-9 bg-gradient-to-br from-gold to-gold/60 rounded-lg flex items-center justify-center shadow-md">
+                  <Sparkles className="text-white" size={18} />
+              </div>
+              <div>
+                  <h1 className="text-lg font-serif font-bold text-gray-900 leading-none">Wedding</h1>
+                  <span className="text-[10px] uppercase tracking-wider text-gold font-bold">Admin Portal</span>
+              </div>
+          </div>
+          {!isOpen && (
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="p-2 hover:bg-gray-50 rounded-lg text-gray-600 transition-colors"
+            >
+              <Menu size={20} />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Mobile Backdrop */}
@@ -138,10 +145,14 @@ export function AdminSidebar() {
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className={cn(
-              "w-72 bg-white flex flex-col h-screen fixed left-0 top-0 z-[60] shadow-2xl md:hidden",
-              isNative && "pt-8"
+              "w-72 bg-white flex flex-col h-screen fixed left-0 top-0 z-[60] shadow-2xl md:hidden overflow-hidden",
             )}
           >
+            {isNative && (
+              <div className="h-8 bg-[#C5A059] flex items-center justify-center shrink-0">
+                <span className="text-[8px] font-black text-white uppercase tracking-[0.3em]">Smart Wedding</span>
+              </div>
+            )}
             <div className="p-6 pb-10">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
