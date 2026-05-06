@@ -28,11 +28,14 @@ export function SystemTitleBar() {
     }
   };
 
+  const isDashboardArea = pathname.startsWith('/admin');
+  const homeHref = isDashboardArea ? "/admin" : "/";
+
   const handleGoHome = (e: React.MouseEvent) => {
     const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
     if (isNative) {
       e.preventDefault();
-      router.push("/");
+      router.push(homeHref);
     }
   };
 
@@ -56,7 +59,7 @@ export function SystemTitleBar() {
 
       {/* Glass Home Button */}
       <Link
-        href="/"
+        href={homeHref}
         onClick={handleGoHome}
         className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all"
         aria-label="Go to Home"
