@@ -19,6 +19,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
 
   const handleSignOut = async () => {
     localStorage.removeItem("isAdmin");
@@ -35,7 +36,10 @@ export function AdminSidebar() {
   return (
     <>
       {/* Mobile Top Bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-100 flex items-center justify-between px-4 z-[55] shadow-sm">
+      <div className={cn(
+        "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex items-center justify-between px-4 z-[55] shadow-sm bg-white",
+        isNative ? "h-24 pt-8" : "h-16"
+      )}>
         <div className="flex items-center gap-2">
             <div className="w-9 h-9 bg-gradient-to-br from-gold to-gold/60 rounded-lg flex items-center justify-center shadow-md">
                 <Sparkles className="text-white" size={18} />
@@ -128,7 +132,10 @@ export function AdminSidebar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="w-72 bg-white flex flex-col h-screen fixed left-0 top-0 z-[60] shadow-2xl md:hidden"
+            className={cn(
+              "w-72 bg-white flex flex-col h-screen fixed left-0 top-0 z-[60] shadow-2xl md:hidden",
+              isNative && "pt-8"
+            )}
           >
             <div className="p-6 pb-10">
               <div className="flex items-center justify-between mb-8">
