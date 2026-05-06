@@ -13,11 +13,18 @@ export function SystemTitleBar() {
 
   useEffect(() => {
     const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform;
-    const hideOn = ["/", "/admin/login", "/admin"];
-    const shouldHide = hideOn.includes(pathname);
+    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+    const isInvitationPage = pathname.startsWith('/invite/');
     
-    // Always visible on mobile except on root pages
-    setIsVisible(!shouldHide);
+    const hideOn = ["/", "/admin/login", "/admin"];
+    const shouldHideDefault = hideOn.includes(pathname);
+    
+    if (isInvitationPage) {
+      // Hide on browser, show only on Native/Standalone
+      setIsVisible(!!isNative || isStandalone);
+    } else {
+      setIsVisible(!shouldHideDefault);
+    }
   }, [pathname]);
 
   const handleBack = () => {
