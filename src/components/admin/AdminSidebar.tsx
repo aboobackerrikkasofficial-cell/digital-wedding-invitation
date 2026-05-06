@@ -43,10 +43,10 @@ export function AdminSidebar() {
       {/* Mobile Top Bar */}
       <div className={cn(
         "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex flex-col z-[55] shadow-sm bg-white overflow-hidden",
-        isNative ? "h-24" : "h-16"
+        isNative ? "h-[104px]" : "h-16"
       )}>
         {isNative && (
-          <div className="h-8 bg-[#C5A059] flex items-center justify-center">
+          <div className="pt-8 pb-2 bg-[#C5A059] flex items-center justify-center shrink-0">
             <span className="text-[9px] font-black text-white uppercase tracking-[0.4em]">Wedding Management Portal</span>
           </div>
         )}
@@ -149,7 +149,7 @@ export function AdminSidebar() {
             )}
           >
             {isNative && (
-              <div className="h-8 bg-[#C5A059] flex items-center justify-center shrink-0">
+              <div className="pt-8 pb-2 bg-[#C5A059] flex items-center justify-center shrink-0">
                 <span className="text-[8px] font-black text-white uppercase tracking-[0.3em]">Smart Wedding</span>
               </div>
             )}
