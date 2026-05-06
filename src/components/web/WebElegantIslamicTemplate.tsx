@@ -286,8 +286,12 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               <motion.button
                 whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95, y: 0 }}
-                onClick={onAttend}
-                className="w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs transition-all shadow-[0_10px_0_rgb(233,30,99,0.2),0_15px_20px_rgba(0,0,0,0.1)] active:shadow-none border-b-4 border-pink-muted"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAttend && onAttend();
+                }}
+                className="relative z-30 cursor-pointer w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs transition-all shadow-[0_10px_0_rgb(233,30,99,0.2),0_15px_20px_rgba(0,0,0,0.1)] active:shadow-none border-b-4 border-pink-muted"
+                style={{ transform: "translateZ(20px)" }}
               >
                 {wedding.template_id === 'default' ? "Happy to attend" : "Insha'Allah will attend"}
               </motion.button>
@@ -295,8 +299,12 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               <motion.button
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95, y: 0 }}
-                onClick={onNotAttend}
-                className="w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs hover:bg-white/10 transition-all shadow-lg"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNotAttend && onNotAttend();
+                }}
+                className="relative z-30 cursor-pointer w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs hover:bg-white/10 transition-all shadow-lg"
+                style={{ transform: "translateZ(20px)" }}
               >
                 No, we can&apos;t
               </motion.button>
