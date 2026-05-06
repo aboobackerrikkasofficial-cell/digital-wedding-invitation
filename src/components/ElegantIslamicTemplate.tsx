@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
@@ -48,13 +48,22 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
     document.body.style.overflow = "auto";
   }, []);
 
-  // Detect mobile environment
-  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+  const [isNative, setIsNative] = useState(false);
+  useEffect(() => {
+    const checkNative = () => {
+      const isCapacitor = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+      const isStandalone = typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches;
+      setIsNative(!!(isCapacitor || isStandalone));
+    };
+    checkNative();
+    const timer = setTimeout(checkNative, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={cn(
-      "left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme",
-      isNative ? "relative min-h-screen overflow-y-auto pt-20 pb-12" : "fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center"
+      "left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 cream-gold-theme",
+      isNative ? "relative min-h-screen overflow-y-auto pt-[180px] pb-32 px-6" : "fixed top-0 h-[100dvh] overflow-hidden lg:p-6 lg:py-2 lg:px-8 flex items-center justify-center"
     )}>
       <PinkPantherBackground bgColor="#FF8DA1" />
 
@@ -101,7 +110,7 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[100px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[120px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
