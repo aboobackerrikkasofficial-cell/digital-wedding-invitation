@@ -6,6 +6,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
+import NativeHeader from "@/components/mobile/NativeHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -135,12 +136,20 @@ export default function AdminLayout({
     );
   }
 
+  const isNative = mounted && typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900">
-      <AdminSidebar />
-      <main className="flex-1 w-full md:ml-72 p-4 pt-20 pb-32 md:p-8 md:pb-8">
-        {children}
-      </main>
+    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+      {isNative && <NativeHeader />}
+      <div className="flex flex-1">
+        <AdminSidebar />
+        <main className={cn(
+          "flex-1 w-full md:ml-72 p-4 pb-32 md:p-8 md:pb-8",
+          isNative ? "pt-4" : "pt-20"
+        )}>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

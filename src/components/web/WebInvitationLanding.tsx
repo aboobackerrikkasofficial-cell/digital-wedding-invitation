@@ -16,7 +16,6 @@ interface InvitationLandingProps {
   onNotAttend: () => void;
 }
 
-// Premium Islamic Geometric Pattern Overlay
 const IslamicPattern = () => (
   <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
        style={{ 
@@ -55,21 +54,9 @@ const Particles = () => {
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-gold/30 rounded-full"
-            initial={{ 
-              x: p.x, 
-              y: p.y,
-              opacity: p.opacity
-            }}
-            animate={{ 
-              y: ["-10%", "110%"],
-              opacity: [0, 0.5, 0]
-            }}
-            transition={{ 
-              duration: p.duration, 
-              repeat: Infinity, 
-              ease: "linear",
-              delay: p.delay
-            }}
+            initial={{ x: p.x, y: p.y, opacity: p.opacity }}
+            animate={{ y: ["-10%", "110%"], opacity: [0, 0.5, 0] }}
+            transition={{ duration: p.duration, repeat: Infinity, ease: "linear", delay: p.delay }}
           />
         );
       })}
@@ -122,14 +109,11 @@ export function WebInvitationLanding({ wedding, onAttend, onNotAttend }: Invitat
           className="w-full bg-white/40 backdrop-blur-2xl rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-30px_rgba(173,146,77,0.15)] border border-white/60 flex flex-col relative group"
         >
           <div className="absolute inset-0 border-[20px] border-gold/5 pointer-events-none m-4 rounded-[3rem]" />
+          
           <div className="relative z-10 flex flex-col items-center text-center p-10 md:p-16">
             <Bismillah />
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mb-12"
-            >
+
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 1 }} className="mb-12">
                 <p className="text-gold font-serif text-xs md:text-sm tracking-[0.5em] uppercase font-black mb-6">Nikah Invitation</p>
                 <h1 className="text-5xl md:text-7xl font-serif font-bold text-gray-900 leading-none mb-4">
                     <span className="block mb-2">{wedding.bride_name}</span>
@@ -143,38 +127,31 @@ export function WebInvitationLanding({ wedding, onAttend, onNotAttend }: Invitat
                 )}
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 pb-12"
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
                <div className="bg-white/40 backdrop-blur-md rounded-3xl p-6 border border-white/50 flex flex-col items-center justify-center group/item hover:border-gold/30 transition-all duration-500">
+                  <Calendar className="text-gold mb-4 group-hover/item:scale-110 transition-transform" size={28} strokeWidth={1.5} />
                   <div className="font-serif">
                     <p className="font-black text-gray-900 text-sm md:text-base tracking-wide uppercase">{format(date, "EEEE, d MMM yyyy")}</p>
                     <p className="text-gold text-xs font-bold mt-2 tracking-widest">{format(date, "h:mm a")}</p>
                     {wedding.islamic_date && <p className="text-gray-400 text-[10px] sm:text-xs font-serif italic mt-3 border-t border-gray-100 pt-3">{wedding.islamic_date}</p>}
                   </div>
                </div>
+
                <div className="bg-white/40 backdrop-blur-md rounded-3xl p-6 border border-white/50 flex flex-col items-center justify-center group/item hover:border-gold/30 transition-all duration-500">
+                  <MapPin className="text-gold mb-4 group-hover/item:scale-110 transition-transform" size={28} strokeWidth={1.5} />
                   <div className="font-serif w-full px-4">
                     <p className="font-black text-gray-900 text-sm md:text-base tracking-wide uppercase mb-2 truncate">{wedding.venue_name}</p>
                   </div>
                </div>
             </motion.div>
 
-            <motion.div 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 1.2 }}
-               className="pt-8 w-full max-w-sm flex flex-col gap-4"
-            >
-               <button onClick={onAttend} className="w-full bg-gold text-white font-bold py-4 rounded-2xl shadow-lg shadow-gold/20 hover:bg-gold/90 transition-all active:scale-[0.98] uppercase tracking-widest text-xs">
-                  I Will Attend
-               </button>
-               <button onClick={onNotAttend} className="w-full bg-white border border-gold/10 text-gray-400 font-bold py-4 rounded-2xl hover:bg-gray-50 transition-all active:scale-[0.98] uppercase tracking-widest text-xs">
-                  Maybe Next Time
-               </button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="pt-8 w-full max-w-sm flex flex-col gap-4">
+               <button onClick={onAttend} className="w-full bg-gold text-white font-bold py-4 rounded-2xl shadow-lg shadow-gold/20 hover:bg-gold/90 transition-all active:scale-[0.98] uppercase tracking-widest text-xs">I Will Attend</button>
+               <button onClick={onNotAttend} className="w-full bg-white border border-gold/10 text-gray-400 font-bold py-4 rounded-2xl hover:bg-gray-50 transition-all active:scale-[0.98] uppercase tracking-widest text-xs">Maybe Next Time</button>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.4 }} transition={{ delay: 1.5 }} className="pt-8 border-t border-gold/10 w-48 mt-8">
+               <p className="text-[10px] text-gray-400 uppercase tracking-[0.5em] font-black italic">May Allah Bless this Union</p>
             </motion.div>
           </div>
         </motion.div>
