@@ -38,7 +38,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
     <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-center font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme fixed top-0 h-[100dvh] overflow-hidden">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full" style={{ perspective: "1000px" }}>
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full" style={{ perspective: typeof window !== 'undefined' && window.innerWidth < 1024 ? "none" : "1000px" }}>
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
           whileHover={{ 
@@ -242,14 +242,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
         <motion.aside 
-          whileHover={{ 
+          whileHover={typeof window !== 'undefined' && window.innerWidth >= 1024 ? { 
             rotateY: 3, 
             rotateX: 2, 
             z: 10,
             scale: 1.01
-          }}
+          } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px] preserve-3d"
+          className="pink-panther-card relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px] preserve-3d"
         >
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
             <motion.div
@@ -326,6 +326,12 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
         .bg-gold { background-color: #E91E63; }
         .bg-gold-muted { background-color: #E91E63; }
         .preserve-3d { transform-style: preserve-3d; }
+        @media (max-width: 1024px) {
+          .preserve-3d { transform-style: flat !important; transform: none !important; }
+          .pink-panther-card { transform: none !important; perspective: none !important; }
+          .pink-panther-card * { transform: none !important; }
+          .relative.z-30 { pointer-events: auto !important; position: relative !important; z-index: 50 !important; }
+        }
         @keyframes shine {
           0% { transform: translateX(-100%) skewX(-15deg); }
           100% { transform: translateX(200%) skewX(-15deg); }
