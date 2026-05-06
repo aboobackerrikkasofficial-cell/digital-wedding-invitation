@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { Sparkles, Clock, MapPin } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 import { Countdown } from "./Countdown";
 
@@ -168,17 +169,25 @@ export function RoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }: T
   const date = new Date(wedding.wedding_date);
   const particles = useMemo(() => [...Array(30)].map((_, i) => getParticle(i)), []);
 
-  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
-  const isStandalone = typeof window !== 'undefined' && 
-    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+  // Detect mobile environment
+  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full bg-[#2b1e3f] overflow-y-auto lg:overflow-hidden flex items-center justify-center font-serif p-6 lg:py-2 lg:px-8 ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'}`}>
+    <div className={cn(
+      "left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8",
+      isNative ? "relative min-h-screen overflow-y-auto pt-24 pb-12" : "fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center"
+    )}>
       <GoldDustBackground particles={particles} />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className={cn(
+        "relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl",
+        isNative ? "h-auto" : "h-full"
+      )}>
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[95svh] lg:h-full max-h-[850px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden pt-4 lg:pt-[20px] pb-0 px-0">
+        <main className={cn(
+          "relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0",
+          isNative ? "min-h-[90vh] h-auto mb-10 pt-8 pb-4" : "h-[95svh] lg:h-full max-h-[850px] pt-4 lg:pt-[20px]"
+        )}>
 
           <GoldArc />
 

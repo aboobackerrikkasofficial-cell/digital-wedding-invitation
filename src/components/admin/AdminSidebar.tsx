@@ -23,7 +23,13 @@ export function AdminSidebar() {
   const handleSignOut = async () => {
     localStorage.removeItem("isAdmin");
     await supabase.auth.signOut();
-    router.push("/admin/login");
+    
+    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    if (isNative) {
+      router.push("/admin/login");
+    } else {
+      router.push("/admin/login");
+    }
   };
 
   return (
@@ -82,7 +88,14 @@ export function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                setIsOpen(false);
+                const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                if (isNative) {
+                  e.preventDefault();
+                  router.push(item.href);
+                }
+              }}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium",
                 pathname === item.href 
@@ -138,7 +151,14 @@ export function AdminSidebar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      setIsOpen(false);
+                      const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                      if (isNative) {
+                        e.preventDefault();
+                        router.push(item.href);
+                      }
+                    }}
                     className={cn(
                       "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium",
                       pathname === item.href 

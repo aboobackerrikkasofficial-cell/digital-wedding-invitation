@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { MapPin, Calendar, MousePointer2, Sparkles, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 import { Wedding } from "@/types/wedding";
 
@@ -18,24 +19,34 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
   const date = new Date(wedding.wedding_date);
   const [mounted, setMounted] = useState(false);
 
+  // Detect mobile environment
+  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+
   useEffect(() => {
     const frame = requestAnimationFrame(() => setMounted(true));
-    // Lock body scroll only for this page to ensure single-page experience
+    // ONLY lock scroll for WEB, keep it AUTO for NATIVE to allow scrolling
     const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = "hidden";
+    if (!isNative) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     return () => {
       cancelAnimationFrame(frame);
       document.body.style.overflow = originalStyle;
     };
-  }, []);
+  }, [isNative]);
 
   if (!mounted) return null;
 
   return (
-    <div className="peach-theme relative h-[calc(100dvh-2rem)] w-full overflow-hidden font-fredoka selection:bg-[#F4C542]/30">
+    <div className={cn(
+      "peach-theme font-fredoka selection:bg-[#F4C542]/30 w-full",
+      isNative ? "relative min-h-screen overflow-y-auto pt-24 pb-12" : "relative h-[calc(100dvh-2rem)] overflow-hidden"
+    )}>
       
       {/* 1. MANDATORY BACKGROUND (CLONE ENFORCEMENT) */}
-      <div className="fixed inset-0 z-0">
+      <div className={isNative ? "absolute inset-0 z-0" : "fixed inset-0 z-0"}>
         <picture>
           <source media="(max-width: 768px)" srcSet="/public/main/portraittom&jerry.png" />
           <img 
@@ -52,14 +63,20 @@ export function PeachFloralTemplate({ wedding, onAttend, onNotAttend }: PeachFlo
       </div>
 
       {/* 2. LAYOUT CONTAINER (EXACT OVERLAY MATCH) */}
-      <div className="relative z-10 w-full min-h-[calc(100dvh-2rem)] flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-6 md:p-20">
+      <div className={cn(
+        "relative z-10 w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-4 md:p-20",
+        isNative ? "min-h-min" : "min-h-[calc(100dvh-2rem)]"
+      )}>
         
         {/* LEFT SECTION: INVITATION CARD */}
         <motion.main 
           initial={{ opacity: 0, x: -100, rotate: -2 }}
           animate={{ opacity: 1, x: 0, rotate: -1.5 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-full max-w-[500px] bg-[#FDF5E6] rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 md:p-12 border-[0.8rem] border-white/40 md:ml-10"
+          className={cn(
+            "relative w-full max-w-[500px] bg-[#FDF5E6] rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 md:p-12 border-[0.8rem] border-white/40",
+            isNative ? "h-auto mb-10" : "md:ml-10"
+          )}
         >
           {/* Multi-color Dotted Perimeter Border */}
           <div className="absolute inset-2 border-[6px] border-dotted border-[#8B5A2B]/15 rounded-[0.8rem] pointer-events-none" />

@@ -36,8 +36,13 @@ export default function AdminLogin() {
       localStorage.setItem("isAdmin", "true");
       showToast("Access granted!", "success");
       
-      // Hard redirect for mobile stability
-      window.location.href = "/admin";
+      // Use full page load on mobile to ensure reliability
+      const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+      if (isNative) {
+        router.push("/admin");
+      } else {
+        router.push("/admin");
+      }
     } catch (err: any) {
       console.error("Login error:", err);
       showToast(err.message || "Invalid credentials", "error");

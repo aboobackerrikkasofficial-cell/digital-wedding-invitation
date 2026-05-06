@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { ToastProvider } from "@/components/Toast";
-import { SystemTitleBar } from "@/components/SystemTitleBar";
+import { MobileInitializationWrapper } from "@/components/MobileInitializationWrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,12 +24,20 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Smart Wedding Invitation System",
   description: "Elegant digital wedding invitations with integrated RSVP",
+  manifest: "/manifest.json",
   icons: {
     apple: "/icons/icon-192x192.png",
     shortcut: "/icons/icon-192x192.png",
     icon: "/icons/icon-192x192.png",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Smart Wedding",
+  },
 };
+
+
 
 export default function RootLayout({
   children,
@@ -43,13 +50,12 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body 
-        className="min-h-full flex flex-col font-sans"
+        className="min-h-full flex flex-col font-sans bg-white"
         suppressHydrationWarning
       >
-        <SystemTitleBar />
-        <ToastProvider>
+        <MobileInitializationWrapper>
           {children}
-        </ToastProvider>
+        </MobileInitializationWrapper>
       </body>
     </html>
   );

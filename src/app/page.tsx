@@ -1,7 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import { Heart, Sparkles, LayoutDashboard } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const [isNative, setIsNative] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile environment
+    const native = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    setIsNative(!!native);
+    
+    if (native) {
+      console.log("Mobile App Environment Detected: Home Page Mounted");
+    }
+  }, []);
+
+  const handleDashboardNav = (e: React.MouseEvent) => {
+    if (isNative) {
+      e.preventDefault();
+      router.push("/admin");
+    }
+  };
+
   return (
     <div className="h-[100dvh] w-full flex flex-col items-center justify-between bg-white px-6 overflow-hidden pt-12 pb-6">
       <div className="max-w-4xl w-full text-center flex flex-col items-center justify-center flex-grow space-y-4 md:space-y-8">
@@ -27,6 +51,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-3 md:gap-6 justify-center w-full px-4">
           <Link 
             href="/admin" 
+            onClick={handleDashboardNav}
             className="group relative inline-flex items-center justify-center px-6 md:px-10 py-3 md:py-5 font-bold text-white transition-all duration-200 bg-black rounded-xl md:rounded-2xl shadow-xl shadow-black/10 text-sm md:text-base hover:scale-[1.02]"
           >
             Go to Admin Dashboard

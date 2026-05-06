@@ -1,84 +1,62 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { ChevronLeft, Home } from "lucide-react";
+import Link from "next/link";
 
-/**
- * SystemTitleBar - A global app-level header that looks like a native title bar.
- * Contains the global back button, app title, and window controls.
- */
 export function SystemTitleBar() {
   const router = useRouter();
   const pathname = usePathname();
-  const [canGoBack, setCanGoBack] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // STRICT DETECTION: Only show if running as a Native App (Capacitor) or an Installed PWA (Standalone)
     const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform;
-    const isStandalone = typeof window !== 'undefined' && 
-      (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-    
-    const isApp = !!(isNative || isStandalone);
-
-    // Hide on the dashboard, landing, and login pages
     const hideOn = ["/", "/admin/login", "/admin"];
+    const shouldHide = hideOn.includes(pathname);
     
-    if (hideOn.includes(pathname) || !isApp) {
-      setCanGoBack(false);
-      return;
-    }
-
-    setCanGoBack(true);
+    // Always visible on mobile except on root pages
+    setIsVisible(!shouldHide);
   }, [pathname]);
 
   const handleBack = () => {
-    // True browser back behavior
     if (typeof window !== "undefined" && window.history.length > 1) {
-      window.history.back();
+      router.back();
     } else {
-      // Fallback for direct links
-      router.push(pathname.startsWith("/admin") ? "/admin" : "/");
+      router.push("/");
     }
   };
 
+  const handleGoHome = (e: React.MouseEvent) => {
+    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    if (isNative) {
+      e.preventDefault();
+      router.push("/");
+    }
+  };
 
-  if (!canGoBack) return null;
+  if (!isVisible) return null;
 
   return (
-    <>
-      <div className="h-8 w-full flex-shrink-0" /> {/* Spacer to prevent content overlap */}
-      <header className="fixed top-0 left-0 right-0 h-8 bg-[#C5A059] flex items-center px-3 z-[10000] select-none shadow-sm">
-        <button
-          onClick={handleBack}
-          className="hover:bg-black/10 rounded p-1 transition-colors text-white/90 hover:text-white flex items-center gap-2"
-          title="Go back"
-        >
-          <ArrowLeft size={16} strokeWidth={2.5} />
-          <span className="text-[11px] font-black text-white tracking-widest uppercase font-sans">
-            Back
-          </span>
-        </button>
-        
-        <div className="flex-1 text-center">
-          <span className="text-[9px] font-black text-white/60 tracking-[0.3em] uppercase font-sans">
-            Smart Wedding Invitation System
-          </span>
-        </div>
+    <div className="fixed top-6 left-0 right-0 z-[9999] flex items-center justify-between px-6 pointer-events-none">
+      {/* Glass Back Button */}
+      <button
+        onClick={handleBack}
+        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all"
+        aria-label="Go back"
+      >
+        <ChevronLeft size={28} strokeWidth={2.5} />
+      </button>
 
-        {/* Dashboard Button */}
-        <button
-          onClick={() => router.push("/admin")}
-          className="hover:bg-black/10 rounded px-2 py-1 transition-colors text-white/90 hover:text-white flex items-center gap-2"
-          title="Go to Dashboard"
-        >
-          <span className="text-[10px] font-black text-white tracking-widest uppercase font-sans">
-            Dashboard
-          </span>
-          <LayoutDashboard size={14} strokeWidth={2.5} />
-        </button>
-      </header>
-    </>
+      {/* Glass Home Button */}
+      <Link
+        href="/"
+        onClick={handleGoHome}
+        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all"
+        aria-label="Go to Home"
+      >
+        <Home size={22} strokeWidth={2.5} />
+      </Link>
+    </div>
   );
 }

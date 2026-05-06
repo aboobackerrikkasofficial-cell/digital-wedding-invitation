@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { ArrowLeft, LayoutDashboard, Navigation } from "lucide-react";
 import { Countdown } from "./Countdown";
@@ -51,17 +52,25 @@ export function CreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: Tem
     };
   }, []);
 
-  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
-  const isStandalone = typeof window !== 'undefined' && 
-    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+  // Detect mobile environment
+  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full bg-[#fffcf2] overflow-hidden flex items-center justify-center font-serif p-4 lg:p-8 cream-gold-theme ${isStandalone ? 'top-8 h-[calc(100vh-2rem)]' : 'top-0 h-screen'}`}>
+    <div className={cn(
+      "left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme",
+      isNative ? "relative min-h-screen overflow-y-auto pt-24 pb-12" : "fixed top-0 h-screen overflow-hidden flex items-center justify-center"
+    )}>
       <BackgroundDecor />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-fit">
+      <div className={cn(
+        "relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl",
+        isNative ? "h-auto" : "h-fit"
+      )}>
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-[712px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
+        <main className={cn(
+          "relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden",
+          isNative ? "min-h-[85vh] h-auto mb-10 pt-4" : "h-[712px] lg:h-[715px]"
+        )}>
           
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">

@@ -2,6 +2,7 @@
 // Admin Dashboard for managing wedding invitations and tracking RSVPs
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Users, Calendar, Link as LinkIcon, Download, Trash2, Eye, PlusCircle, Pencil } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +13,9 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({ weddings: 0, rsvps: 0, guests: 0 });
   const [weddings, setWeddings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const loadingTimeout = 45000;
   const { showToast } = useToast();
+  const router = useRouter();
 
   const formatDate = (dateString: string, formatStr: string = "MMM d, yyyy") => {
     try {
@@ -200,12 +203,20 @@ export default function AdminDashboard() {
                         <div className="font-bold text-gray-900">{w.bride_name} & {w.groom_name}</div>
                         <div className="text-xs text-gray-400 truncate max-w-[150px]">/{w.slug}</div>
                       </div>
-                      <Link 
-                        href={`/track/${w.slug}?source=admin`}
+                      <button 
+                        onClick={(e) => {
+                          const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                          const href = `/track/${w.slug}?source=admin`;
+                          if (isNative) {
+                            router.push(href);
+                          } else {
+                            router.push(href);
+                          }
+                        }}
                         className="ml-auto text-[10px] font-black bg-gold/10 text-gold px-3 py-1.5 rounded-lg uppercase tracking-widest hover:bg-gold/20 transition-colors"
                       >
                         Track List
-                      </Link>
+                      </button>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
@@ -218,13 +229,21 @@ export default function AdminDashboard() {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <Link 
-                        href={`/admin/edit/${w.id}`}
+                      <button 
+                        onClick={(e) => {
+                          const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                          const href = `/admin/edit/${w.id}`;
+                          if (isNative) {
+                            router.push(href);
+                          } else {
+                            router.push(href);
+                          }
+                        }}
                         className="p-2.5 hover:bg-gray-100 rounded-xl text-blue-600 transition-colors"
                         title="Edit Invitation"
                       >
                         <Pencil size={18}/>
-                      </Link>
+                      </button>
                       <button 
                         onClick={() => copyLink(w.slug)} 
                         className="p-2.5 hover:bg-gray-100 rounded-xl text-gray-500 transition-colors"
@@ -239,14 +258,21 @@ export default function AdminDashboard() {
                       >
                         <Users size={18}/>
                       </button>
-                      <Link 
-                        href={`/invite/${w.slug}`} 
+                       <button 
+                        onClick={(e) => {
+                          const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                          const href = `/invite/${w.slug}`;
+                          if (isNative) {
+                            router.push(href);
+                          } else {
+                            router.push(href);
+                          }
+                        }}
                         className="p-2.5 hover:bg-gray-100 rounded-xl text-gray-400 transition-colors"
                         title="View Invitation"
                       >
-
                         <Eye size={18}/>
-                      </Link>
+                      </button>
                       <button 
                         onClick={() => deleteWedding(w.id)} 
                         className="p-2.5 hover:bg-red-50 rounded-xl text-red-500 transition-colors"
@@ -289,27 +315,51 @@ export default function AdminDashboard() {
                   <LinkIcon size={16}/>
                   <span className="text-[10px] font-bold uppercase">Copy Link</span>
                 </button>
-                <Link 
-                  href={`/track/${w.slug}?source=admin`}
+                <button 
+                  onClick={(e) => {
+                    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                    const href = `/track/${w.slug}?source=admin`;
+                    if (isNative) {
+                      router.push(href);
+                    } else {
+                      router.push(href);
+                    }
+                  }}
                   className="flex items-center justify-center gap-2 p-3 bg-gold/5 rounded-xl text-gold active:bg-gold/10 transition-colors"
                 >
                   <Users size={16}/>
                   <span className="text-[10px] font-bold uppercase">Track</span>
-                </Link>
-                <Link 
-                  href={`/invite/${w.slug}`} 
+                </button>
+                <button 
+                  onClick={(e) => {
+                    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                    const href = `/invite/${w.slug}`;
+                    if (isNative) {
+                      router.push(href);
+                    } else {
+                      router.push(href);
+                    }
+                  }}
                   className="flex items-center justify-center gap-2 p-3 bg-blue-50/50 rounded-xl text-blue-600 active:bg-blue-100 transition-colors"
                 >
                   <Eye size={16}/>
                   <span className="text-[10px] font-bold uppercase">View</span>
-                </Link>
-                <Link 
-                  href={`/admin/edit/${w.id}`} 
+                </button>
+                <button 
+                  onClick={(e) => {
+                    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+                    const href = `/admin/edit/${w.id}`;
+                    if (isNative) {
+                      router.push(href);
+                    } else {
+                      router.push(href);
+                    }
+                  }}
                   className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-500 active:bg-gray-100 transition-colors"
                 >
                   <Pencil size={16}/>
                   <span className="text-[10px] font-bold uppercase">Edit</span>
-                </Link>
+                </button>
                 <button 
                   onClick={() => copyTrackingLink(w.slug)} 
                   className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-500 active:bg-gray-100 transition-colors"

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import { Countdown } from "./Countdown";
@@ -47,28 +48,36 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
     document.body.style.overflow = "auto";
   }, []);
 
-  // Detect if running in standalone "Web App" mode to adjust for the SystemTitleBar
-  const isStandalone = typeof window !== 'undefined' && 
-    (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+  // Detect mobile environment
+  const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
 
   return (
-    <div className={`fixed left-0 right-0 z-40 w-full bg-[#fdfbf0] overflow-hidden flex items-center justify-center font-serif p-6 lg:py-2 lg:px-8 cream-gold-theme ${isStandalone ? 'top-8 h-[calc(100dvh-2rem)]' : 'top-0 h-[100dvh]'}`}>
+    <div className={cn(
+      "left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme",
+      isNative ? "relative min-h-screen overflow-y-auto pt-20 pb-12" : "fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center"
+    )}>
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full" style={{ perspective: "1000px" }}>
+      <div className={cn(
+        "relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl",
+        isNative ? "min-h-min h-auto" : "h-full"
+      )} style={{ perspective: "1000px" }}>
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
-          whileHover={{ 
+          whileHover={!isNative ? { 
             rotateY: -3, 
             rotateX: 2, 
             z: 10,
             scale: 1.01
-          }}
+          } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg h-[712px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] preserve-3d"
+          className={cn(
+            "relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] preserve-3d",
+            isNative ? "min-h-[85vh] h-auto mb-8" : "h-[712px] lg:h-[715px]"
+          )}
         >
           {/* Subtle 3D Shine Overlay */}
-          <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
+          {!isNative && <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />}
           
           {/* Background Image Template */}
           <div className="absolute inset-0 z-0">
