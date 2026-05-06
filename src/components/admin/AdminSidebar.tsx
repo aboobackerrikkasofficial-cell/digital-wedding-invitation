@@ -43,14 +43,14 @@ export function AdminSidebar() {
       {/* Mobile Top Bar */}
       <div className={cn(
         "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex flex-col z-[55] shadow-sm bg-white overflow-hidden",
-        isNative ? "h-32" : "h-16"
+        isNative ? "h-40" : "h-16"
       )}>
         {isNative && (
-          <div className="h-16 pt-6 bg-yellow-500 flex items-center justify-center shrink-0 w-full">
-            <span className="text-[10px] font-black text-white uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
+          <div className="h-24 pt-8 bg-[#C5A059] flex items-center justify-center shrink-0">
+            <span className="text-[11px] font-black text-white uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
           </div>
         )}
-        <div className="flex-1 flex items-center justify-between px-4">
+        <div className="h-16 flex items-center justify-between px-4 shrink-0">
           <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-gradient-to-br from-gold to-gold/60 rounded-lg flex items-center justify-center shadow-md">
                   <Sparkles className="text-white" size={18} />
@@ -149,8 +149,8 @@ export function AdminSidebar() {
             )}
           >
             {isNative && (
-              <div className="h-16 pt-6 bg-yellow-500 flex items-center justify-center shrink-0 w-full">
-                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em] text-center">Smart Wedding</span>
+              <div className="h-24 pt-8 bg-[#C5A059] flex items-center justify-center shrink-0">
+                <span className="text-[11px] font-black text-white uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
               </div>
             )}
             <div className="p-6 pb-10">
