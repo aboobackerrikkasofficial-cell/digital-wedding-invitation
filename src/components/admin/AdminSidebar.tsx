@@ -22,8 +22,15 @@ export function AdminSidebar() {
   const [isNative, setIsNative] = useState(false);
 
   useEffect(() => {
-    const native = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
-    setIsNative(!!native);
+    const checkNative = () => {
+      const isCapacitor = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+      const isStandalone = typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches;
+      setIsNative(!!(isCapacitor || isStandalone));
+    };
+    
+    checkNative();
+    const timer = setTimeout(checkNative, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSignOut = async () => {
@@ -46,8 +53,8 @@ export function AdminSidebar() {
         isNative ? "h-40" : "h-16"
       )}>
         {isNative && (
-          <div className="h-24 pt-8 bg-[#C5A059] flex items-center justify-center shrink-0">
-            <span className="text-[11px] font-black text-white uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
+          <div className="h-24 pt-8 bg-yellow-400 flex items-center justify-center shrink-0 border-b border-yellow-500/20">
+            <span className="text-[11px] font-black text-yellow-950 uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
           </div>
         )}
         <div className="h-16 flex items-center justify-between px-4 shrink-0">
@@ -149,8 +156,8 @@ export function AdminSidebar() {
             )}
           >
             {isNative && (
-              <div className="h-24 pt-8 bg-[#C5A059] flex items-center justify-center shrink-0">
-                <span className="text-[11px] font-black text-white uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
+              <div className="h-24 pt-8 bg-yellow-400 flex items-center justify-center shrink-0 border-b border-yellow-500/20">
+                <span className="text-[11px] font-black text-yellow-950 uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
               </div>
             )}
             <div className="p-6 pb-10">
