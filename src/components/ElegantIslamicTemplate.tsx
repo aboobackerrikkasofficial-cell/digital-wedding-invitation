@@ -44,14 +44,17 @@ export function ElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: Elega
   const hasNikah = !!wedding.nikah_date;
   
   useEffect(() => {
-    // Ensure scrolling is enabled
-    document.documentElement.style.overflow = "auto";
-    document.body.style.overflow = "auto";
-    if (isNative) {
+    const isCap = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    if (isCap) {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
       document.body.style.position = "relative";
       document.body.style.height = "auto";
+    } else {
+      // Original web behavior
+      document.body.style.overflow = "auto";
     }
-  }, [isNative]);
+  }, []);
 
   // Detect mobile environment
   const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
