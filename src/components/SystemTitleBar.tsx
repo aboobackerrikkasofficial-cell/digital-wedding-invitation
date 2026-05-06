@@ -4,6 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChevronLeft, Home } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function SystemTitleBar() {
   const router = useRouter();
@@ -37,8 +38,13 @@ export function SystemTitleBar() {
 
   if (!isVisible) return null;
 
+  const isAdjustedPage = pathname === '/admin/create' || pathname.startsWith('/admin/edit/');
+
   return (
-    <div className="fixed top-6 left-0 right-0 z-[9999] flex items-center justify-between px-6 pointer-events-none">
+    <div className={cn(
+      "fixed top-6 left-0 right-0 z-[9999] flex items-center justify-between px-6 pointer-events-none",
+      isAdjustedPage && "md:left-72 md:px-0 md:pl-1 md:pr-3"
+    )}>
       {/* Glass Back Button */}
       <button
         onClick={handleBack}
