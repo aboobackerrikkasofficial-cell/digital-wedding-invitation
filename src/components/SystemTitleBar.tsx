@@ -28,8 +28,7 @@ export function SystemTitleBar() {
     }
   };
 
-  const isDashboardArea = pathname.startsWith('/admin');
-  const homeHref = isDashboardArea ? "/admin" : "/";
+  const homeHref = "/admin";
 
   const handleGoHome = (e: React.MouseEvent) => {
     const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
