@@ -130,7 +130,7 @@ export function RsvpFlow({ wedding, onComplete, onBack }: RsvpFlowProps) {
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1, ease: liquidEase }}
-        className={`relative z-10 w-full max-w-xl p-5 md:p-10 shadow-2xl flex flex-col relative border ${
+        className={`relative z-10 w-full max-w-[clamp(576px,45vw,1000px)] p-5 md:p-10 shadow-2xl flex flex-col relative border ${
           isPinkTheme ? 'rounded-[5px]' : 'rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem]'
         } ${
           isRoyal 

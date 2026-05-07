@@ -16,7 +16,7 @@ const TimeUnit = ({ value, label, numberClassName, labelClassName }: { value: nu
       key={value}
       initial={{ y: 5, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className={`text-2xl md:text-3xl tabular-nums ${numberClassName || 'font-bold text-gold'}`}
+      className={`text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl tabular-nums ${numberClassName || 'font-bold text-gold'}`}
     >
       {String(value).padStart(2, '0')}
     </motion.div>
@@ -61,11 +61,11 @@ export function Countdown({ targetDate, numberClassName, labelClassName, separat
   return (
     <div className="flex justify-center items-center">
       <TimeUnit value={timeLeft.days} label="Days" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl md:text-2xl 2xl:text-4xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
       <TimeUnit value={timeLeft.hours} label="Hours" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl md:text-2xl 2xl:text-4xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
       <TimeUnit value={timeLeft.minutes} label="Minutes" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl md:text-2xl 2xl:text-4xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
       <TimeUnit value={timeLeft.seconds} label="Seconds" numberClassName={numberClassName} labelClassName={labelClassName} />
     </div>
   );

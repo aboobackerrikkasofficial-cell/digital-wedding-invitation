@@ -51,13 +51,13 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
         />
       </div>
 
-      <div className="relative z-[100] flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className="relative z-[100] flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full h-full lg:px-12">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-[712px] lg:h-[715px]"
+          className="relative w-full max-w-[420px] lg:max-w-[750px] flex-1 flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-[712px] lg:h-[clamp(715px,85vh,900px)]"
         >
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
           
@@ -99,7 +99,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
               className="flex flex-col items-center mb-6"
             >
-              <p className="text-pink-primary font-poppins text-[clamp(8px,2.5vw,10px)] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
+              <p className="text-pink-primary font-poppins text-[clamp(8px,2.5vw,16px)] lg:text-[14px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
                 {wedding.host_selection === 'bride_side' 
                   ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` 
                   : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
@@ -122,7 +122,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               className="flex flex-col items-center w-full mb-[2px]"
               style={{ willChange: "transform, opacity" }}
             >
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,42px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
                 {(wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
@@ -132,7 +132,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               
               <p className="text-pink-muted font-cartoon text-[11px] tracking-[0.4em] uppercase my-1 opacity-60 drop-shadow-sm">WITH</p>
 
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,42px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
                 {(wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
@@ -254,7 +254,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="pink-panther-card relative z-[500] pointer-events-auto w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px]"
+          className="pink-panther-card relative z-[500] pointer-events-auto w-full max-w-[420px] lg:max-w-[750px] flex-1 h-fit lg:h-[clamp(715px,85vh,900px)] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px]"
         >
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
             <motion.div

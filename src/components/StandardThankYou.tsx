@@ -60,7 +60,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className={`relative z-10 w-full max-w-2xl flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
+        className={`relative z-10 w-full max-w-[clamp(672px,55vw,1100px)] flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
           isPinkTheme ? 'rounded-[5px] h-fit py-6 lg:py-8' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
         }`}
       >
@@ -84,13 +84,13 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         )}
 
         <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-4 tracking-wider px-2 font-cinzel ${isPinkTheme ? 'text-[#AD1457] mt-8 lg:mt-12' : 'text-white'}`}>
-          <span className={`block text-[clamp(1rem,5vw,2.375rem)] mb-0.5 lg:mb-1 text-wrap-balance leading-[1.3] py-0.5 font-script ${isPinkTheme ? 'text-[#E91E63]' : 'text-gold'}`}>
+          <span className={`block text-[clamp(1rem,5vw,4.5rem)] mb-0.5 lg:mb-1 text-wrap-balance leading-[1.3] py-0.5 font-script ${isPinkTheme ? 'text-[#E91E63]' : 'text-gold'}`}>
             {isAttending ? (isPinkTheme ? "Blessed!" : "Alhamdulillah!") : "Thank You"}
           </span>
           {isAttending ? "Successful" : "Message Received"}
         </h1>
 
-        <p className={`text-[clamp(11px,3vw,16px)] lg:text-xl mb-3 lg:mb-6 px-4 leading-relaxed max-w-lg mx-auto break-words italic ${isPinkTheme ? 'text-[#E91E63]/80 font-cartoon' : 'text-white/80 font-cinzel'}`}>
+        <p className={`text-[clamp(11px,3vw,24px)] lg:text-xl mb-3 lg:mb-6 px-4 leading-relaxed max-w-lg mx-auto break-words italic ${isPinkTheme ? 'text-[#E91E63]/80 font-cartoon' : 'text-white/80 font-cinzel'}`}>
           {isAttending 
             ? `We are honored to have you join us for our celebration, ${rsvpData?.name || "Guest"}.`
             : "Thank you for the update. Although we will miss you, your well-wishes mean a lot to us."

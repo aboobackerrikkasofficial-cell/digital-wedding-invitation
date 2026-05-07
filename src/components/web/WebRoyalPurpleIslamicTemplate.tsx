@@ -92,14 +92,14 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
   return (
     <div className="left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8 fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center">
       <GoldDustBackground particles={particles} />
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full h-full lg:px-12">
+        <main className="relative w-full max-w-[420px] lg:max-w-[750px] flex-1 h-full max-h-[clamp(715px,85vh,900px)] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">>
           <GoldArc />
           <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.6 } } }} initial="hidden" animate="show" className="relative z-10 w-full flex-grow flex flex-col items-center justify-between text-center mt-[75px] lg:mt-[100px] px-2 lg:px-4" style={{ willChange: "transform, opacity" }}>
             <motion.div variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }} className="flex-shrink-0 flex flex-col items-center justify-start min-h-[80px] lg:min-h-[140px] pt-4 lg:pt-8">
               {((wedding.host_selection === 'bride_side' && wedding.bride_father_name) || (wedding.host_selection === 'groom_side' && wedding.groom_father_name)) && (
                 <div className={`flex flex-col items-center mb-1 lg:mb-2 mt-[45px] ${wedding.nikah_date ? 'lg:mt-[30px]' : 'lg:mt-[50px]'}`}>
-                  <p className="text-white font-sans text-[10px] lg:text-[12px] tracking-tight font-bold uppercase whitespace-nowrap overflow-hidden text-ellipsis px-4 mb-[-3px] leading-[1.4]">
+                  <p className="text-white font-sans text-[clamp(10px,1.5vw,20px)] tracking-tight font-bold uppercase whitespace-nowrap overflow-hidden text-ellipsis px-4 mb-[-3px] leading-[1.4]">
                     {wedding.host_selection === 'bride_side' ? `${wedding.bride_father_name} & ${wedding.bride_mother_name}` : `${wedding.groom_father_name} & ${wedding.groom_mother_name}`}
                   </p>
                   <p className="text-gold font-sans text-[8px] lg:text-[8px] tracking-widest uppercase font-black">{wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}</p>
@@ -113,9 +113,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, scale: 1.05 }, show: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } } }} className="flex-grow flex flex-col items-center justify-center w-full px-2 max-h-[180px] lg:max-h-[300px] mt-6 lg:mt-0">
               <h1 className="w-full font-cinzel text-white leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.4)] px-2">
-                <span className="block text-gold text-[clamp(25px,7.2vw,33px)] lg:text-[clamp(11px,4vw,28px)] leading-[1.1] mt-[3px] lg:mt-[5px] px-2">{wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}</span>
+                <span className="block text-gold text-[clamp(25px,7.2vw,50px)] leading-[1.1] mt-[3px] lg:mt-[5px] px-2">{wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}</span>
                 <span className="block text-[11px] lg:text-base font-cinzel text-gold tracking-[0.2em] my-[2px] lg:my-[1px]">with</span>
-                <span className="block text-gold text-[clamp(25px,7.2vw,33px)] lg:text-[clamp(11px,4vw,28px)] leading-[1.2] px-2">{wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}</span>
+                <span className="block text-gold text-[clamp(25px,7.2vw,50px)] leading-[1.2] px-2">{wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}</span>
               </h1>
               <div className="mt-2 mb-1">
                 <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] uppercase font-bold px-4 line-clamp-1 opacity-90">{wedding.host_selection === 'bride_side' ? 'S/O' : 'D/O'} {wedding.host_selection === 'bride_side' ? `${wedding.groom_father_name} & ${wedding.groom_mother_name}` : `${wedding.bride_father_name} & ${wedding.bride_mother_name}`}</p>
@@ -184,7 +184,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           </motion.div>
         </main>
         <div className="hidden lg:flex flex-col items-center justify-center h-[60vh] opacity-40"><div className="w-[0.5px] h-full bg-gold" /><motion.div animate={{ rotate: [0, 90, 180, 270, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="my-8"><Sparkles className="text-gold" size={20} /></motion.div><div className="w-[0.5px] h-full bg-gold" /></div>
-        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-5 lg:gap-0">
+        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-[750px] flex-1 h-full max-h-[clamp(715px,85vh,900px)] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-5 lg:gap-0">>
           <div className="w-full lg:mt-10"><motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}><p className="text-gold font-sans text-[11px] lg:text-[10px] font-bold tracking-[0.4em] uppercase mb-4 lg:mb-8">Countdown to Celebration</p><Countdown targetDate={wedding.wedding_date} /></motion.div></div>
           <div className="hidden lg:flex flex-col items-center my-1 lg:my-0"><div className="h-px w-24 bg-gold/20 mb-4" /><Sparkles className="hidden lg:block text-gold opacity-50" size={32} /><div className="h-px w-24 bg-gold/20 mt-4" /></div>
           <div className="w-full mb-10"><motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="text-white font-cinzel text-[19px] lg:text-2xl mb-4 lg:mb-8 tracking-wider">Will you attend?</motion.h3>
