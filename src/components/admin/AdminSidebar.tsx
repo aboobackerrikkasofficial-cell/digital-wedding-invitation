@@ -48,15 +48,7 @@ export function AdminSidebar() {
   return (
     <>
       {/* Mobile Top Bar */}
-      <div className={cn(
-        "md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex flex-col z-[55] shadow-sm bg-white overflow-hidden",
-        isNative ? "h-40" : "h-16"
-      )}>
-        {isNative && (
-          <div className="h-24 pt-8 bg-yellow-400 flex items-center justify-center shrink-0 border-b border-yellow-500/20">
-            <span className="text-[11px] font-black text-yellow-950 uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
-          </div>
-        )}
+      <div className="md:hidden fixed top-0 left-0 right-0 border-b border-gray-100 flex flex-col z-[55] shadow-sm bg-white overflow-hidden h-16">
         <div className="h-16 flex items-center justify-between px-4 shrink-0">
           <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-gradient-to-br from-gold to-gold/60 rounded-lg flex items-center justify-center shadow-md">
@@ -155,11 +147,7 @@ export function AdminSidebar() {
               "w-72 bg-white flex flex-col h-screen fixed left-0 top-0 z-[60] shadow-2xl md:hidden overflow-hidden",
             )}
           >
-            {isNative && (
-              <div className="h-24 pt-8 bg-yellow-400 flex items-center justify-center shrink-0 border-b border-yellow-500/20">
-                <span className="text-[11px] font-black text-yellow-950 uppercase tracking-[0.2em] text-center">Wedding Management Portal</span>
-              </div>
-            )}
+
             <div className="p-6 pb-10">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">

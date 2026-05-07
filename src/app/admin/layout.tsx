@@ -140,12 +140,10 @@ export default function AdminLayout({
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
-      {isNative && <NativeHeader />}
       <div className="flex flex-1">
         <AdminSidebar />
         <main className={cn(
-          "flex-1 w-full md:ml-72 p-4 pb-32 md:p-8 md:pb-8",
-          isNative ? "pt-4" : "pt-20"
+          "flex-1 w-full md:ml-72 p-4 pb-32 md:p-8 md:pb-8 pt-20"
         )}>
           {children}
         </main>
