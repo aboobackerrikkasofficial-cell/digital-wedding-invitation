@@ -61,7 +61,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
         className={`relative z-10 w-full max-w-2xl flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
-          isPinkTheme ? 'rounded-[5px] h-fit py-12 lg:py-16' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
+          isPinkTheme ? 'rounded-[5px] h-fit py-10 lg:py-14' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
         }`}
       >
         {isPinkTheme && (
@@ -83,7 +83,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
           </motion.div>
         )}
 
-        <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-4 tracking-wider px-2 font-cinzel ${isPinkTheme ? 'text-[#AD1457] mt-8 lg:mt-12' : 'text-white'}`}>
+        <h1 className={`text-xl lg:text-5xl mb-1 lg:mb-4 tracking-wider px-2 font-cinzel ${isPinkTheme ? 'text-[#AD1457] mt-6 lg:mt-10' : 'text-white'}`}>
           <span className={`block text-[clamp(1rem,5vw,2.375rem)] mb-0.5 lg:mb-1 text-wrap-balance leading-[1.3] py-0.5 font-script ${isPinkTheme ? 'text-[#E91E63]' : 'text-gold'}`}>
             {isAttending ? (isPinkTheme ? "Blessed!" : "Alhamdulillah!") : "Thank You"}
           </span>
@@ -148,7 +148,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
            )}
         </div>
 
-        <p className={`uppercase leading-relaxed tracking-[0.3em] font-black text-[10px] lg:text-[14px] mt-4 mb-0 pb-0 ${isPinkTheme ? 'text-[#E91E63] font-cartoon opacity-100' : 'text-gold font-cinzel opacity-60'}`}>
+        <p className={`uppercase leading-relaxed tracking-[0.3em] font-black text-[10px] lg:text-[14px] mt-[11px] mb-0 pb-0 ${isPinkTheme ? 'text-[#E91E63] font-cartoon opacity-100' : 'text-gold font-cinzel opacity-60'}`}>
            {wedding.groom_name} & {wedding.bride_name}
         </p>
 
