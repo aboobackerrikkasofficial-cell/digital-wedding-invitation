@@ -20,6 +20,19 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
     <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto flex flex-col items-center p-6 pt-24 pb-32 cream-gold-theme">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
+      {/* Floating Background Head */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <motion.img 
+          src="/pink_panther_icon.png"
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] right-[10%] w-24 h-24 opacity-10"
+        />
+      </div>
+
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
         <main className="relative w-full border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden p-6 pt-12 text-center">
           <div className="absolute inset-0 z-0">
@@ -79,7 +92,9 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
         <div className="w-full bg-[#FF8DA1] rounded-[1.5rem] p-8 text-center shadow-xl space-y-6">
           <h3 className="text-white font-cartoon text-xl font-normal tracking-wide">Will you attend?</h3>
           <div className="flex flex-col gap-3">
-            <button onClick={onAttend} className="w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[0.5rem] tracking-widest uppercase text-xs shadow-lg">Insha&apos;Allah will attend</button>
+            <button onClick={onAttend} className="w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[0.5rem] tracking-widest uppercase text-xs shadow-lg">
+              {wedding.template_id === 'default' ? "Happy to attend" : "Insha'Allah will attend"}
+            </button>
             <button onClick={onNotAttend} className="w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[0.5rem] tracking-widest uppercase text-xs">No, we can&apos;t</button>
           </div>
         </div>
