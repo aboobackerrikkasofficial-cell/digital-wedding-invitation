@@ -17,7 +17,7 @@ export function SystemTitleBar() {
     const isInvitationPage = pathname.startsWith('/invite/');
     
     const hideOn = ["/", "/admin/login", "/admin"];
-    const shouldHideDefault = hideOn.includes(pathname);
+    const shouldHideDefault = hideOn.includes(pathname) || pathname.startsWith('/track/');
     
     if (isInvitationPage) {
       // Hide on browser, show only on Native/Standalone
