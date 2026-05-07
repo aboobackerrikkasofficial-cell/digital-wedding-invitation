@@ -45,6 +45,7 @@ export function SystemTitleBar() {
     }
   };
 
+  return null; // Force hide as requested for mobile app
   if (!isVisible) return null;
 
   const isAdjustedPage = pathname === '/admin/create' || pathname.startsWith('/admin/edit/');
