@@ -99,7 +99,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             <motion.div variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }} className="flex-shrink-0 flex flex-col items-center justify-start min-h-[80px] lg:min-h-[140px] pt-4 lg:pt-8">
               {((wedding.host_selection === 'bride_side' && wedding.bride_father_name) || (wedding.host_selection === 'groom_side' && wedding.groom_father_name)) && (
                 <div className={`flex flex-col items-center mb-1 lg:mb-2 mt-[45px] ${wedding.nikah_date ? 'lg:mt-[30px]' : 'lg:mt-[50px]'}`}>
-                  <p className="text-white font-sans text-[clamp(10px,1.5vw,20px)] tracking-tight font-bold uppercase whitespace-nowrap overflow-hidden text-ellipsis px-4 mb-[-3px] leading-[1.4]">
+                  <p className="text-white font-sans text-[10px] lg:text-[12px] tracking-tight font-bold uppercase whitespace-nowrap overflow-hidden text-ellipsis px-4 mb-[-3px] leading-[1.4]">
                     {wedding.host_selection === 'bride_side' ? `${wedding.bride_father_name} & ${wedding.bride_mother_name}` : `${wedding.groom_father_name} & ${wedding.groom_mother_name}`}
                   </p>
                   <p className="text-gold font-sans text-[8px] lg:text-[8px] tracking-widest uppercase font-black">{wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}</p>
@@ -113,9 +113,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, scale: 1.05 }, show: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } } }} className="flex-grow flex flex-col items-center justify-center w-full px-2 max-h-[180px] lg:max-h-[300px] mt-6 lg:mt-0">
               <h1 className="w-full font-cinzel text-white leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.4)] px-2">
-                <span className="block text-gold text-[clamp(25px,7.2vw,50px)] leading-[1.1] mt-[3px] lg:mt-[5px] px-2">{wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}</span>
+                <span className="block text-gold text-[clamp(25px,7.2vw,33px)] lg:text-[clamp(11px,4vw,28px)] leading-[1.1] mt-[3px] lg:mt-[5px] px-2">{wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}</span>
                 <span className="block text-[11px] lg:text-base font-cinzel text-gold tracking-[0.2em] my-[2px] lg:my-[1px]">with</span>
-                <span className="block text-gold text-[clamp(25px,7.2vw,50px)] leading-[1.2] px-2">{wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}</span>
+                <span className="block text-gold text-[clamp(25px,7.2vw,33px)] lg:text-[clamp(11px,4vw,28px)] leading-[1.2] px-2">{wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}</span>
               </h1>
               <div className="mt-2 mb-1">
                 <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] uppercase font-bold px-4 line-clamp-1 opacity-90">{wedding.host_selection === 'bride_side' ? 'S/O' : 'D/O'} {wedding.host_selection === 'bride_side' ? `${wedding.groom_father_name} & ${wedding.groom_mother_name}` : `${wedding.bride_father_name} & ${wedding.bride_mother_name}`}</p>

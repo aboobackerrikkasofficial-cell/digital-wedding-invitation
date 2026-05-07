@@ -99,7 +99,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
               className="flex flex-col items-center mb-6"
             >
-              <p className="text-pink-primary font-poppins text-[clamp(8px,2.5vw,16px)] lg:text-[14px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
+              <p className="text-pink-primary font-poppins text-[clamp(8px,2.5vw,10px)] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
                 {wedding.host_selection === 'bride_side' 
                   ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` 
                   : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
@@ -122,7 +122,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               className="flex flex-col items-center w-full mb-[2px]"
               style={{ willChange: "transform, opacity" }}
             >
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,42px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
                 {(wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
@@ -132,7 +132,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               
               <p className="text-pink-muted font-cartoon text-[11px] tracking-[0.4em] uppercase my-1 opacity-60 drop-shadow-sm">WITH</p>
 
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,42px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
                 {(wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
