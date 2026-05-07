@@ -17,7 +17,7 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
   const hasNikah = !!wedding.nikah_date;
   
   return (
-    <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto overflow-x-hidden flex flex-col items-center p-6 pb-32 cream-gold-theme" style={{ paddingTop: 'calc(20px + env(safe-area-inset-top))' }}>
+    <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto overflow-x-hidden flex flex-col items-center p-6 pb-32 cream-gold-theme" style={{ paddingTop: 'calc(10px + env(safe-area-inset-top))' }}>
       <PinkPantherBackground bgColor="#FF8DA1" />
 
       {/* Floating Background Head */}
@@ -34,54 +34,76 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
       </div>
 
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
-        <main className="relative w-full min-h-[calc(100dvh-120px)] border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
+        <main className="relative w-full min-h-[calc(100dvh-40px)] border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden px-8 py-14 text-center flex flex-col items-center justify-between">
           <div className="absolute inset-0 z-0">
             <img src="/pinkpanther3d.png" alt="Background" className="w-full h-full object-contain opacity-60 scale-110" />
           </div>
 
-          <div className="relative z-10 space-y-6">
-            <p className="text-pink-primary font-cartoon text-[10px] tracking-[0.1em] uppercase">
+          <div className="relative z-10 w-full space-y-6 flex-grow flex flex-col items-center justify-center">
+            <p className="text-pink-primary font-cartoon text-[10px] tracking-[0.3em] uppercase opacity-60">
               {wedding.template_id === 'default' ? "IN THE NAME OF GOD" : "IN THE NAME OF ALLAH"}
             </p>
 
             <div className="space-y-1">
-              <p className="text-pink-primary font-poppins text-sm font-extrabold uppercase">
+              <p className="text-pink-primary font-poppins text-sm font-extrabold uppercase tracking-wider">
                 {wedding.host_selection === 'bride_side' ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
               </p>
-              <p className="text-pink-muted font-poppins text-[10px] uppercase font-bold tracking-widest">
+              <p className="text-pink-muted font-poppins text-[10px] uppercase font-bold tracking-widest opacity-80">
                 {wedding.host_selection === 'bride_side' ? (wedding.bride_place || "") : (wedding.groom_place || "")}
               </p>
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-2xl font-cartoon text-pink-dark font-extrabold uppercase leading-tight px-4">
+              <h1 className="text-3xl font-cartoon text-pink-dark font-extrabold uppercase leading-tight px-4">
                 {wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}
               </h1>
               <p className="text-pink-muted font-cartoon text-xs tracking-[0.4em] uppercase opacity-60">WITH</p>
-              <h1 className="text-2xl font-cartoon text-pink-dark font-extrabold uppercase leading-tight px-4">
+              <h1 className="text-3xl font-cartoon text-pink-dark font-extrabold uppercase leading-tight px-4">
                 {wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}
               </h1>
             </div>
 
-            <div className="pt-4 border-t border-pink-muted/10 space-y-2">
-               <p className="text-pink-primary font-poppins font-bold uppercase text-xs">
-                 {format(date, "EEEE, d MMM yyyy")} • {format(date, "h:mm a")}
+            <div className="space-y-1 py-4 border-t border-b border-pink-muted/10 w-full">
+              <p className="text-pink-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-widest">
+                {wedding.host_selection === 'bride_side' 
+                  ? (wedding.groom_father_name ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name || ""}` : "") 
+                  : (wedding.bride_father_name ? `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name || ""}` : "")}
+              </p>
+              <p className="text-pink-muted font-poppins text-[9px] uppercase tracking-widest font-bold">
+                {wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}
+              </p>
+            </div>
+
+            <div className="space-y-2">
+               <p className="text-pink-primary font-poppins font-bold uppercase text-xs tracking-widest">
+                 {format(date, "EEEE, MMMM do")} • {format(date, "h:mm a")}
                </p>
-               <p className="text-pink-primary font-cinzel text-xs font-bold uppercase tracking-widest">{wedding.venue_name}</p>
+               <p className="text-pink-primary font-cinzel text-sm font-black uppercase tracking-[0.2em]">{wedding.venue_name}</p>
+               <p className="text-pink-primary font-cinzel text-[10px] uppercase tracking-wider opacity-70 line-clamp-2 px-6">{wedding.venue_address}</p>
             </div>
 
             {hasNikah && (
-              <div className="pt-4 border-t border-pink-muted/10 space-y-1">
-                <p className="text-pink-primary font-cinzel text-sm font-black uppercase tracking-widest">
+              <div className="pt-4 border-t border-pink-muted/10 space-y-1 w-full">
+                <p className="text-pink-primary font-cinzel text-sm font-black uppercase tracking-[0.2em] mb-1">
                   {wedding.template_id === 'default' ? "Wedding Ceremony" : "Nikah Ceremony"}
                 </p>
-                <p className="text-pink-primary font-poppins text-[10px] font-bold uppercase">
+                <p className="text-pink-primary font-poppins text-[10px] font-bold uppercase tracking-widest">
                   {wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, d MMM") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}
                 </p>
-                <p className="text-pink-primary font-cinzel text-[10px] font-bold uppercase tracking-widest">{wedding.nikah_location}</p>
+                <p className="text-pink-primary font-cinzel text-[10px] font-bold uppercase tracking-widest opacity-70">{wedding.nikah_location}</p>
               </div>
             )}
           </div>
+
+          {/* Scroll Hint Animation */}
+          <motion.div 
+            animate={{ y: [0, 8, 0], opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
+          >
+            <span className="text-[8px] font-black uppercase tracking-[0.3em] text-pink-primary/40">Scroll</span>
+            <div className="w-px h-6 bg-gradient-to-b from-pink-primary/40 to-pink-primary/80" />
+          </motion.div>
         </main>
 
         <div className="w-full bg-[#FF8DA1] rounded-[1.5rem] p-8 text-center shadow-xl space-y-4">
