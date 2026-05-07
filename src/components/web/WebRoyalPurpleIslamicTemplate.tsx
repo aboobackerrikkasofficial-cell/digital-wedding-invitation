@@ -103,7 +103,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                     {wedding.host_selection === 'bride_side' ? `${wedding.bride_father_name} & ${wedding.bride_mother_name}` : `${wedding.groom_father_name} & ${wedding.groom_mother_name}`}
                   </p>
                   <p className="text-gold font-sans text-[8px] lg:text-[8px] tracking-widest uppercase font-black">{wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}</p>
-                  <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] lg:tracking-[0.15em] font-medium uppercase leading-[1.3] mt-1">REQUEST THE PLEASURE OF YOUR COMPANY<br />ON THE AUSPICIOUS OCCASION OF THE</p>
+                  <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] lg:tracking-[0.15em] font-medium uppercase leading-[1.3] mt-[15px]">REQUEST THE PLEASURE OF YOUR COMPANY<br />ON THE AUSPICIOUS OCCASION OF THE</p>
                 </div>
               )}
               <div className="py-0 mt-6 mb-0 lg:mt-1 lg:mb-4">
