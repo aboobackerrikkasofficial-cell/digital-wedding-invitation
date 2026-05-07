@@ -21,9 +21,9 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
       <CreamGoldBackground />
 
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
-        <main className="relative w-full border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden p-6 pt-12 text-center">
+        <main className="relative w-full min-h-[calc(100dvh-120px)] border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
           <div className="absolute inset-0 z-0">
-            <img src="/invitationletter.jpg" alt="Background" className="w-full h-full object-fill opacity-60" />
+            <img src="/invitationletter.jpg" alt="Background" className="w-full h-full object-contain opacity-60 scale-110" />
           </div>
 
           <div className="relative z-10 space-y-6">
