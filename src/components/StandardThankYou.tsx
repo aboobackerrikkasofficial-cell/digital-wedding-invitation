@@ -60,7 +60,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className={`relative z-10 w-full max-w-[clamp(672px,55vw,1100px)] flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
+        className={`relative z-10 w-full ${isPinkTheme ? 'max-w-[650px]' : 'max-w-[clamp(672px,55vw,1100px)]'} flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
           isPinkTheme ? 'rounded-[5px] h-fit py-6 lg:py-8' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
         }`}
       >
