@@ -37,7 +37,7 @@ export function MobileInvitationLanding({ wedding, onAttend, onNotAttend }: Invi
   if (tid === 'non-muslim-1' || tid === 'peach-floral') return <MobilePeachFloralTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
 
   return (
-    <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto flex flex-col items-center font-sans">
+    <div className="relative h-full w-full bg-[#fdfbf0] flex flex-col items-center font-sans overflow-x-hidden">
       <main className="relative z-10 w-full px-4 py-10 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

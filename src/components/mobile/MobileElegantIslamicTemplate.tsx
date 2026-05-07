@@ -17,7 +17,7 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
   const hasNikah = !!wedding.nikah_date;
   
   return (
-    <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto flex flex-col items-center p-6 pt-24 pb-32 cream-gold-theme">
+    <div className="relative min-h-screen w-full bg-[#fdfbf0] overflow-y-auto overflow-x-hidden flex flex-col items-center p-6 pb-32 cream-gold-theme" style={{ paddingTop: 'calc(20px + env(safe-area-inset-top))' }}>
       <PinkPantherBackground bgColor="#FF8DA1" />
 
       {/* Floating Background Head */}
@@ -36,7 +36,7 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
         <main className="relative w-full border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden p-6 pt-12 text-center">
           <div className="absolute inset-0 z-0">
-            <img src="/pinkpanther3d.png" alt="Background" className="w-full h-full object-cover opacity-60" />
+            <img src="/pinkpanther3d.png" alt="Background" className="w-full h-full object-fill opacity-60" />
           </div>
 
           <div className="relative z-10 space-y-6">
