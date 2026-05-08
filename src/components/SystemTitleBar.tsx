@@ -20,10 +20,11 @@ export function SystemTitleBar() {
     const shouldHideDefault = hideOn.includes(pathname);
     
     const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
+    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
     
     if (isInvitationPage) {
-      // Show on all web views, hide only on Native App Shell (Android/iOS)
-      setIsVisible(!isNativeApp);
+      // Show on browser, hide only on Native App Shell or Standalone PWA
+      setIsVisible(!(isNativeApp || isStandalone));
     } else {
       setIsVisible(!shouldHideDefault);
     }
