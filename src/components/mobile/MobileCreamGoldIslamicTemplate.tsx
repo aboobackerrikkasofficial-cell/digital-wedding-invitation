@@ -17,11 +17,11 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
   const hasNikah = !!wedding.nikah_date;
   
   return (
-    <div className="relative min-h-screen w-full bg-[#fffcf2] overflow-y-auto overflow-x-hidden flex flex-col items-center p-2 pb-32 cream-gold-theme" style={{ paddingTop: 'calc(20px + env(safe-area-inset-top))' }}>
+    <div className="relative min-h-screen w-full bg-[#fffcf2] overflow-y-auto overflow-x-hidden flex flex-col items-center pt-10 px-4 pb-10 cream-gold-theme">
       <CreamGoldBackground />
 
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
-        <main className="relative w-full min-h-[calc(100dvh-40px)] border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden px-6 py-24 text-center flex flex-col items-center justify-center">
+        <main className="relative w-full aspect-[9/16] border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden px-6 py-12 text-center flex flex-col items-center justify-center">
           <div className="absolute inset-0 z-0">
             <img src="/invitationletter.jpg" alt="Background" className="w-full h-full object-contain opacity-60 scale-110" />
           </div>

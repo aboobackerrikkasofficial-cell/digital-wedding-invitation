@@ -24,7 +24,7 @@ export function MobilePeachFloralTemplate({ wedding, onAttend, onNotAttend }: Pe
   if (!mounted) return null;
 
   return (
-    <div className="relative min-h-screen w-full overflow-y-auto flex flex-col items-center p-6 pt-24 pb-32 font-fredoka selection:bg-[#F4C542]/30 peach-theme">
+    <div className="relative min-h-screen w-full overflow-y-auto flex flex-col items-center pt-10 px-4 pb-10 font-fredoka selection:bg-[#F4C542]/30 peach-theme">
       <div className="absolute inset-0 z-0">
         <img src="/main/portraittom&jerry.png" alt="Background" className="w-full h-full object-cover object-center no-repeat opacity-60" />
       </div>
@@ -33,7 +33,7 @@ export function MobilePeachFloralTemplate({ wedding, onAttend, onNotAttend }: Pe
         <motion.main 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full bg-[#FDF5E6] rounded-[1.5rem] shadow-2xl p-8 border-[0.5rem] border-white/40"
+          className="relative w-full aspect-[9/16] bg-[#FDF5E6] rounded-[1.5rem] shadow-2xl p-8 border-[0.5rem] border-white/40 flex flex-col items-center justify-center"
         >
           <div className="absolute inset-2 border-[4px] border-dotted border-[#8B5A2B]/15 rounded-[0.8rem]" />
           <div className="relative z-10 flex flex-col items-center text-center">
