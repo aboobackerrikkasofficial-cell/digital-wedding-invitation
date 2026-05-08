@@ -17,7 +17,7 @@ export function SystemTitleBar() {
     const isInvitationPage = pathname.startsWith('/invite/');
     
     const hideOn = ["/", "/admin/login", "/admin"];
-    const shouldHideDefault = hideOn.includes(pathname) || pathname.startsWith('/track/');
+    const shouldHideDefault = hideOn.includes(pathname);
     
     if (isInvitationPage) {
       // Hide on browser, show only on Native/Standalone
@@ -45,7 +45,6 @@ export function SystemTitleBar() {
     }
   };
 
-  return null; // Force hide as requested for mobile app
   if (!isVisible) return null;
 
   const isAdjustedPage = pathname === '/admin/create' || pathname.startsWith('/admin/edit/');
