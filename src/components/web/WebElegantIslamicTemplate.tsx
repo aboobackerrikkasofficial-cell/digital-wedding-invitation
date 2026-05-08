@@ -38,26 +38,17 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
     <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-center font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme fixed top-0 h-[100dvh] overflow-hidden">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      {/* Floating Background Head */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.img 
-          src="/pink_panther_icon.png"
-          animate={{ 
-            y: [0, -30, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[15%] left-[5%] w-32 h-32 opacity-10"
-        />
-      </div>
-
-      <div className="relative z-[100] flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full h-fit lg:px-12">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full" style={{ perspective: typeof window !== 'undefined' && window.innerWidth < 1024 ? "none" : "1000px" }}>
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-[712px] lg:h-[715px]"
+          whileHover={{ 
+            rotateY: -3, 
+            rotateX: 2, 
+            z: 10,
+            scale: 1.01
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] preserve-3d h-[712px] lg:h-[715px]"
         >
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
           
@@ -65,7 +56,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             <img 
               src="/pinkpanther3d.png" 
               alt="Background" 
-              className="w-full h-full object-fill"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -251,10 +242,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
         <motion.aside 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="pink-panther-card relative z-[500] pointer-events-auto w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px]"
+          whileHover={typeof window !== 'undefined' && window.innerWidth >= 1024 ? { 
+            rotateY: 3, 
+            rotateX: 2, 
+            z: 10,
+            scale: 1.01
+          } : {}}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          className="pink-panther-card relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px] preserve-3d"
         >
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
             <motion.div
@@ -287,25 +282,29 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               Will you attend?
             </motion.h3>
 
-            <div className="flex flex-col gap-3 w-full px-4 relative z-[9999] pointer-events-auto">
+            <div className="flex flex-col gap-3 w-full px-4">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
+                whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.2)" }}
+                whileTap={{ scale: 0.95, y: 0 }}
+                onClick={(e) => {
+                  e.stopPropagation();
                   onAttend && onAttend();
                 }}
-                className="relative z-[9999] pointer-events-auto cursor-pointer w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs shadow-[0_10px_0_rgb(233,30,99,0.2),0_15px_20px_rgba(0,0,0,0.1)] border-b-4 border-pink-muted"
+                className="relative z-30 cursor-pointer w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs transition-all shadow-[0_10px_0_rgb(233,30,99,0.2),0_15px_20px_rgba(0,0,0,0.1)] active:shadow-none border-b-4 border-pink-muted"
+                style={{ transform: "translateZ(20px)" }}
               >
                 {wedding.template_id === 'default' ? "Happy to attend" : "Insha'Allah will attend"}
               </motion.button>
  
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95, y: 0 }}
+                onClick={(e) => {
+                  e.stopPropagation();
                   onNotAttend && onNotAttend();
                 }}
-                className="relative z-[9999] pointer-events-auto cursor-pointer w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs hover:bg-white/10"
+                className="relative z-30 cursor-pointer w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs hover:bg-white/10 transition-all shadow-lg"
+                style={{ transform: "translateZ(20px)" }}
               >
                 No, we can&apos;t
               </motion.button>
@@ -328,9 +327,10 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
         .bg-gold-muted { background-color: #E91E63; }
         .preserve-3d { transform-style: preserve-3d; }
         @media (max-width: 1024px) {
-          .pink-panther-card { transform: none !important; }
+          .preserve-3d { transform-style: flat !important; transform: none !important; }
+          .pink-panther-card { transform: none !important; perspective: none !important; }
           .pink-panther-card * { transform: none !important; }
-          .pointer-events-auto { pointer-events: auto !important; position: relative !important; z-index: 9999 !important; }
+          .relative.z-30 { pointer-events: auto !important; position: relative !important; z-index: 50 !important; }
         }
         @keyframes shine {
           0% { transform: translateX(-100%) skewX(-15deg); }
