@@ -20,8 +20,8 @@ export function SystemTitleBar() {
     const shouldHideDefault = hideOn.includes(pathname);
     
     if (isInvitationPage) {
-      // Hide on browser, show only on Native/Standalone
-      setIsVisible(!!isNative || isStandalone);
+      // Show on browser, hide only on Native/Standalone
+      setIsVisible(!(!!isNative || isStandalone));
     } else {
       setIsVisible(!shouldHideDefault);
     }
