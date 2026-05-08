@@ -19,9 +19,11 @@ export function SystemTitleBar() {
     const hideOn = ["/", "/admin/login", "/admin"];
     const shouldHideDefault = hideOn.includes(pathname);
     
+    const isNativeShell = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    
     if (isInvitationPage) {
-      // Hide on browser, show only on Native/Standalone
-      setIsVisible(!!isNative || isStandalone);
+      // Show on browser, hide only on Native/Standalone
+      setIsVisible(!(isNativeShell || isStandalone));
     } else {
       setIsVisible(!shouldHideDefault);
     }
