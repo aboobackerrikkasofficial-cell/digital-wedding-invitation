@@ -34,7 +34,7 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
       </div>
 
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
-        <main className="relative w-full min-h-[100dvh] border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
+        <main className="relative w-full min-h-[calc(100dvh-20px)] border-[1px] border-[#c5a059]/30 bg-white shadow-2xl rounded-[1.5rem] overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
           <div className="absolute inset-0 z-0">
             <img src="/pinkpanther3d.png" alt="Background" className="w-full h-full object-contain opacity-60 scale-110" />
           </div>

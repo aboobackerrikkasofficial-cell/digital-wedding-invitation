@@ -21,7 +21,7 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
       <CreamGoldBackground />
 
       <div className="relative z-10 flex flex-col gap-8 w-full max-w-md">
-        <main className="relative w-full min-h-[calc(100dvh-120px)] border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
+        <main className="relative w-full min-h-[calc(100dvh-20px)] border-[1px] border-[#c5a059]/30 rounded-[1.8rem] bg-white shadow-2xl overflow-hidden px-8 py-16 text-center flex flex-col items-center justify-center">
           <div className="absolute inset-0 z-0">
             <img src="/invitationletter.jpg" alt="Background" className="w-full h-full object-contain opacity-60 scale-110" />
           </div>
@@ -68,6 +68,16 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
             )}
           </div>
         </main>
+
+        {/* Scroll Indicator Block */}
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 py-4"
+        >
+          <div className="w-1 h-8 bg-gradient-to-b from-[#c5a059] to-transparent rounded-full opacity-40" />
+          <p className="text-[#c5a059] font-poppins text-[8px] uppercase tracking-[0.3em] font-bold">Scroll Down</p>
+        </motion.div>
 
         <div className="w-full bg-white rounded-[1.8rem] p-8 text-center shadow-xl border border-gold-muted/20 space-y-4">
           <p className="text-gold-muted font-serif text-[10px] font-black tracking-widest uppercase">Countdown</p>

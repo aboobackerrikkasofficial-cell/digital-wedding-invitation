@@ -68,7 +68,7 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
       <GoldDustBackground particles={particles} />
       
       <div className="relative z-10 flex flex-col items-center w-full max-w-md mx-auto space-y-8">
-        <main className="relative w-full border-2 border-gold/20 rounded-[2.5rem] bg-white/5 backdrop-blur-md p-6 pt-12 text-center shadow-2xl">
+        <main className="relative w-full min-h-[calc(100dvh-20px)] border-2 border-gold/20 rounded-[2.5rem] bg-white/5 backdrop-blur-md px-8 py-16 text-center shadow-2xl flex flex-col items-center justify-center">
           <GoldArc />
           
           <div className="mt-10 space-y-6">
@@ -125,6 +125,16 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
             </div>
           </div>
         </main>
+        
+        {/* Scroll Indicator Block */}
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 py-4"
+        >
+          <div className="w-1 h-8 bg-gradient-to-b from-gold to-transparent rounded-full opacity-40" />
+          <p className="text-gold font-cinzel text-[8px] uppercase tracking-[0.3em] font-bold">Scroll Down</p>
+        </motion.div>
 
         <div className="w-full border-2 border-gold/20 rounded-[2rem] bg-white/5 backdrop-blur-md p-6 text-center space-y-4">
           <p className="text-gold text-[10px] font-bold tracking-widest uppercase">Countdown</p>
