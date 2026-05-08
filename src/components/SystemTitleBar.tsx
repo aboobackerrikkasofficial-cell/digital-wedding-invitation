@@ -12,15 +12,12 @@ export function SystemTitleBar() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform;
+    const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
     const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
     const isInvitationPage = pathname.startsWith('/invite/');
     
     const hideOn = ["/", "/admin/login", "/admin"];
     const shouldHideDefault = hideOn.includes(pathname);
-    
-    const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
-    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
     
     if (isInvitationPage) {
       // Show on browser, hide only on Native App Shell or Standalone PWA
