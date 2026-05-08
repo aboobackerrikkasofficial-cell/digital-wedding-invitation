@@ -38,17 +38,13 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
     <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-center font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme fixed top-0 h-[100dvh] overflow-hidden">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full" style={{ perspective: "1000px" }}>
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
-          whileHover={{ 
-            rotateY: -3, 
-            rotateX: 2, 
-            z: 10,
-            scale: 1.01
-          }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] preserve-3d h-[712px] lg:h-[715px]"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-[712px] lg:h-[715px]"
         >
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
           
@@ -242,14 +238,10 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
 
         {/* 5. SECONDARY BLOCK (RIGHT) */}
         <motion.aside 
-          whileHover={{ 
-            rotateY: 3, 
-            rotateX: 2, 
-            z: 10,
-            scale: 1.01
-          }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px] preserve-3d"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px]"
         >
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
             <motion.div
@@ -284,8 +276,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
 
             <div className="flex flex-col gap-3 w-full px-4">
               <motion.button
-                whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.2)" }}
-                whileTap={{ scale: 0.95, y: 0 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onAttend}
                 className="w-full py-4 bg-white text-pink-primary font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs transition-all shadow-[0_10px_0_rgb(233,30,99,0.2),0_15px_20px_rgba(0,0,0,0.1)] active:shadow-none border-b-4 border-pink-muted"
               >
@@ -293,8 +284,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               </motion.button>
  
               <motion.button
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95, y: 0 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onNotAttend}
                 className="w-full py-4 border-2 border-white text-white font-cartoon font-bold rounded-[5px] tracking-widest uppercase text-[10px] lg:text-xs hover:bg-white/10 transition-all shadow-lg"
               >
