@@ -35,10 +35,10 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
   const hasNikah = !!wedding.nikah_date;
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-12 lg:px-8 cream-gold-theme min-h-screen overflow-y-auto">
+    <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-center font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme fixed top-0 h-[100dvh] overflow-hidden">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl py-8 lg:py-0">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
           initial={{ opacity: 0, x: -20 }}

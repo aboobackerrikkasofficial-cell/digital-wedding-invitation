@@ -13,6 +13,7 @@ export function SystemTitleBar() {
 
   useEffect(() => {
     const checkVisibility = () => {
+      const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 1024;
       const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
       const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
       const isInvitationPage = pathname.startsWith('/invite/');
@@ -20,14 +21,9 @@ export function SystemTitleBar() {
       const hideOn = ["/", "/admin/login", "/admin"];
       const shouldHideDefault = hideOn.includes(pathname);
       
-      // Always hide on native mobile apps or standalone PWA mode
-      if (isNativeApp || isStandalone) {
-        setIsVisible(false);
-        return;
-      }
-      
       if (isInvitationPage) {
-        setIsVisible(true);
+        // Show on desktop browser (large screens), hide on small screens (mobile view/apps)
+        setIsVisible(!isSmallScreen && !isNativeApp && !isStandalone);
       } else {
         setIsVisible(!shouldHideDefault);
       }

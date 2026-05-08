@@ -90,7 +90,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
   }, []);
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-12 lg:px-8 min-h-screen overflow-y-auto flex flex-col items-center justify-start">
+    <div className="left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8 fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center">
       <GoldDustBackground particles={particles} />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">

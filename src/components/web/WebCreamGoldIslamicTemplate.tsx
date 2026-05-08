@@ -43,7 +43,7 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
   }, []);
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme min-h-screen overflow-y-auto flex flex-col items-center justify-start">
+    <div className="left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme fixed top-0 h-screen overflow-hidden flex items-center justify-center">
       <CreamGoldBackground />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-fit">
         <main className="relative w-full max-w-[420px] lg:max-w-lg h-[712px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden">
