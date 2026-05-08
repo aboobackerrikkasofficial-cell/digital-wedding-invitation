@@ -12,19 +12,26 @@ export function SystemTitleBar() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
-    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-    const isInvitationPage = pathname.startsWith('/invite/');
-    
-    const hideOn = ["/", "/admin/login", "/admin"];
-    const shouldHideDefault = hideOn.includes(pathname);
-    
-    if (isInvitationPage) {
-      // Show on browser, hide only on Native App Shell or Standalone PWA
-      setIsVisible(!(isNativeApp || isStandalone));
-    } else {
-      setIsVisible(!shouldHideDefault);
-    }
+    const checkVisibility = () => {
+      const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 1024;
+      const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
+      const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+      const isInvitationPage = pathname.startsWith('/invite/');
+      
+      const hideOn = ["/", "/admin/login", "/admin"];
+      const shouldHideDefault = hideOn.includes(pathname);
+      
+      if (isInvitationPage) {
+        // Show on desktop browser (large screens), hide on small screens (mobile view/apps)
+        setIsVisible(!isSmallScreen && !isNativeApp && !isStandalone);
+      } else {
+        setIsVisible(!shouldHideDefault);
+      }
+    };
+
+    checkVisibility();
+    window.addEventListener('resize', checkVisibility);
+    return () => window.removeEventListener('resize', checkVisibility);
   }, [pathname]);
 
   const handleBack = () => {
