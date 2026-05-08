@@ -21,18 +21,20 @@ export function SystemTitleBar() {
       const hideOn = ["/", "/admin/login", "/admin"];
       const shouldHideDefault = hideOn.includes(pathname);
       
-      // Remove from mobile app (native/standalone) only, make it visible on web app
+      // Hide on invitation pages entirely (public view/themes)
+      if (isInvitationPage) {
+        setIsVisible(false);
+        return;
+      }
+
+      // Hide on mobile app (native/standalone)
       if (isNativeApp || isStandalone) {
         setIsVisible(false);
         return;
       }
 
-      if (isInvitationPage) {
-        // Show on desktop browser (large screens), hide on small screens
-        setIsVisible(!isSmallScreen);
-      } else {
-        setIsVisible(!shouldHideDefault);
-      }
+      // Show on admin dashboard area for web browsers
+      setIsVisible(!shouldHideDefault);
     };
 
     checkVisibility();
