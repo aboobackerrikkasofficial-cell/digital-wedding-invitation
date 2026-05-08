@@ -20,9 +20,14 @@ export function SystemTitleBar() {
       const hideOn = ["/", "/admin/login", "/admin"];
       const shouldHideDefault = hideOn.includes(pathname);
       
+      // Always hide on native mobile apps or standalone PWA mode
+      if (isNativeApp || isStandalone) {
+        setIsVisible(false);
+        return;
+      }
+      
       if (isInvitationPage) {
-        // Show on all web browsers (including mobile browsers), hide ONLY on native apps
-        setIsVisible(!isNativeApp && !isStandalone);
+        setIsVisible(true);
       } else {
         setIsVisible(!shouldHideDefault);
       }
