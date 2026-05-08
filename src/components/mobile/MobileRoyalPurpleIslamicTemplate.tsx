@@ -43,8 +43,10 @@ const GoldArc = () => (
         </defs>
         <path d="M0,80 C200,380 500,380 800,380 L1000,80" fill="none" stroke="url(#goldGradientMobile)" strokeWidth="4" />
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center pt-10">
-        <p className="text-gold font-arabic font-bold text-[24px]">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+      <div className="absolute inset-0 flex flex-col items-center justify-center pt-12">
+        <p className="text-gold font-arabic font-bold text-[24px] mb-1">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+        <p className="text-white font-cinzel text-[8px] tracking-[0.2em] uppercase opacity-80">"AND WE CREATED YOU IN PAIRS"</p>
+        <p className="text-white font-cinzel text-[7px] tracking-[0.1em] opacity-60">QURAN 78:8</p>
       </div>
     </div>
   </div>
@@ -84,6 +86,13 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
               </div>
             ) : null}
 
+            <div className="space-y-1">
+              <p className="text-white/80 font-sans text-[8px] tracking-widest uppercase leading-relaxed">
+                REQUEST THE PLEASURE OF YOUR COMPANY<br />
+                ON THE AUSPICIOUS OCCASION OF THE
+              </p>
+            </div>
+
             <div className="py-2">
               <h2 className="text-gold text-3xl font-script italic">Wedding</h2>
               <p className="text-white text-[10px] tracking-[0.2em] uppercase font-medium">OF OUR {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</p>
@@ -97,7 +106,12 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
 
             <div className="text-white/80 text-[10px] uppercase font-bold tracking-wider">
               <p>{wedding.host_selection === 'bride_side' ? 'S/O' : 'D/O'} {wedding.host_selection === 'bride_side' ? `${wedding.groom_father_name} & ${wedding.groom_mother_name}` : `${wedding.bride_father_name} & ${wedding.bride_mother_name}`}</p>
+              <p className="text-gold text-[8px] font-medium tracking-widest mt-0.5">{wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}</p>
             </div>
+
+            <p className="text-white/60 font-cinzel text-[9px] tracking-widest uppercase pt-4">
+              {wedding.template_id === 'default' ? "BY THE GRACE OF GOD" : "IN SHAA ALLAH"}
+            </p>
 
             {wedding.nikah_date && (
               <div className="pt-6 border-t border-gold/10 space-y-2">
@@ -107,6 +121,9 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
                   <div className="w-1 h-1 bg-gold rounded-full" />
                   <span>{new Date(wedding.nikah_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}</span>
                 </div>
+                {wedding.nikah_islamic_date && (
+                  <p className="text-gold text-[8px] font-bold tracking-widest uppercase">{wedding.nikah_islamic_date}</p>
+                )}
                 <p className="text-white/60 text-[9px] uppercase">{wedding.nikah_location}</p>
               </div>
             )}

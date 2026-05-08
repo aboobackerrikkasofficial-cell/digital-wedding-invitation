@@ -27,8 +27,10 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
           </div>
 
           <div className="relative z-10 space-y-6">
-            <p className="text-gold-primary font-poppins text-[10px] tracking-[0.1em] uppercase">
-              IN THE NAME OF ALLAH
+            <p className="text-gold-primary font-poppins text-[9px] tracking-[0.05em] uppercase leading-tight">
+              {wedding.template_id === 'default' 
+                ? "IN THE NAME OF GOD, THE MOST GRACIOUS, THE MOST KIND" 
+                : "IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL"}
             </p>
 
             <div className="space-y-1">
@@ -37,6 +39,10 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
               </p>
               <p className="text-gold-muted font-poppins text-[10px] uppercase font-bold tracking-widest">
                 {wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}
+              </p>
+              <p className="text-gold-primary font-poppins text-[8px] tracking-[0.1em] uppercase font-medium pt-2 leading-tight">
+                REQUEST THE PLEASURE OF YOUR COMPANY<br />
+                ON THE AUSPICIOUS OCCASION OF THE
               </p>
             </div>
 
@@ -48,7 +54,19 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
               <h1 className="text-2xl font-cinzel text-gold-dark font-extrabold uppercase leading-tight px-4">
                 {wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name}
               </h1>
+              <div className="space-y-1">
+                <p className="text-gold-muted font-poppins text-[10px] font-bold uppercase tracking-wider">
+                  {wedding.host_selection === 'bride_side' ? 'S/O' : 'D/O'} {wedding.host_selection === 'bride_side' ? `${wedding.groom_father_name} & ${wedding.groom_mother_name}` : `${wedding.bride_father_name} & ${wedding.bride_mother_name}`}
+                </p>
+                <p className="text-gold-muted font-poppins text-[8px] uppercase tracking-widest">
+                  {wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}
+                </p>
+              </div>
             </div>
+
+            <p className="text-gold-muted font-cinzel text-[9px] tracking-widest uppercase pt-2">
+              {wedding.template_id === 'default' ? "BY THE GRACE OF GOD" : "IN SHAA ALLAH"}
+            </p>
 
             <div className="pt-4 border-t border-gold-muted/10 space-y-2">
                <p className="text-gold-primary font-poppins font-bold uppercase text-xs">
@@ -63,6 +81,9 @@ export function MobileCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend 
                 <p className="text-gold-primary font-poppins text-[10px] font-bold uppercase">
                   {wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, d MMM") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}
                 </p>
+                {wedding.nikah_islamic_date && (
+                  <p className="text-gold-muted font-poppins text-[8px] font-bold uppercase tracking-widest">{wedding.nikah_islamic_date}</p>
+                )}
                 <p className="text-gold-primary font-cinzel text-[10px] font-bold uppercase tracking-widest">{wedding.nikah_location}</p>
               </div>
             )}

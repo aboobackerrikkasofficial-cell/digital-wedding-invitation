@@ -66,7 +66,10 @@ export function MobilePeachFloralTemplate({ wedding, onAttend, onNotAttend }: Pe
           className="relative z-10 w-full"
         >
           <div className="bg-[#F5F5F5] p-8 rounded-[2.5rem] shadow-xl border border-white/50 text-center space-y-8">
-            <h2 className="text-2xl font-black text-[#2B4570]">Will you join us?</h2>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-black text-[#2B4570]">Will you join us?</h2>
+              <p className="text-[10px] font-black text-[#8B5A2B]/40 uppercase tracking-[0.2em]">RSVP BY APR 25TH</p>
+            </div>
             <div className="flex flex-col gap-4">
               <button onClick={onAttend} className="bg-gradient-to-b from-[#8B4513] to-[#5A3D1D] text-white font-black py-5 rounded-2xl shadow-[0_6px_0_#3E2A14] active:shadow-none active:translate-y-[6px] transition-all flex items-center justify-center gap-3">
                 <span className="uppercase tracking-widest text-xs">Yes! Count me in!</span>

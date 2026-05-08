@@ -112,6 +112,9 @@ export function MobileElegantIslamicTemplate({ wedding, onAttend, onNotAttend }:
                     <p className="text-pink-primary font-poppins text-[10px] font-bold uppercase tracking-widest leading-tight">
                       {wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, d MMM") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}
                     </p>
+                    {wedding.nikah_islamic_date && (
+                      <p className="text-pink-muted font-poppins text-[8px] font-bold uppercase tracking-widest mt-0.5">{wedding.nikah_islamic_date}</p>
+                    )}
                     <p className="text-pink-primary font-cinzel text-[9px] font-bold uppercase tracking-wider">{wedding.nikah_location}</p>
                   </div>
                 )}
