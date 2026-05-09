@@ -179,8 +179,8 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
           100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
         }
         .royal-purple-main-card {
-          min-height: calc(85dvh - 13px) !important;
-          height: calc(85dvh - 13px) !important;
+          min-height: calc(85dvh - 8px) !important;
+          height: calc(85dvh - 8px) !important;
         }
       `}</style>
     </div>
