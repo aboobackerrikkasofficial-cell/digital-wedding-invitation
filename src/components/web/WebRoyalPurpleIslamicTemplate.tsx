@@ -148,7 +148,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                     <Sparkles className="text-gold" size={12} />
                     <div className="h-[1px] w-12 lg:w-24 bg-gradient-to-l from-transparent to-gold" />
                   </div>
-                  <div className="flex flex-col items-center reception-section">
+                  <div className="flex flex-col items-center">
                     <div className="flex items-center gap-2 mb-2">
                        <Sparkles className="text-gold/40" size={8} />
                        <p className="text-gold font-sans text-[11px] lg:text-[8px] font-black tracking-[0.4em] uppercase whitespace-nowrap">Wedding Reception</p>
@@ -159,38 +159,28 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                       <div className="h-8 w-px bg-gold/30" />
                       <div className="flex flex-col items-center"><p className="text-white font-sans text-[14px] lg:text-[13px] font-bold uppercase tracking-widest">{format(date, "EEEE")}</p><p className="text-white font-sans text-[11px] lg:text-[9px] font-medium uppercase tracking-[0.1em] opacity-60 mt-0.5">{format(date, "d MMMM")}</p></div>
                     </div>
-                    <div className="mt-2 venue-container flex items-center gap-1.5 transition-colors"><MapPin className="text-gold" size={8} /><p className="text-white/80 font-sans text-[10px] lg:text-[8px] font-bold uppercase tracking-[0.1em]">{wedding.venue_name}</p></div>
+                    <div className="mt-2 flex items-center gap-1.5 transition-colors"><MapPin className="text-gold" size={8} /><p className="text-white/80 font-sans text-[10px] lg:text-[8px] font-bold uppercase tracking-[0.1em]">{wedding.venue_name}</p></div>
                   </div>
                 </div>
               )}
-            </motion.div>
-            {wedding.nikah_date && (
-              <div className="mt-auto w-full px-0 relative z-20">
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center gap-3 w-full max-w-[340px] px-4">
-                    <div className="h-[1px] flex-grow bg-gold/30" />
-                    <p className="text-gold font-sans text-[10px] lg:text-[11px] font-black tracking-[0.3em] uppercase whitespace-nowrap">Wedding Reception</p>
-                    <div className="h-[1px] flex-grow bg-gold/30" />
-                  </div>
-                  <div className="mt-0 w-full bg-white/[0.07] backdrop-blur-md border-t border-gold/20 rounded-t-[2.5rem] p-3 lg:py-4 lg:px-8 shadow-none relative z-10">
-                    <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
-                      <div className="flex items-center gap-3">
-                        <Clock className="text-gold" size={12} />
-                        <p className="text-white font-sans text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">
-                          {format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3 border-l border-gold/10 pl-4 flex-grow justify-end">
-                        <MapPin className="text-gold" size={12} />
-                        <p className="text-white font-sans text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">
-                          {wedding.venue_name}
-                        </p>
+              {wedding.nikah_date && (
+                <div className="mt-0 lg:mt-auto w-full px-0 relative z-[200]">
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-3 w-full max-w-[340px] px-4">
+                      <div className="h-[1px] flex-grow bg-gold/40" />
+                      <p className="text-gold font-sans text-[11px] lg:text-[12px] font-black tracking-[0.2em] uppercase whitespace-nowrap">Wedding Reception</p>
+                      <div className="h-[1px] flex-grow bg-gold/40" />
+                    </div>
+                    <div className="mt-1 w-full bg-white/[0.05] backdrop-blur-md border border-gold/20 rounded-t-[1.25rem] p-3 lg:py-4 lg:px-8 shadow-none">
+                      <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
+                        <div className="flex items-center gap-3"><Clock className="text-gold" size={12} /><p className="text-white font-sans text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">{format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}</p></div>
+                        <div className="flex items-center gap-3 border-l border-gold/10 pl-4 flex-grow justify-end"><MapPin className="text-gold" size={12} /><p className="text-white font-sans text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">{wedding.venue_name}</p></div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </motion.div>
           </motion.div>
         </main>
         <div className="hidden lg:flex flex-col items-center justify-center h-[60vh] opacity-40"><div className="w-[0.5px] h-full bg-gold" /><motion.div animate={{ rotate: [0, 90, 180, 270, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="my-8"><Sparkles className="text-gold" size={20} /></motion.div><div className="w-[0.5px] h-full bg-gold" /></div>
@@ -215,20 +205,17 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
 
         @media (max-width: 1024px) {
           .web-template-container {
-            padding-top: calc(23px + env(safe-area-inset-top));
+            padding-top: calc(13px + env(safe-area-inset-top));
             padding-bottom: calc(8px + env(safe-area-inset-bottom));
             padding-left: 5px !important;
             padding-right: 5px !important;
           }
           .royal-purple-main-card {
-            min-height: calc(85dvh + 67px) !important;
-            height: calc(85dvh + 67px) !important;
+            min-height: calc(85dvh + 47px) !important;
+            height: calc(85dvh + 47px) !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
-          }
-          .reception-section .venue-container {
-            margin-top: -2px !important; /* Reduces gap by 10px (original mt-2 [8px] -> -2px) */
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 2rem !important;

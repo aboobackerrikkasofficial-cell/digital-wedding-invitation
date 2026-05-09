@@ -6,7 +6,6 @@ import { format } from "date-fns";
 import { useEffect } from "react";
 import { ElegantIslamicTemplate } from "../ElegantIslamicTemplate";
 import { RoyalPurpleIslamicTemplate } from "../RoyalPurpleIslamicTemplate";
-import { RoyalPurpleMajesticTemplate } from "../RoyalPurpleMajesticTemplate";
 import { CreamGoldIslamicTemplate } from "../CreamGoldIslamicTemplate";
 import { PeachFloralTemplate } from "../PeachFloralTemplate";
 import { Wedding } from "@/types/wedding";
@@ -87,7 +86,6 @@ export function WebInvitationLanding({ wedding, onAttend, onNotAttend }: Invitat
 
   if (tid === 'default') return <ElegantIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   if (tid === 'royal' || tid === 'muslim-royal' || tid === 'muslim-purple') return <RoyalPurpleIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
-  if (tid === 'royal-majestic' || tid === 'majestic') return <RoyalPurpleMajesticTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   if (tid === 'muslim-3' || tid === 'cream-gold') return <CreamGoldIslamicTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
   if (tid === 'non-muslim-1' || tid === 'peach-floral') return <PeachFloralTemplate wedding={wedding} onAttend={onAttend} onNotAttend={onNotAttend} />;
 
