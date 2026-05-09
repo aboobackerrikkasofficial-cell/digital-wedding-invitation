@@ -90,7 +90,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
   }, []);
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8 fixed top-0 h-[100dvh] overflow-hidden flex items-center justify-center">
+    <div className="web-template-container left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8 lg:fixed lg:top-0 lg:h-[100dvh] lg:overflow-hidden flex flex-col lg:flex-row items-center lg:justify-center overflow-y-auto min-h-screen relative">
       <GoldDustBackground particles={particles} />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">
@@ -202,8 +202,26 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
         .font-cinzel { font-family: 'Cinzel', serif; }
         .text-gold { color: #d4af37; background: linear-gradient(135deg, #ad924d 0%, #f7ef8a 50%, #ad924d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         @keyframes floatDust { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: inherit; } 90% { opacity: inherit; } 100% { transform: translateY(-120vh) translateX(30px); opacity: 0; } }
-        @keyframes gradient-slow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .animate-gradient-slow { background-size: 200% 200%; animation: gradient-slow 20s ease-in-out infinite; }
+
+        @media (max-width: 1024px) {
+          .web-template-container {
+            padding-top: calc(8px + env(safe-area-inset-top));
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
+          .web-template-container main {
+            min-height: calc(85dvh - 15px) !important;
+          }
+          .web-template-container .relative.z-10.flex-col {
+            gap: 2rem !important;
+            padding-bottom: 6rem !important;
+          }
+          .groom-bride-names span {
+            white-space: normal !important;
+            word-break: break-word !important;
+          }
+        }
       `}</style>
     </div>
   );

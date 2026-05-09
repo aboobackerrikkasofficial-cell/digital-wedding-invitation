@@ -66,11 +66,11 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
   const particles = useMemo(() => [...Array(20)].map((_, i) => getParticle(i)), []);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#2b1e3f] font-serif overflow-y-auto overflow-x-hidden pt-10 px-4 pb-10 flex flex-col items-center">
+    <div className="relative min-h-screen w-full bg-[#2b1e3f] font-serif overflow-y-auto overflow-x-hidden px-[5px] flex flex-col items-center" style={{ paddingTop: 'calc(8px + env(safe-area-inset-top))', paddingBottom: 'calc(8px + env(safe-area-inset-bottom))' }}>
       <GoldDustBackground particles={particles} />
       
-      <div className="relative z-10 flex flex-col items-center w-full max-w-md mx-auto space-y-8">
-        <main className="relative w-full aspect-[9/16] border-2 border-gold/20 rounded-[2.5rem] bg-white/5 backdrop-blur-md px-6 py-12 text-center shadow-2xl flex flex-col items-center justify-center">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-md mx-auto gap-8 pb-24">
+        <main className="relative w-full min-h-[calc(85dvh-15px)] border-2 border-gold/25 rounded-[1.8rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-2 py-12 flex flex-col items-center justify-center text-center">
           <GoldArc />
           
           <div className="mt-10 space-y-6">
