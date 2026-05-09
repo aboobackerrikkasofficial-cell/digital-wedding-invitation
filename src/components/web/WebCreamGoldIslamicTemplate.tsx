@@ -60,9 +60,9 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
             </motion.div>
             <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-medium uppercase mt-[-14px] mb-[10px] flex flex-col items-center gap-0 leading-none"><span>REQUEST THE PLEASURE OF YOUR COMPANY AT THE WEDDING CEREMONY</span><span>OF OUR BELOVED {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</span></motion.p>
             <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1 } }} className="flex flex-col items-center w-full mb-[2px]" style={{ willChange: "transform, opacity" }}>
-              <h1 className="w-full text-center font-cinzel text-gold-dark text-[clamp(9px,6vw,23px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names">{(wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name)}</h1>
+              <h1 className="w-full text-center font-cinzel text-gold-dark text-[clamp(9px,6vw,23px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full groom-bride-names mobile-name-wrap">{(wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name)}</h1>
               <p className="text-gold-muted font-serif text-[11px] tracking-[0.4em] uppercase my-1">WITH</p>
-              <h1 className="w-full text-center font-cinzel text-gold-dark text-[clamp(9px,6vw,23px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names">{(wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name)}</h1>
+              <h1 className="w-full text-center font-cinzel text-gold-dark text-[clamp(9px,6vw,23px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full groom-bride-names mobile-name-wrap">{(wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name)}</h1>
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="flex flex-col items-center mb-[13px]">
               <p className="text-gold-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">{wedding.host_selection === 'bride_side' ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name}` : `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name}`}</p>
@@ -121,6 +121,18 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
         .bg-gold-muted { background-color: #C5A059; }
         @keyframes jewel-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
         .animate-jewel-shimmer { animation: jewel-shimmer 3s infinite linear; }
+        @media (max-width: 640px) {
+          .mobile-name-wrap {
+            white-space: normal !important;
+            word-break: break-word !important;
+            font-size: clamp(9px, 5.5vw, 21px) !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            line-height: 1.2 !important;
+          }
+        }
       `}</style>
     </div>
   );
