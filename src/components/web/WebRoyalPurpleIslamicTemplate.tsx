@@ -172,9 +172,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                       <div className="h-[1px] flex-grow bg-gold/40" />
                     </div>
                     <div className="mt-1 w-full bg-white/[0.05] backdrop-blur-md border border-gold/20 rounded-t-[1.25rem] p-3 lg:py-4 lg:px-8 shadow-none royal-purple-strip-block">
-                      <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
-                        <div className="flex items-center gap-3"><Clock className="text-gold" size={12} /><p className="text-white font-sans text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">{format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}</p></div>
-                        <div className="flex items-center gap-3 border-l border-gold/10 pl-4 flex-grow justify-end"><MapPin className="text-gold" size={12} /><p className="text-white font-sans text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">{wedding.venue_name}</p></div>
+                      <div className="flex items-center justify-between gap-4 max-w-sm mx-auto royal-purple-strip-content">
+                        <div className="flex items-center gap-3 royal-purple-time-container"><Clock className="text-gold" size={12} /><p className="text-white font-sans text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">{format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}</p></div>
+                        <div className="flex items-center gap-3 border-l border-gold/10 pl-4 flex-grow justify-end royal-purple-location-container"><MapPin className="text-gold" size={12} /><p className="text-white font-sans text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">{wedding.venue_name}</p></div>
                       </div>
                     </div>
                   </div>
@@ -240,6 +240,18 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .royal-purple-strip-block {
             border-radius: 1.25rem !important;
+          }
+          .royal-purple-time-container,
+          .royal-purple-location-container {
+            gap: 6px !important;
+          }
+          .royal-purple-location-container {
+            justify-content: flex-start !important;
+            flex-grow: 0 !important;
+          }
+          .royal-purple-strip-content {
+            justify-content: center !important;
+            gap: 12px !important;
           }
         }
       `}</style>
