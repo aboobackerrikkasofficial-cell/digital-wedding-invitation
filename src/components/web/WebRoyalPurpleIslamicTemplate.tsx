@@ -206,27 +206,23 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
         @media (max-width: 1024px) {
           .web-template-container {
             padding-top: calc(13px + env(safe-area-inset-top));
-            padding-bottom: calc(40px + env(safe-area-inset-bottom));
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
             padding-left: 5px !important;
             padding-right: 5px !important;
-            overflow-y: auto !important;
           }
           .royal-purple-main-card {
-            min-height: calc(85dvh + 47px) !important;
+            min-height: 80dvh !important;
             height: auto !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
-            overflow: visible !important;
-            padding-bottom: 2rem !important;
           }
           .web-template-container .relative.z-10.flex-col {
-            gap: 48px !important;
-            padding-bottom: 5rem !important;
+            gap: 24px !important;
+            padding-bottom: 1rem !important;
           }
           .right-card-wrapper {
-            gap: 70px !important;
-            padding-bottom: 4rem !important;
+            gap: 30px !important;
           }
           .groom-bride-names span {
             white-space: normal !important;
