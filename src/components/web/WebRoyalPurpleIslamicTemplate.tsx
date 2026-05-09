@@ -142,7 +142,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                   </div>
                 </div>
               ) : (
-                <div className="mt-5 lg:mt-4 mb-0 lg:mb-5 w-full px-8 mobile-reception-strip">
+                <div className="mt-5 lg:mt-4 mb-0 lg:mb-5 w-full px-8">
                   <div className="flex items-center justify-center gap-4 mb-8 lg:mb-4 opacity-80">
                     <div className="h-[1px] w-12 lg:w-24 bg-gradient-to-r from-transparent to-gold" />
                     <Sparkles className="text-gold" size={12} />
@@ -171,7 +171,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                       <p className="text-gold font-sans text-[11px] lg:text-[12px] font-black tracking-[0.2em] uppercase whitespace-nowrap">Wedding Reception</p>
                       <div className="h-[1px] flex-grow bg-gold/40" />
                     </div>
-                    <div className="mt-1 w-full bg-white/[0.05] backdrop-blur-md border border-gold/20 rounded-t-[1.25rem] p-3 pb-1 lg:py-4 lg:px-8 shadow-none mobile-reception-strip">
+                    <div className="mt-1 w-full bg-white/[0.05] backdrop-blur-md border border-gold/20 rounded-t-[1.25rem] p-3 lg:py-4 lg:px-8 shadow-none">
                       <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
                         <div className="flex items-center gap-3"><Clock className="text-gold" size={12} /><p className="text-white font-sans text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">{format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}</p></div>
                         <div className="flex items-center gap-3 border-l border-gold/10 pl-4 flex-grow justify-end"><MapPin className="text-gold" size={12} /><p className="text-white font-sans text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">{wedding.venue_name}</p></div>
@@ -211,7 +211,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 5px !important;
           }
           .royal-purple-main-card {
-            min-height: 79dvh !important;
+            min-height: 77dvh !important;
             height: auto !important;
             overflow: visible !important;
             max-width: 420px;
@@ -224,10 +224,6 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .right-card-wrapper {
             gap: 30px !important;
-          }
-          .mobile-reception-strip {
-            margin-bottom: 0 !important;
-            padding-bottom: 4px !important;
           }
           .groom-bride-names span {
             white-space: normal !important;
