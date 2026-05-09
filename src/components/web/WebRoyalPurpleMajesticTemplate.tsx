@@ -178,7 +178,7 @@ export function WebRoyalPurpleMajesticTemplate({ wedding, onAttend, onNotAttend 
                       <p className="text-white/90 font-sans text-[10px] font-bold uppercase tracking-widest">{wedding.venue_name}</p>
                     </div>
                   </div>
-                </div>
+              )}
             </motion.div>
 
             {/* Perfectly Aligned Reception Block (at bottom when Nikah exists) */}
