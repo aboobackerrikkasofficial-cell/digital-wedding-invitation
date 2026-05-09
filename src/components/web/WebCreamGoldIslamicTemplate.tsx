@@ -73,19 +73,56 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
                    {wedding.venue_address && <p className={`text-gold-primary font-cinzel uppercase tracking-[0.08em] font-normal leading-relaxed max-w-[320px] ${hasNikah ? 'text-[9px] lg:text-[10px]' : 'text-[11px] lg:text-[12px]'}`}>{wedding.venue_address}</p>}
                 </div>
                 <div className="mt-[7px] lg:mt-[20px] flex flex-col items-center w-full">
-                  {hasNikah ? (
-                    <div className="flex flex-col items-center w-full px-4">
+                  {hasNikah && (
+                    <div className="flex flex-col items-center w-full px-4 mb-4">
                       <p className="text-gold-primary font-cinzel text-[13px] lg:text-[15px] font-black uppercase tracking-[0.2em] mb-1">Nikah Ceremony</p>
                       <p className="text-gold-primary font-poppins text-[11px] lg:text-[12px] font-bold uppercase tracking-widest leading-tight mb-0.5">{wedding.nikah_date ? format(new Date(wedding.nikah_date), "EEEE, MMMM do") : ""} • {wedding.nikah_time ? format(new Date(`2000-01-01T${wedding.nikah_time as string}`), "h:mm a") : ""}</p>
                       <p className="text-gold-muted font-poppins text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.15em] mb-1.5">{wedding.nikah_islamic_date}</p>
                       <p className="text-gold-primary font-cinzel text-[11px] lg:text-[12px] font-bold uppercase tracking-wider line-clamp-1">{wedding.nikah_location}</p>
                     </div>
-                  ) : (
-                    <><div className="flex items-center gap-4 mb-4 opacity-40"><div className="h-px w-8 bg-gold-muted" /><div className="w-1.5 h-1.5 rotate-45 bg-gold-muted" /><div className="h-px w-8 bg-gold-muted" /></div><p className="text-gold-primary font-cinzel text-[11px] lg:text-[12px] uppercase tracking-widest mb-1">With Best Compliments From:</p><p className="text-gold-primary font-cinzel text-[13px] lg:text-[14px] font-bold uppercase tracking-widest friends-family">Family & Friends</p></>
+                  )}
+
+                  {!hasNikah && (
+                    <div className="flex flex-col items-center w-full">
+                      <div className="flex items-center gap-4 mb-4 opacity-40">
+                        <div className="h-px w-8 bg-gold-muted" />
+                        <div className="w-1.5 h-1.5 rotate-45 bg-gold-muted" />
+                        <div className="h-px w-8 bg-gold-muted" />
+                      </div>
+                      <p className="text-gold-primary font-cinzel text-[11px] lg:text-[12px] uppercase tracking-widest mb-1">With Best Compliments From:</p>
+                      <p className="text-gold-primary font-cinzel text-[13px] lg:text-[14px] font-bold uppercase tracking-widest friends-family">Family & Friends</p>
+                    </div>
                   )}
                 </div>
               </div>
             </motion.div>
+            {hasNikah && (
+              <div className="mt-auto w-full px-0 relative z-[200]">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center gap-3 w-full max-w-[340px] px-4 opacity-80">
+                    <div className="h-[1px] flex-grow bg-gold-muted/30" />
+                    <p className="text-gold-primary font-cinzel text-[9px] font-black tracking-[0.3em] uppercase whitespace-nowrap">Wedding Reception</p>
+                    <div className="h-[1px] flex-grow bg-gold-muted/30" />
+                  </div>
+                  <div className="mt-0 w-full bg-gold-muted/5 backdrop-blur-md border-t border-gold-muted/20 rounded-t-[1.8rem] p-3 lg:py-4 lg:px-8 shadow-none relative z-10">
+                    <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rotate-45 bg-gold-primary" />
+                        <p className="text-gold-dark font-poppins text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">
+                          {format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 border-l border-gold-muted/10 pl-4 flex-grow justify-end">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold-primary" />
+                        <p className="text-gold-dark font-poppins text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">
+                          {wedding.venue_name}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </main>
         <div className="hidden lg:flex flex-col items-center justify-center h-[60vh] opacity-20"><div className="w-px h-full bg-gold" /><DiamondJewel animate={true} className="my-8" /><div className="w-px h-full bg-gold" /></div>

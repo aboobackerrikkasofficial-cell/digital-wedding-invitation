@@ -175,8 +175,8 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
                 </div>
 
                 <div className={`${wedding.template_id === 'default' ? 'mt-[-5px]' : 'mt-[7px] lg:mt-[20px]'} flex flex-col items-center w-full`}>
-                  {hasNikah ? (
-                    <div className="flex flex-col items-center w-full px-4">
+                  {hasNikah && (
+                    <div className="flex flex-col items-center w-full px-4 mb-4">
                       {wedding.template_id === 'default' && (
                         <div className="w-full flex flex-col items-center py-[10px] gap-1">
                            <div className="flex items-center gap-4 w-full px-8">
@@ -210,8 +210,10 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
                         {wedding.nikah_location}
                       </p>
                     </div>
-                  ) : (
-                    <>
+                  )}
+
+                  {!hasNikah && (
+                    <div className="flex flex-col items-center w-full">
                       <div className="flex items-center gap-4 mb-4 opacity-40">
                         <div className="h-px w-8 bg-pink-muted" />
                         <div className="w-1.5 h-1.5 rotate-45 bg-pink-muted" />
@@ -223,11 +225,40 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
                       <p className="text-pink-primary font-cinzel text-[13px] lg:text-[14px] font-bold uppercase tracking-widest friends-family">
                         Family & Friends
                       </p>
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
             </motion.div>
+
+            {/* Perfectly Aligned Reception Block (at bottom when Nikah exists) */}
+            {hasNikah && (
+              <div className="mt-auto w-full px-0 relative z-[200]">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center gap-3 w-full max-w-[340px] px-4 opacity-80">
+                    <div className="h-[1px] flex-grow bg-pink-primary/30" />
+                    <p className="text-pink-primary font-cartoon text-[9px] font-black tracking-[0.3em] uppercase whitespace-nowrap">Wedding Reception</p>
+                    <div className="h-[1px] flex-grow bg-pink-primary/30" />
+                  </div>
+                  <div className="mt-0 w-full bg-pink-primary/5 backdrop-blur-md border-t border-pink-primary/20 rounded-t-lg p-3 lg:py-4 lg:px-8 shadow-none relative z-10">
+                    <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
+                      <div className="flex items-center gap-3">
+                        <Clock className="text-pink-primary" size={12} />
+                        <p className="text-pink-dark font-poppins text-[10px] lg:text-[11px] font-bold uppercase whitespace-nowrap">
+                          {format(date, "h:mm a")} * {format(date, "EEEE, d MMMM")}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 border-l border-pink-primary/10 pl-4 flex-grow justify-end">
+                        <MapPin className="text-pink-primary" size={12} />
+                        <p className="text-pink-dark font-poppins text-[9px] lg:text-[10px] font-bold uppercase tracking-tight whitespace-nowrap overflow-hidden">
+                          {wedding.venue_name}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </motion.main>
 
