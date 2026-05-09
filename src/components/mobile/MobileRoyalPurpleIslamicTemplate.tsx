@@ -180,6 +180,7 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
         }
         .royal-purple-main-card {
           min-height: calc(85dvh - 13px) !important;
+          height: calc(85dvh - 13px) !important;
         }
       `}</style>
     </div>
