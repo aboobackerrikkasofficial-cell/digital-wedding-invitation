@@ -27,8 +27,8 @@ export function SystemTitleBar() {
         return;
       }
 
-      // Hide on mobile app (native/standalone)
-      if (isNativeApp || isStandalone) {
+      // Hide on PWA standalone mode
+      if (isStandalone) {
         setIsVisible(false);
         return;
       }
@@ -53,11 +53,7 @@ export function SystemTitleBar() {
   const homeHref = "/admin";
 
   const handleGoHome = (e: React.MouseEvent) => {
-    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
-    if (isNative) {
-      e.preventDefault();
-      router.push(homeHref);
-    }
+    // Standard web navigation
   };
 
   if (!isVisible) return null;
