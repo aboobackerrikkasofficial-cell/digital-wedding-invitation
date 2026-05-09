@@ -211,15 +211,15 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 5px !important;
           }
           .royal-purple-main-card {
-            min-height: 80dvh !important;
-            height: auto !important;
+            min-height: 82dvh !important;
+            height: 82dvh !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
           }
           .web-template-container .relative.z-10.flex-col {
-            gap: 24px !important;
-            padding-bottom: 1rem !important;
+            gap: 34px !important;
+            padding-bottom: 0 !important;
           }
           .right-card-wrapper {
             gap: 30px !important;
