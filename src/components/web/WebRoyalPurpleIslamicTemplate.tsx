@@ -232,8 +232,8 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
         }
         @media (max-width: 767px) {
           .web-template-container {
-            padding-left: 8px !important;
-            padding-right: 8px !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
           }
         }
       `}</style>

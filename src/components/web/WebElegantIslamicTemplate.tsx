@@ -315,8 +315,8 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
         .animate-shine { animation: shine 1.5s ease-out; }
         @media (max-width: 767px) {
           .web-template-container {
-            padding-left: 8px !important;
-            padding-right: 8px !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
           }
         }
       `}</style>

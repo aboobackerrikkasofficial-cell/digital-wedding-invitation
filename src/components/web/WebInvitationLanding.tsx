@@ -101,7 +101,7 @@ export function WebInvitationLanding({ wedding, onAttend, onNotAttend }: Invitat
         </motion.div>
       </div>
 
-      <main className="relative z-10 w-full max-w-2xl px-[8px] md:px-0 md:ml-32 h-full flex flex-col justify-center">
+      <main className="relative z-10 w-full max-w-2xl px-[10px] md:px-0 md:ml-32 h-full flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
