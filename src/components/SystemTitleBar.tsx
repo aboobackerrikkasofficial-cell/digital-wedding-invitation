@@ -12,34 +12,19 @@ export function SystemTitleBar() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const checkVisibility = () => {
-      const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 1024;
-      const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
-      const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-      const isInvitationPage = pathname.startsWith('/invite/');
-      
-      const hideOn = ["/", "/admin/login", "/admin"];
-      const shouldHideDefault = hideOn.includes(pathname);
-      
-      // Hide on invitation pages entirely (public view/themes)
-      if (isInvitationPage) {
-        setIsVisible(false);
-        return;
-      }
-
-      // Hide on PWA standalone mode
-      if (isStandalone) {
-        setIsVisible(false);
-        return;
-      }
-
-      // Show on admin dashboard area for web browsers
+    const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
+    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
+    const isInvitationPage = pathname.startsWith('/invite/');
+    
+    const hideOn = ["/", "/admin/login", "/admin"];
+    const shouldHideDefault = hideOn.includes(pathname);
+    
+    if (isInvitationPage) {
+      // Show on browser, hide only on Native App Shell or Standalone PWA
+      setIsVisible(!(isNativeApp || isStandalone));
+    } else {
       setIsVisible(!shouldHideDefault);
-    };
-
-    checkVisibility();
-    window.addEventListener('resize', checkVisibility);
-    return () => window.removeEventListener('resize', checkVisibility);
+    }
   }, [pathname]);
 
   const handleBack = () => {
@@ -53,7 +38,11 @@ export function SystemTitleBar() {
   const homeHref = "/admin";
 
   const handleGoHome = (e: React.MouseEvent) => {
-    // Standard web navigation
+    const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.platform && (window as any).Capacitor?.platform !== 'web';
+    if (isNative) {
+      e.preventDefault();
+      router.push(homeHref);
+    }
   };
 
   if (!isVisible) return null;
