@@ -211,8 +211,8 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 5px !important;
           }
           .royal-purple-main-card {
-            min-height: calc(85dvh - 3px) !important;
-            height: calc(85dvh - 3px) !important;
+            min-height: calc(85dvh + 12px) !important;
+            height: calc(85dvh + 12px) !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
