@@ -211,7 +211,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 5px !important;
           }
           .web-template-container main {
-            min-height: calc(85dvh - 15px) !important;
+            min-height: calc(85dvh - 13px) !important;
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 2rem !important;
