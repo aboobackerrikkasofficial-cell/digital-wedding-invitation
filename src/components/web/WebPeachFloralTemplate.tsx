@@ -41,7 +41,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
         </picture>
       </div>
 
-      <div className="relative z-10 w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between p-[7px] md:p-20 min-h-[100dvh]">
+      <div className="relative z-10 w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between px-[6px] py-4 md:p-20 min-h-[100dvh]">
         
         <motion.main 
           initial={{ opacity: 0, x: -100, rotate: -2 }}
