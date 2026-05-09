@@ -179,6 +179,7 @@ export function WebRoyalPurpleMajesticTemplate({ wedding, onAttend, onNotAttend 
                     </div>
                   </div>
                 </div>
+              )}
             </motion.div>
 
             {/* Perfectly Aligned Reception Block (at bottom when Nikah exists) */}
