@@ -148,7 +148,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                     <Sparkles className="text-gold" size={12} />
                     <div className="h-[1px] w-12 lg:w-24 bg-gradient-to-l from-transparent to-gold" />
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center reception-section">
                     <div className="flex items-center gap-2 mb-2">
                        <Sparkles className="text-gold/40" size={8} />
                        <p className="text-gold font-sans text-[11px] lg:text-[8px] font-black tracking-[0.4em] uppercase whitespace-nowrap">Wedding Reception</p>
@@ -159,7 +159,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                       <div className="h-8 w-px bg-gold/30" />
                       <div className="flex flex-col items-center"><p className="text-white font-sans text-[14px] lg:text-[13px] font-bold uppercase tracking-widest">{format(date, "EEEE")}</p><p className="text-white font-sans text-[11px] lg:text-[9px] font-medium uppercase tracking-[0.1em] opacity-60 mt-0.5">{format(date, "d MMMM")}</p></div>
                     </div>
-                    <div className="mt-2 flex items-center gap-1.5 transition-colors"><MapPin className="text-gold" size={8} /><p className="text-white/80 font-sans text-[10px] lg:text-[8px] font-bold uppercase tracking-[0.1em]">{wedding.venue_name}</p></div>
+                    <div className="mt-2 venue-container flex items-center gap-1.5 transition-colors"><MapPin className="text-gold" size={8} /><p className="text-white/80 font-sans text-[10px] lg:text-[8px] font-bold uppercase tracking-[0.1em]">{wedding.venue_name}</p></div>
                   </div>
                 </div>
               )}
@@ -226,6 +226,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
+          }
+          .reception-section .venue-container {
+            margin-top: -2px !important; /* Reduces gap by 10px (original mt-2 [8px] -> -2px) */
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 2rem !important;
