@@ -239,8 +239,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             min-height: calc(77dvh - 5px) !important;
           }
           .royal-purple-strip-block {
-            border-top-left-radius: 2.5rem !important;
-            border-top-right-radius: 2.5rem !important;
+            border-radius: 1.25rem !important;
           }
         }
       `}</style>
