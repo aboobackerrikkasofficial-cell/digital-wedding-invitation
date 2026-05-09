@@ -235,6 +235,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-left: 10px !important;
             padding-right: 10px !important;
           }
+          .royal-purple-main-card {
+            min-height: calc(77dvh - 5px) !important;
+          }
         }
       `}</style>
     </div>
