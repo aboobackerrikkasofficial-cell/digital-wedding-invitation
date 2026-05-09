@@ -46,7 +46,11 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
     <div className="left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-screen overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row items-center justify-start lg:justify-center px-[5px] lg:px-8">
       <CreamGoldBackground />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-fit">
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-auto min-h-[680px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden mt-[10px] lg:mt-0">
+        <motion.main 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full max-w-[420px] lg:max-w-lg h-auto min-h-[680px] lg:h-[715px] flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 rounded-[1.8rem] lg:rounded-[2.2rem] bg-white shadow-[0_20px_40px_rgba(197,160,89,0.1)] overflow-hidden mt-[10px] lg:mt-0">
           <div className="absolute inset-0 z-0"><img src="/invitationletter.jpg" alt="Background" className="w-full h-full object-cover" /></div>
           <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.6 } } }} initial="hidden" animate="show" className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[220px] lg:mt-[250px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar" style={{ willChange: "transform, opacity" }}>
             <motion.p variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }} className="text-gold-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-normal uppercase mt-[30px] lg:mt-[10px] mb-[12px] whitespace-nowrap in-the-name-of-allah">IN THE NAME OF ALLAH THE MOST BENEFICENT THE MOST MERCIFUL</motion.p>
@@ -87,7 +91,7 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
               </div>
             </motion.div>
           </motion.div>
-        </main>
+        </motion.main>
         <div className="hidden lg:flex flex-col items-center justify-center h-[60vh] opacity-20"><div className="w-px h-full bg-gold" /><DiamondJewel animate={true} className="my-8" /><div className="w-px h-full bg-gold" /></div>
         <aside className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center rounded-none lg:rounded-[2.2rem] bg-transparent lg:bg-white lg:shadow-[0_20px_50px_rgba(197,160,89,0.1)] overflow-visible gap-5 lg:gap-0 border-none lg:border-[1px] border-[#c5a059]/20 mb-20 lg:mb-0">
           <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-gold-muted/30 rounded-[1.8rem] lg:rounded-none bg-white lg:bg-transparent shadow-xl lg:shadow-none">
