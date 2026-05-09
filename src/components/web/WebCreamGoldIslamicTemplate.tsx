@@ -43,7 +43,7 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
   }, []);
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-screen overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row items-center justify-start lg:justify-center px-[5px] lg:px-8">
+    <div className="web-template-container left-0 right-0 z-40 w-full bg-[#fffcf2] font-serif p-0 lg:p-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-screen overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row items-center justify-start lg:justify-center px-[5px] lg:px-8">
       <CreamGoldBackground />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-fit">
         <motion.main 
@@ -131,6 +131,12 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
             -webkit-box-orient: vertical !important;
             overflow: hidden !important;
             line-height: 1.2 !important;
+          }
+        }
+        @media (max-width: 767px) {
+          .web-template-container {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
           }
         }
       `}</style>

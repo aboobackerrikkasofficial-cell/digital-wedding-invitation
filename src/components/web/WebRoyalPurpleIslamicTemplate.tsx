@@ -230,6 +230,12 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             word-break: break-word !important;
           }
         }
+        @media (max-width: 767px) {
+          .web-template-container {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+          }
+        }
       `}</style>
     </div>
   );

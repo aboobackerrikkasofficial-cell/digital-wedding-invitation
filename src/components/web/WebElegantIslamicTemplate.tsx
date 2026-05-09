@@ -35,7 +35,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
   const hasNikah = !!wedding.nikah_date;
 
   return (
-    <div className="left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-[100dvh] overflow-y-auto lg:overflow-hidden px-[5px] lg:px-8">
+    <div className="web-template-container left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-[100dvh] overflow-y-auto lg:overflow-hidden px-[5px] lg:px-8">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
@@ -313,6 +313,12 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           100% { transform: translateX(200%) skewX(-15deg); }
         }
         .animate-shine { animation: shine 1.5s ease-out; }
+        @media (max-width: 767px) {
+          .web-template-container {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+          }
+        }
       `}</style>
     </div>
   );

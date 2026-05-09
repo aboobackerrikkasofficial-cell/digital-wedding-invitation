@@ -21,7 +21,9 @@ export function SystemTitleBar() {
     
     if (isInvitationPage) {
       // Show on browser, hide only on Native App Shell or Standalone PWA
-      setIsVisible(!(isNativeApp || isStandalone));
+      // Strictly for desktop (>=1024px), we always want visibility restored as per user request
+      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+      setIsVisible(isDesktop || !(isNativeApp || isStandalone));
     } else {
       setIsVisible(!shouldHideDefault);
     }
@@ -51,13 +53,14 @@ export function SystemTitleBar() {
 
   return (
     <div className={cn(
-      "fixed top-6 left-0 right-0 z-[9999] flex items-center justify-between px-6 pointer-events-none",
+      "fixed top-6 left-0 right-0 z-[99999] flex items-center justify-between px-6 pointer-events-none lg:px-10",
+      "lg:opacity-100 lg:visible lg:flex",
       isAdjustedPage && "md:left-72 md:px-0 md:pl-1 md:pr-3"
     )}>
       {/* Glass Back Button */}
       <button
         onClick={handleBack}
-        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all"
+        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all hover:bg-white/60"
         aria-label="Go back"
       >
         <ChevronLeft size={28} strokeWidth={2.5} />
@@ -67,7 +70,7 @@ export function SystemTitleBar() {
       <Link
         href={homeHref}
         onClick={handleGoHome}
-        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all"
+        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl text-gray-900 active:scale-90 transition-all hover:bg-white/60"
         aria-label="Go to Home"
       >
         <Home size={22} strokeWidth={2.5} />
