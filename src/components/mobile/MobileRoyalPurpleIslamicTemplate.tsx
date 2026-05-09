@@ -70,7 +70,7 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
       <GoldDustBackground particles={particles} />
       
       <div className="relative z-10 flex flex-col items-center w-full max-w-md mx-auto gap-8 pb-24">
-        <main className="relative w-full min-h-[calc(85dvh - 13px)] border-2 border-gold/25 rounded-[1.8rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-2 py-12 flex flex-col items-center justify-center text-center">
+        <main className="relative w-full royal-purple-main-card border-2 border-gold/25 rounded-[1.8rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-2 py-12 flex flex-col items-center justify-center text-center">
           <GoldArc />
           
           <div className="mt-10 space-y-6">
@@ -177,6 +177,9 @@ export function MobileRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAtten
           10% { opacity: 0.2; }
           90% { opacity: 0.2; }
           100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
+        }
+        .royal-purple-main-card {
+          min-height: calc(85dvh - 13px) !important;
         }
       `}</style>
     </div>

@@ -93,7 +93,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
     <div className="web-template-container left-0 right-0 z-40 w-full bg-[#2b1e3f] font-serif p-0 lg:p-6 lg:py-2 lg:px-8 lg:fixed lg:top-0 lg:h-[100dvh] lg:overflow-hidden flex flex-col lg:flex-row items-center lg:justify-center overflow-y-auto min-h-screen relative">
       <GoldDustBackground particles={particles} />
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
-        <main className="relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">
+        <main className="relative w-full royal-purple-main-card max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0">
           <GoldArc />
           <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.6 } } }} initial="hidden" animate="show" className="relative z-10 w-full flex-grow flex flex-col items-center justify-between text-center mt-[75px] lg:mt-[100px] px-2 lg:px-4" style={{ willChange: "transform, opacity" }}>
             <motion.div variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }} className="flex-shrink-0 flex flex-col items-center justify-start min-h-[80px] lg:min-h-[140px] pt-4 lg:pt-8">
@@ -210,7 +210,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-left: 5px !important;
             padding-right: 5px !important;
           }
-          .web-template-container main {
+          .royal-purple-main-card {
             min-height: calc(85dvh - 13px) !important;
           }
           .web-template-container .relative.z-10.flex-col {
