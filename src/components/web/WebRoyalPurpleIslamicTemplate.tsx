@@ -194,7 +194,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           </motion.div>
         </main>
         <div className="hidden lg:flex flex-col items-center justify-center h-[60vh] opacity-40"><div className="w-[0.5px] h-full bg-gold" /><motion.div animate={{ rotate: [0, 90, 180, 270, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="my-8"><Sparkles className="text-gold" size={20} /></motion.div><div className="w-[0.5px] h-full bg-gold" /></div>
-        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-5 lg:gap-0">
+        <aside className="right-card-wrapper relative w-full max-w-[420px] lg:max-w-lg h-full max-h-[715px] flex flex-col items-center justify-between p-0 lg:p-10 text-center rounded-none lg:rounded-[3rem] bg-transparent lg:bg-white/5 lg:backdrop-blur-sm lg:shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-visible lg:overflow-hidden gap-10 lg:gap-0">
           <div className="w-full lg:mt-10"><motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}><p className="text-gold font-sans text-[11px] lg:text-[10px] font-bold tracking-[0.4em] uppercase mb-4 lg:mb-8">Countdown to Celebration</p><Countdown targetDate={wedding.wedding_date} /></motion.div></div>
           <div className="hidden lg:flex flex-col items-center my-1 lg:my-0"><div className="h-px w-24 bg-gold/20 mb-4" /><Sparkles className="hidden lg:block text-gold opacity-50" size={32} /><div className="h-px w-24 bg-gold/20 mt-4" /></div>
           <div className="w-full mb-10"><motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="text-white font-cinzel text-[19px] lg:text-2xl mb-4 lg:mb-8 tracking-wider">Will you attend?</motion.h3>
@@ -229,7 +229,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 2rem !important;
-            padding-bottom: 6rem !important;
+            padding-bottom: 4.5rem !important;
           }
           .groom-bride-names span {
             white-space: normal !important;
