@@ -205,7 +205,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
 
         @media (max-width: 1024px) {
           .web-template-container {
-            padding-top: calc(8px + env(safe-area-inset-top));
+            padding-top: calc(13px + env(safe-area-inset-top));
             padding-bottom: calc(8px + env(safe-area-inset-bottom));
             padding-left: 5px !important;
             padding-right: 5px !important;
@@ -213,7 +213,6 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           .royal-purple-main-card {
             min-height: calc(85dvh + 47px) !important;
             height: calc(85dvh + 47px) !important;
-            padding-top: 21px !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
