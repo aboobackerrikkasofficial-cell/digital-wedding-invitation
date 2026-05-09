@@ -135,8 +135,8 @@ export function WebCreamGoldIslamicTemplate({ wedding, onAttend, onNotAttend }: 
         }
         @media (max-width: 767px) {
           .web-template-container {
-            padding-left: 6px !important;
-            padding-right: 6px !important;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
           }
         }
       `}</style>
