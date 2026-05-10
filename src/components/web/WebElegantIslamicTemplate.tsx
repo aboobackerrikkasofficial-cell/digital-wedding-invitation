@@ -38,7 +38,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
     <div className="web-template-container left-0 right-0 z-40 w-full bg-[#fdfbf0] flex flex-col items-center justify-start font-serif p-0 lg:p-6 lg:py-2 lg:px-8 cream-gold-theme relative lg:fixed top-0 min-h-screen lg:h-[100dvh] overflow-y-auto lg:overflow-hidden px-[5px] lg:px-8">
       <PinkPantherBackground bgColor="#FF8DA1" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         {/* 2. THE MAIN CARD CANVAS (LEFT) */}
         <motion.main 
           initial={{ opacity: 0, x: -20 }}
@@ -244,9 +244,9 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-5 lg:gap-0 border-[1px] border-white/30 rounded-[5px] mb-20 lg:mb-0"
+          className="relative w-full max-w-[420px] lg:max-w-lg h-fit lg:h-[715px] flex flex-col items-center justify-between p-0 lg:py-[20px] lg:px-10 text-center bg-[#FF8DA1] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-visible gap-10 lg:gap-0 border-[1px] border-white/30 rounded-[5px] mb-20 lg:mb-0"
         >
-          <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
+          <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none mobile-glass-block mobile-reveal-delay">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -267,7 +267,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             <DiamondJewel animate={false} src="/pink_panther_icon.png" className="w-[90px] h-[90px]" />
           </div>
 
-          <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none">
+          <div className="w-full p-8 lg:p-0 border-[1px] lg:border-none border-white/20 rounded-[5px] lg:rounded-none bg-[#FF8DA1] lg:bg-transparent shadow-xl lg:shadow-none mobile-glass-block mobile-reveal-delay-2">
             <motion.h3
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -327,6 +327,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             aspect-ratio: 9 / 16.08 !important;
             min-height: 0 !important;
             height: auto !important;
+            animation: floating 6s ease-in-out infinite, reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
           }
           .mobile-invitation-image {
             object-fit: cover !important;
@@ -337,6 +338,26 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           }
           .in-the-name-of-allah {
             font-size: 7px !important;
+          }
+          .mobile-glass-block {
+            background-color: rgba(255, 141, 161, 0.85) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 255, 255, 0.1) !important;
+          }
+          .mobile-reveal-delay {
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+          }
+          .mobile-reveal-delay-2 {
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+          }
+          @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+          }
+          @keyframes reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
           }
         }
       `}</style>
