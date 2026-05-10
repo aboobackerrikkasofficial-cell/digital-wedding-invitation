@@ -228,7 +228,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-bottom: 1rem !important;
           }
           .right-card-wrapper {
-            gap: 30px !important;
+            gap: 45px !important;
           }
           .groom-bride-names span {
             white-space: normal !important;
