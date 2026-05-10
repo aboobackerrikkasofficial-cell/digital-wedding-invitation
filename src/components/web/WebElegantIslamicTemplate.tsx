@@ -324,7 +324,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           .pink-panther-card {
             margin-top: 20px !important;
             background-color: #FF8DA1 !important;
-            aspect-ratio: 9 / 16 !important;
+            aspect-ratio: 9 / 16.08 !important;
             min-height: 0 !important;
             height: auto !important;
           }
@@ -334,6 +334,9 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           }
           .bride-parent-text {
             font-size: 8.2px !important;
+          }
+          .in-the-name-of-allah {
+            font-size: 7px !important;
           }
         }
       `}</style>
