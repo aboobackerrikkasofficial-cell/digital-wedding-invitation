@@ -97,7 +97,7 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className="relative z-10 w-full max-w-2xl h-fit max-h-[82dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)] lg:py-[85px]"
+        className="relative z-10 w-full max-w-2xl h-fit max-h-[82dvh] flex flex-col items-center justify-center p-8 lg:p-16 text-center border-2 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-white/5 backdrop-blur-md border-gold/25 shadow-[12px_12px_30px_rgba(212,175,55,0.12)] lg:py-[85px] mobile-thank-you-card"
       >
         <h1 className="text-xl lg:text-5xl mb-1 lg:mb-6 tracking-wider px-2 text-white font-cinzel">
           <span className="block text-[clamp(1rem,5vw,2.375rem)] mb-0.5 lg:mb-2 text-wrap-balance leading-[1.3] py-0.5 text-gold font-script">
@@ -106,7 +106,7 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
           {isAttending ? "Successful" : "Message Received"}
         </h1>
 
-        <p className="text-[clamp(11px,3vw,16px)] lg:text-xl mb-3 lg:mb-8 px-4 leading-relaxed max-w-lg mx-auto break-words text-white/80 font-cinzel italic">
+        <p className="text-[clamp(12px,3.5vw,16px)] lg:text-xl mb-3 lg:mb-8 px-4 leading-relaxed max-w-lg mx-auto break-words text-white/80 font-cinzel italic">
           {isAttending 
             ? `We are honored to have you join us for our celebration, ${rsvpData?.name || "Guest"}.`
             : "Thank you for the update. Although we will miss you, your well-wishes mean a lot to us."
@@ -116,21 +116,21 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
         {isAttending && (
           <div className="w-full space-y-3 lg:space-y-6 mb-2 lg:mb-4">
             <div className="flex flex-col items-center gap-0.5">
-              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold text-gold opacity-60">
+              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[9.5px] lg:text-[12px] font-bold text-gold opacity-60">
                 <Calendar size={10} />
                 <span>Save The Date</span>
               </div>
-              <p className="text-white text-[13px] lg:text-2xl break-words px-4 font-cinzel font-bold">
+              <p className="text-white text-[14px] lg:text-2xl break-words px-4 font-cinzel font-bold">
                 {format(date, "EEEE, d MMMM yyyy")}
               </p>
             </div>
  
             <div className="flex flex-col items-center gap-0.5 mt-1">
-              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold text-gold opacity-60">
+              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[9.5px] lg:text-[12px] font-bold text-gold opacity-60">
                 <MapPin size={10} />
                 <span>The Venue</span>
               </div>
-              <p className="text-white text-[13px] lg:text-2xl leading-tight break-words px-8 max-w-[320px] lg:max-w-md mx-auto font-cinzel font-bold">
+              <p className="text-white text-[14px] lg:text-2xl leading-tight break-words px-8 max-w-[320px] lg:max-w-md mx-auto font-cinzel font-bold">
                 {wedding.venue_name}
               </p>
             </div>
@@ -155,7 +155,7 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
           <Sparkles className="text-gold" size={20} />
         </div>
 
-        <p className="uppercase leading-relaxed tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[10px] lg:text-[14px] mt-2 mb-0 pb-0">
+        <p className="uppercase leading-relaxed tracking-[0.3em] text-gold opacity-60 font-cinzel font-black text-[11.5px] lg:text-[14px] mt-2 mb-0 pb-0">
            {wedding.groom_name} & {wedding.bride_name}
         </p>
 
@@ -196,6 +196,39 @@ export function RoyalPurpleThankYou({ wedding, rsvpData }: ThankYouProps) {
         .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+        @media (max-width: 767px) {
+          .mobile-thank-you-card {
+            animation: floating 5s ease-in-out infinite, cardGlow 4s ease-in-out infinite;
+          }
+          .mobile-thank-you-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(212, 175, 55, 0.05),
+              transparent
+            );
+            animation: shimmer 8s infinite;
+          }
+          @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+          }
+          @keyframes cardGlow {
+            0%, 100% { box-shadow: 12px 12px 30px rgba(212, 175, 55, 0.12), 0 0 10px rgba(212, 175, 55, 0.1); }
+            50% { box-shadow: 12px 12px 30px rgba(212, 175, 55, 0.12), 0 0 25px rgba(212, 175, 55, 0.2); }
+          }
+          @keyframes shimmer {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+          }
         }
       `}</style>
     </div>
