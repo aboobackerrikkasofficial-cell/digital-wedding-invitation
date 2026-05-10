@@ -111,7 +111,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                 <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.15em] font-medium uppercase mt-[-3px]">OF OUR {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</p>
               </div>
             </motion.div>
-            <motion.div variants={{ hidden: { opacity: 0, scale: 1.05 }, show: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } } }} className="flex-grow flex flex-col items-center justify-center w-full px-2 max-h-[180px] lg:max-h-[300px] mt-6 lg:mt-0">
+            <motion.div variants={{ hidden: { opacity: 0, scale: 1.05 }, show: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } } }} className="flex-grow flex flex-col items-center justify-center w-full px-2 max-h-[180px] lg:max-h-[300px] mt-6 lg:mt-0 royal-purple-names-block">
               <h1 className="w-full font-cinzel text-white leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.4)] px-2">
                 <span className="block text-gold text-[clamp(25px,7.2vw,33px)] lg:text-[clamp(11px,4vw,28px)] leading-[1.1] mt-[3px] lg:mt-[5px] px-2">{wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name}</span>
                 <span className="block text-[11px] lg:text-base font-cinzel text-gold tracking-[0.2em] my-[2px] lg:my-[1px]">with</span>
@@ -225,6 +225,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .royal-purple-nikah-block {
             margin-top: -5px !important;
+          }
+          .royal-purple-names-block {
+            margin-top: -6px !important;
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 49px !important;
