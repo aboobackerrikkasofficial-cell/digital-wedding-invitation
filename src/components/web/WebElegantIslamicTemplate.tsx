@@ -72,7 +72,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             }}
             initial="hidden"
             animate="show"
-            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[100px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar"
+            className="relative z-10 w-full flex-grow flex flex-col items-center justify-start text-center mt-[70px] lg:mt-[100px] px-6 lg:px-10 pb-[70px] lg:pb-[10px] overflow-hidden no-scrollbar"
             style={{ willChange: "transform, opacity" }}
           >
             {/* A. BISMILLAH LINE */}
@@ -324,13 +324,16 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           .pink-panther-card {
             margin-top: 20px !important;
             background-color: #FF8DA1 !important;
+            aspect-ratio: 9 / 16 !important;
+            min-height: 0 !important;
+            height: auto !important;
           }
           .mobile-invitation-image {
-            object-fit: contain !important;
+            object-fit: cover !important;
             background-color: #FF8DA1 !important;
           }
           .bride-parent-text {
-            font-size: 9.2px !important;
+            font-size: 8.2px !important;
           }
         }
       `}</style>
