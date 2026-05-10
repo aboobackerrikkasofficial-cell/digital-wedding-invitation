@@ -211,7 +211,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 8px !important;
           }
           .royal-purple-main-card {
-            min-height: 77dvh !important;
+            min-height: calc(77dvh - 10px) !important;
             height: auto !important;
             overflow: hidden !important;
             max-width: 420px;
@@ -236,7 +236,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             padding-right: 13px !important;
           }
           .royal-purple-main-card {
-            min-height: calc(77dvh - 5px) !important;
+            min-height: calc(77dvh - 15px) !important;
           }
           .royal-purple-strip-block {
             border-radius: 1.25rem !important;
