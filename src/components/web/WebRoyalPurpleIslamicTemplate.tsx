@@ -224,7 +224,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             gap: 1.5rem !important;
           }
           .web-template-container .relative.z-10.flex-col {
-            gap: 34px !important;
+            gap: 49px !important;
             padding-bottom: 1rem !important;
           }
           .right-card-wrapper {
