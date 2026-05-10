@@ -205,15 +205,15 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
 
         @media (max-width: 1024px) {
           .web-template-container {
-            padding-top: calc(13px + env(safe-area-inset-top));
+            padding-top: calc(23px + env(safe-area-inset-top));
             padding-bottom: calc(8px + env(safe-area-inset-bottom));
-            padding-left: 5px !important;
-            padding-right: 5px !important;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
           }
           .royal-purple-main-card {
             min-height: 77dvh !important;
             height: auto !important;
-            overflow: visible !important;
+            overflow: hidden !important;
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
@@ -232,8 +232,8 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
         }
         @media (max-width: 767px) {
           .web-template-container {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
+            padding-left: 13px !important;
+            padding-right: 13px !important;
           }
           .royal-purple-main-card {
             min-height: calc(77dvh - 5px) !important;
