@@ -122,7 +122,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                 <p className="text-white font-sans text-[8px] lg:text-[8px] tracking-widest uppercase mt-0.5 opacity-70">{wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}</p>
               </div>
             </motion.div>
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } } }} className="flex-shrink-0 w-full flex flex-col items-center justify-end pb-0 lg:pb-0 min-h-[100px] lg:min-h-[160px] mt-5 lg:mt-[3px]">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } } }} className="flex-shrink-0 w-full flex flex-col items-center justify-end pb-0 lg:pb-0 min-h-[100px] lg:min-h-[160px] mt-5 lg:mt-[3px] royal-purple-nikah-block">
               {wedding.nikah_date ? (
                 <div className="mb-1.5 w-full px-6">
                   <div className="relative group overflow-hidden">
@@ -222,6 +222,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           .royal-purple-inner-container {
             justify-content: flex-start !important;
             gap: 1.5rem !important;
+          }
+          .royal-purple-nikah-block {
+            margin-top: -5px !important;
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 49px !important;
