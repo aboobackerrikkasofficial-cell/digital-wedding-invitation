@@ -69,7 +69,7 @@ export function CreamGoldThankYou({ wedding, rsvpData }: ThankYouProps) {
           {isAttending ? "Successful" : "Message Received"}
         </h1>
 
-        <p className="text-[clamp(11px,3vw,16px)] lg:text-xl mb-1 lg:mb-2 px-4 leading-relaxed max-w-lg mx-auto break-words text-gray-700 font-poppins">
+        <p className="text-[clamp(12px,3.5vw,16px)] lg:text-xl mb-1 lg:mb-2 px-4 leading-relaxed max-w-lg mx-auto break-words text-gray-700 font-poppins">
           {isAttending 
             ? `We are honored to have you join us for our celebration, ${rsvpData?.name || "Guest"}.`
             : "Thank you for the update. Although we will miss you, your well-wishes mean a lot to us."
@@ -82,7 +82,7 @@ export function CreamGoldThankYou({ wedding, rsvpData }: ThankYouProps) {
             <div className="w-1.5 h-1.5 rotate-45 bg-[#9E7E45]" />
             <div className="h-px w-10 bg-[#9E7E45]" />
           </div>
-          <p className="font-poppins text-[9px] lg:text-sm text-[#735B32] uppercase tracking-[0.2em] font-medium px-4">
+          <p className="font-poppins text-[10px] lg:text-sm text-[#735B32] uppercase tracking-[0.2em] font-medium px-4">
             Your presence will make our celebration truly special
           </p>
         </div>
@@ -90,21 +90,21 @@ export function CreamGoldThankYou({ wedding, rsvpData }: ThankYouProps) {
         {isAttending && (
           <div className="w-full space-y-3 lg:space-y-6 mb-2 lg:mb-4">
             <div className="flex flex-col items-center gap-0.5 mt-[10px]">
-              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold text-[#735B32] opacity-100 font-poppins">
+              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[9.5px] lg:text-[12px] font-bold text-[#735B32] opacity-100 font-poppins">
                 <Calendar size={10} />
                 <span>Save The Date</span>
               </div>
-              <p className="text-gray-900 text-[13px] lg:text-2xl break-words px-4 font-poppins font-medium">
+              <p className="text-gray-900 text-[14px] lg:text-2xl break-words px-4 font-poppins font-medium">
                 {format(date, "EEEE, d MMMM yyyy")}
               </p>
             </div>
  
             <div className="flex flex-col items-center gap-0.5 mt-1">
-              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold text-[#735B32] opacity-100 font-poppins">
+              <div className="flex items-center gap-2 uppercase tracking-[0.2em] text-[9.5px] lg:text-[12px] font-bold text-[#735B32] opacity-100 font-poppins">
                 <MapPin size={10} />
                 <span>The Venue</span>
               </div>
-              <p className="text-gray-900 text-[13px] lg:text-2xl leading-tight break-words px-8 max-w-[320px] lg:max-w-md mx-auto font-poppins font-medium">
+              <p className="text-gray-900 text-[14px] lg:text-2xl leading-tight break-words px-8 max-w-[320px] lg:max-w-md mx-auto font-poppins font-medium">
                 {wedding.venue_name}
               </p>
             </div>
@@ -133,7 +133,7 @@ export function CreamGoldThankYou({ wedding, rsvpData }: ThankYouProps) {
            </div>
         </div>
 
-        <p className="uppercase leading-relaxed text-[#735B32] opacity-100 font-poppins font-bold text-[8px] lg:text-[12px] mt-[20px] mb-0 pb-0 whitespace-nowrap tracking-[0.1em] px-4">
+        <p className="uppercase leading-relaxed text-[#735B32] opacity-100 font-poppins font-bold text-[10px] lg:text-[12px] mt-[20px] mb-0 pb-0 whitespace-nowrap tracking-[0.1em] px-4">
            {wedding.groom_name} & {wedding.bride_name}
         </p>
 
