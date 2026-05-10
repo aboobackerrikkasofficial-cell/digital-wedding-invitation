@@ -94,14 +94,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
                   ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` 
                   : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
               </p>
-              <p className="text-pink-muted font-poppins text-[8px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
+              <p className="text-pink-muted font-poppins text-[9.5px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' ? (wedding.bride_place || "") : (wedding.groom_place || "")}
               </p>
             </motion.div>
 
             <motion.p
               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-              className="text-pink-primary font-poppins text-[8px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-medium uppercase mt-[-14px] mb-[10px] flex flex-col items-center gap-0 leading-none"
+              className="text-pink-primary font-poppins text-[9.5px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-medium uppercase mt-[-14px] mb-[10px] flex flex-col items-center gap-0 leading-none"
             >
               <span>REQUEST THE PLEASURE OF YOUR COMPANY AT THE WEDDING CEREMONY</span>
               <span>OF OUR BELOVED {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</span>
@@ -140,7 +140,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
                   ? (wedding.groom_father_name ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name || ""}` : "") 
                   : (wedding.bride_father_name ? `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name || ""}` : "")}
               </p>
-              <p className="text-pink-muted font-poppins text-[8px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
+              <p className="text-pink-muted font-poppins text-[9.5px] lg:text-[9px] uppercase tracking-[0.05em] [word-spacing:0.1em] font-bold mt-[-8px] whitespace-nowrap">
                 {wedding.host_selection === 'bride_side' ? wedding.groom_place : wedding.bride_place}
               </p>
             </motion.div>
@@ -327,7 +327,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             aspect-ratio: 9 / 16.08 !important;
             min-height: 0 !important;
             height: auto !important;
-            animation: floating 6s ease-in-out infinite, reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: floating 6s ease-in-out infinite, reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1), cardGlow 4s ease-in-out infinite;
           }
           .mobile-invitation-image {
             object-fit: cover !important;
@@ -337,13 +337,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             font-size: 8.2px !important;
           }
           .in-the-name-of-allah {
-            font-size: 7px !important;
+            font-size: 8px !important;
           }
           .mobile-glass-block {
             background-color: rgba(255, 141, 161, 0.85) !important;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 255, 255, 0.1) !important;
+            animation: blockGlow 4s ease-in-out infinite;
           }
           .mobile-reveal-delay {
             animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
@@ -358,6 +359,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           @keyframes reveal {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes cardGlow {
+            0%, 100% { box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3), 0 0 20px rgba(233, 30, 99, 0.2); }
+          }
+          @keyframes blockGlow {
+            0%, 100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 255, 255, 0.1); }
+            50% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 25px rgba(255, 255, 255, 0.2); }
           }
         }
       `}</style>

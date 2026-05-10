@@ -61,7 +61,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
         className={`relative z-10 w-full ${isPinkTheme ? 'max-w-[650px]' : 'max-w-[clamp(672px,55vw,1100px)]'} flex flex-col items-center justify-center p-6 lg:p-10 text-center border-2 overflow-visible bg-white/80 backdrop-blur-md border-white shadow-xl ${
-          isPinkTheme ? 'rounded-[5px] h-fit py-6 lg:py-8' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
+          isPinkTheme ? 'rounded-[5px] h-fit py-6 lg:py-8 mobile-thank-you-card' : 'rounded-[2.5rem] md:rounded-[3rem] h-fit max-h-[calc(90dvh-40px)]'
         }`}
       >
         {isPinkTheme && (
@@ -90,7 +90,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
           {isAttending ? "Successful" : "Message Received"}
         </h1>
 
-        <p className={`text-[clamp(11px,3vw,16px)] lg:text-xl mb-3 lg:mb-6 px-4 leading-relaxed max-w-lg mx-auto break-words italic ${isPinkTheme ? 'text-[#E91E63]/80 font-cartoon' : 'text-white/80 font-cinzel'}`}>
+        <p className={`text-[clamp(12px,3.5vw,16px)] lg:text-xl mb-3 lg:mb-6 px-4 leading-relaxed max-w-lg mx-auto break-words italic ${isPinkTheme ? 'text-[#E91E63]/80 font-cartoon' : 'text-white/80 font-cinzel'}`}>
           {isAttending 
             ? `We are honored to have you join us for our celebration, ${rsvpData?.name || "Guest"}.`
             : "Thank you for the update. Although we will miss you, your well-wishes mean a lot to us."
@@ -100,21 +100,21 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
         {isAttending && (
           <div className="w-full space-y-3 lg:space-y-6 mb-2 lg:mb-4">
             <div className="flex flex-col items-center gap-0.5">
-              <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold opacity-60 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'}`}>
+              <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[10px] lg:text-[12px] font-bold opacity-60 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'}`}>
                 <Calendar size={10} />
                 <span>Save The Date</span>
               </div>
-              <p className={`text-gray-900 text-[13px] lg:text-2xl break-words px-4 font-bold ${isPinkTheme ? 'font-cartoon' : 'font-cinzel'}`}>
+              <p className={`text-gray-900 text-[15px] lg:text-2xl break-words px-4 font-bold ${isPinkTheme ? 'font-cartoon' : 'font-cinzel'}`}>
                 {format(date, "EEEE, d MMMM yyyy")}
               </p>
             </div>
  
             <div className="flex flex-col items-center gap-0.5 mt-1">
-              <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[8px] lg:text-[12px] font-bold opacity-60 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'}`}>
+              <div className={`flex items-center gap-2 uppercase tracking-[0.2em] text-[10px] lg:text-[12px] font-bold opacity-60 ${isPinkTheme ? 'text-[#E91E63] font-cartoon' : 'text-gold'}`}>
                 <MapPin size={10} />
                 <span>The Venue</span>
               </div>
-              <p className={`text-gray-900 text-[13px] lg:text-2xl leading-tight whitespace-nowrap truncate px-8 w-full max-w-full mx-auto font-bold ${isPinkTheme ? 'font-cartoon' : 'font-cinzel'}`}>
+              <p className={`text-gray-900 text-[15px] lg:text-2xl leading-tight whitespace-nowrap truncate px-8 w-full max-w-full mx-auto font-bold ${isPinkTheme ? 'font-cartoon' : 'font-cinzel'}`}>
                 {wedding.venue_name}
               </p>
             </div>
@@ -126,7 +126,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
                 href={wedding.google_maps_url || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(wedding.venue_name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-6 py-2.5 lg:py-4 border-2 font-black tracking-[0.1em] uppercase text-[9px] lg:text-sm transition-all mt-2 ${
+                className={`inline-flex items-center gap-2 px-6 py-2.5 lg:py-4 border-2 font-black tracking-[0.1em] uppercase text-[10px] lg:text-sm transition-all mt-2 ${
                   isPinkTheme 
                     ? 'border-[#E91E63] text-[#E91E63] bg-[#E91E63]/10 hover:bg-[#E91E63]/20 font-cartoon rounded-[5px]' 
                     : 'border-gold text-gold bg-gold/10 hover:bg-gold/20 rounded-full'
@@ -148,7 +148,7 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
            )}
         </div>
 
-        <p className={`uppercase leading-relaxed tracking-[0.3em] font-black text-[10px] lg:text-[14px] mt-2 mb-0 pb-0 ${isPinkTheme ? 'text-[#E91E63] font-cartoon opacity-100' : 'text-gold font-cinzel opacity-60'}`}>
+        <p className={`uppercase leading-relaxed tracking-[0.3em] font-black text-[11px] lg:text-[14px] mt-2 mb-0 pb-0 ${isPinkTheme ? 'text-[#E91E63] font-cartoon opacity-100' : 'text-gold font-cinzel opacity-60'}`}>
            {wedding.groom_name} & {wedding.bride_name}
         </p>
 
@@ -164,6 +164,20 @@ export function StandardThankYou({ wedding, rsvpData }: ThankYouProps) {
           background: linear-gradient(135deg, #ad924d 0%, #f7ef8a 50%, #ad924d 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+        }
+        @media (max-width: 767px) {
+          .mobile-thank-you-card {
+            animation: floating 4s ease-in-out infinite, glow 3s ease-in-out infinite;
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.15), 0 0 20px rgba(255, 255, 255, 0.2) !important;
+          }
+          @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+          }
+          @keyframes glow {
+            0%, 100% { box-shadow: 0 15px 40px rgba(233, 30, 99, 0.15), 0 0 20px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 15px 45px rgba(233, 30, 99, 0.25), 0 0 30px rgba(255, 255, 255, 0.4); }
+          }
         }
       `}</style>
     </div>
