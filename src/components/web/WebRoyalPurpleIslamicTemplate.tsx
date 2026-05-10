@@ -103,10 +103,10 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
                     {wedding.host_selection === 'bride_side' ? `${wedding.bride_father_name} & ${wedding.bride_mother_name}` : `${wedding.groom_father_name} & ${wedding.groom_mother_name}`}
                   </p>
                   <p className="text-gold font-sans text-[8px] lg:text-[8px] tracking-widest uppercase font-black">{wedding.host_selection === 'bride_side' ? wedding.bride_place : wedding.groom_place}</p>
-                  <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] lg:tracking-[0.15em] font-medium uppercase leading-[1.3] mt-1">REQUEST THE PLEASURE OF YOUR COMPANY<br />ON THE AUSPICIOUS OCCASION OF THE</p>
+                  <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.1em] lg:tracking-[0.15em] font-medium uppercase leading-[1.3] mt-1 royal-purple-request-text">REQUEST THE PLEASURE OF YOUR COMPANY<br />ON THE AUSPICIOUS OCCASION OF THE</p>
                 </div>
               )}
-              <div className="py-0 mt-6 mb-0 lg:mt-1 lg:mb-4">
+               <div className="py-0 mt-6 mb-0 lg:mt-1 lg:mb-4 royal-purple-wedding-heading-section">
                 <h2 className="text-gold text-[27px] lg:text-[28px] font-script italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">Wedding</h2>
                 <p className="text-white font-sans text-[9px] lg:text-[9px] tracking-[0.15em] font-medium uppercase mt-[-3px]">OF OUR {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</p>
               </div>
@@ -228,6 +228,12 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .royal-purple-names-block {
             margin-top: -6px !important;
+          }
+          .royal-purple-request-text {
+            margin-top: 14px !important;
+          }
+          .royal-purple-wedding-heading-section {
+            margin-top: 9px !important;
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 49px !important;
