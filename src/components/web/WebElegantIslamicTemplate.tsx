@@ -44,7 +44,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-auto min-h-[680px] lg:h-[715px] mt-[10px] lg:mt-0"
+          className="relative w-full max-w-[420px] lg:max-w-lg flex flex-col justify-between text-center border-[1px] border-[#c5a059]/30 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] overflow-hidden shrink-0 rounded-[5px] h-auto min-h-[680px] lg:h-[715px] mt-[10px] lg:mt-0 pink-panther-card"
         >
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
           
@@ -89,7 +89,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
               className="flex flex-col items-center mb-6"
             >
-              <p className="text-pink-primary font-poppins text-[clamp(8px,2.5vw,10px)] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4">
+              <p className={`text-pink-primary font-poppins text-[clamp(8px,2.5vw,10px)] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap overflow-hidden text-ellipsis px-4 ${wedding.host_selection === 'bride_side' ? 'bride-parent-text' : ''}`}>
                 {wedding.host_selection === 'bride_side' 
                   ? `${wedding.bride_father_name || ""} & ${wedding.bride_mother_name || ""}` 
                   : `${wedding.groom_father_name || ""} & ${wedding.groom_mother_name || ""}`}
@@ -135,7 +135,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
               className="flex flex-col items-center mb-[13px]"
             >
-              <p className="text-pink-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap">
+              <p className={`text-pink-primary font-poppins text-[10px] lg:text-[11px] font-extrabold uppercase tracking-[0.05em] [word-spacing:0.1em] mb-1 whitespace-nowrap ${wedding.host_selection !== 'bride_side' ? 'bride-parent-text' : ''}`}>
                 {wedding.host_selection === 'bride_side' 
                   ? (wedding.groom_father_name ? `S/O ${wedding.groom_father_name} & ${wedding.groom_mother_name || ""}` : "") 
                   : (wedding.bride_father_name ? `D/O ${wedding.bride_father_name} & ${wedding.bride_mother_name || ""}` : "")}
@@ -318,11 +318,19 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
         .animate-shine { animation: shine 1.5s ease-out; }
         @media (max-width: 767px) {
           .web-template-container {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+          }
+          .pink-panther-card {
+            margin-top: 20px !important;
+            background-color: #FF8DA1 !important;
           }
           .mobile-invitation-image {
             object-fit: contain !important;
+            background-color: #FF8DA1 !important;
+          }
+          .bride-parent-text {
+            font-size: 9.2px !important;
           }
         }
       `}</style>
