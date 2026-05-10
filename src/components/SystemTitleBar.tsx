@@ -14,19 +14,12 @@ export function SystemTitleBar() {
   useEffect(() => {
     const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
     const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-    const isInvitationPage = pathname.startsWith('/invite/');
     
     const hideOn = ["/", "/admin/login", "/admin"];
     const shouldHideDefault = hideOn.includes(pathname);
     
-    if (isInvitationPage) {
-      // Show on browser, hide only on Native App Shell or Standalone PWA
-      // Strictly for desktop (>=1024px), we always want visibility restored as per user request
-      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
-      setIsVisible(isDesktop || !(isNativeApp || isStandalone));
-    } else {
-      setIsVisible(!shouldHideDefault);
-    }
+    // Show ONLY inside installed app (Native or PWA) AND not on the blacklisted pages
+    setIsVisible((isNativeApp || isStandalone) && !shouldHideDefault);
   }, [pathname]);
 
   const handleBack = () => {
