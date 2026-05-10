@@ -337,7 +337,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
             font-size: 8.2px !important;
           }
           .in-the-name-of-allah {
-            font-size: 8px !important;
+            font-size: 7px !important;
           }
           .mobile-glass-block {
             background-color: rgba(255, 141, 161, 0.85) !important;
