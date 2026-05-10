@@ -49,11 +49,14 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine" />
           
           <div className="absolute inset-0 z-0">
-            <img 
-              src="/pinkpanther3d.png" 
-              alt="Background" 
-              className="w-full h-full object-cover"
-            />
+            <picture>
+              <source media="(max-width: 767px)" srcSet="/pinkpanther3dmobile.png" />
+              <img 
+                src="/pinkpanther3d.png" 
+                alt="Background" 
+                className="w-full h-full object-cover mobile-invitation-image"
+              />
+            </picture>
           </div>
 
           <motion.div
@@ -317,6 +320,9 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           .web-template-container {
             padding-left: 10px !important;
             padding-right: 10px !important;
+          }
+          .mobile-invitation-image {
+            object-fit: contain !important;
           }
         }
       `}</style>
