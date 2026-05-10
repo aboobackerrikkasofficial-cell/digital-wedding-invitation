@@ -260,7 +260,13 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .royal-purple-time-container,
           .royal-purple-location-container {
-            gap: 6px !important;
+            gap: 4px !important;
+          }
+          .royal-purple-time-container p {
+            font-size: 8.5px !important;
+          }
+          .royal-purple-location-container p {
+            font-size: 7.5px !important;
           }
           .royal-purple-location-container {
             justify-content: flex-start !important;
@@ -268,7 +274,12 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
           .royal-purple-strip-content {
             justify-content: center !important;
-            gap: 12px !important;
+            gap: 8px !important;
+          }
+          .royal-purple-strip-block {
+            border-radius: 1.25rem !important;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
           }
         }
       `}</style>
