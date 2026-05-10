@@ -95,7 +95,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
       <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-[60px] items-center justify-center w-full max-w-6xl h-full">
         <main className="relative w-full royal-purple-main-card flex flex-col justify-between text-center border-2 border-gold/25 rounded-[2.5rem] lg:rounded-[3rem] bg-white/5 backdrop-blur-sm shadow-[12px_12px_30px_rgba(212,175,55,0.12)] overflow-hidden px-0 pt-4 lg:pt-[20px] pb-0 lg:max-w-lg lg:h-full lg:max-h-[715px]">
           <GoldArc />
-          <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.6 } } }} initial="hidden" animate="show" className="relative z-10 w-full flex-grow flex flex-col items-center justify-between text-center mt-[75px] lg:mt-[100px] px-2 lg:px-4" style={{ willChange: "transform, opacity" }}>
+          <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.6 } } }} initial="hidden" animate="show" className="relative z-10 w-full flex-grow flex flex-col items-center justify-between text-center mt-[75px] lg:mt-[100px] px-2 lg:px-4 royal-purple-inner-container" style={{ willChange: "transform, opacity" }}>
             <motion.div variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }} className="flex-shrink-0 flex flex-col items-center justify-start min-h-[80px] lg:min-h-[140px] pt-4 lg:pt-8">
               {((wedding.host_selection === 'bride_side' && wedding.bride_father_name) || (wedding.host_selection === 'groom_side' && wedding.groom_father_name)) && (
                 <div className={`flex flex-col items-center mb-1 lg:mb-2 mt-[45px] ${wedding.nikah_date ? 'lg:mt-[30px]' : 'lg:mt-[50px]'}`}>
@@ -217,6 +217,11 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             max-width: 420px;
             margin-left: auto;
             margin-right: auto;
+            justify-content: flex-start !important;
+          }
+          .royal-purple-inner-container {
+            justify-content: flex-start !important;
+            gap: 1.5rem !important;
           }
           .web-template-container .relative.z-10.flex-col {
             gap: 34px !important;
