@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { Countdown } from "../Countdown";
 import { PinkPantherBackground } from "../PinkPantherBackground";
 import { Wedding } from "@/types/wedding";
+import { cn } from "@/lib/utils";
 
 interface ElegantTemplateProps {
   wedding: Wedding;
