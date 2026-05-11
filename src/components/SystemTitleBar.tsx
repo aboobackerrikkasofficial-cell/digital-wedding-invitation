@@ -51,7 +51,7 @@ export function SystemTitleBar() {
 
   return (
     <div className={cn(
-      "fixed top-6 left-0 right-0 z-[99999] hidden lg:flex items-center justify-between px-6 pointer-events-none lg:px-20",
+      "fixed top-6 lg:top-9 left-0 right-0 z-[99999] hidden lg:flex items-center justify-between px-6 pointer-events-none lg:px-20",
       isAdjustedPage && "md:left-72 md:px-0 md:pl-24 md:pr-28 md:mt-4"
     )}>
       {/* Glass Back Button */}
