@@ -42,6 +42,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             alt="Mobile Background" 
             fill 
             priority 
+            unoptimized={true}
             className="object-cover object-center"
             sizes="100vw"
           />
@@ -53,6 +54,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             alt="Web Background" 
             fill 
             priority 
+            unoptimized={true}
             className="object-cover object-center"
             sizes="100vw"
           />
@@ -74,6 +76,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
               src="/peacharch.png" 
               alt="Peach Arch Monogram" 
               fill 
+              unoptimized={true}
               className="object-contain"
               priority
             />
