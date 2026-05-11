@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { MobileInitializationWrapper } from "@/components/MobileInitializationWrapper";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -50,14 +51,17 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <head>
+        {/* TEST PWA INSTALL FEATURE - Reversible Registration */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                  for(let registration of registrations) {
-                    registration.unregister();
-                  }
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                  }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                  });
                 });
               }
             `,
@@ -69,6 +73,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <MobileInitializationWrapper>
+          <PWAInstallPrompt /> {/* TEST PWA INSTALL PROMPT */}
           {children}
         </MobileInitializationWrapper>
       </body>
