@@ -248,13 +248,18 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           }
         }
         @media (min-width: 1025px) {
+          .royal-purple-strip-content {
+            gap: 0.75rem !important;
+          }
           .royal-purple-location-container {
             justify-content: flex-start !important;
-            padding-left: 2rem !important;
-            padding-right: 1.5rem !important;
+            padding-left: 0.8rem !important;
+            padding-right: 0.5rem !important;
           }
           .royal-purple-location-container p {
-            font-size: 11px !important;
+            font-size: 10.5px !important;
+            white-space: nowrap !important;
+            overflow: visible !important;
           }
           .royal-purple-request-text {
             margin-top: 1.2rem !important;
