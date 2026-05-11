@@ -60,7 +60,6 @@ export default function InviteLayout({
           console.error("No wedding data found for slug:", slug);
           setError("Wedding invitation not found.");
         } else {
-          console.log("Wedding data successfully fetched:", data);
           const sideParam = new URLSearchParams(window.location.search).get('side');
           if (data) {
             if (sideParam === 'bride') {
@@ -88,7 +87,6 @@ export default function InviteLayout({
 
   // Debug wedding state changes
   useEffect(() => {
-    console.log("InviteLayout: Wedding state updated:", wedding?.id || 'NO_ID', wedding);
   }, [wedding]);
 
   // Handle the "Opened" state for music
