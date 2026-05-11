@@ -247,6 +247,11 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             word-break: break-word !important;
           }
         }
+        @media (min-width: 1025px) {
+          .royal-purple-location-container {
+            justify-content: flex-start !important;
+          }
+        }
         @media (max-width: 767px) {
           .web-template-container {
             padding-left: 13px !important;
