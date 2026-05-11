@@ -112,7 +112,10 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               className="flex flex-col items-center w-full mb-[2px]"
               style={{ willChange: "transform, opacity" }}
             >
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+              <h1 className={cn(
+                "w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]",
+                wedding.host_selection === 'bride_side' && "bride-name-mobile-wrap"
+              )}>
                 {(wedding.host_selection === 'bride_side' ? wedding.bride_name : wedding.groom_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
@@ -121,8 +124,11 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
               </h1>
               
               <p className="text-pink-muted font-cartoon text-[11px] tracking-[0.4em] uppercase my-1 opacity-60 drop-shadow-sm">WITH</p>
-
-              <h1 className="w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]">
+ 
+              <h1 className={cn(
+                "w-full text-center font-cartoon text-pink-dark text-[clamp(9px,6vw,26px)] font-extrabold tracking-[0.02em] uppercase leading-tight px-6 max-w-full whitespace-nowrap groom-bride-names drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]",
+                wedding.host_selection !== 'bride_side' && "bride-name-mobile-wrap"
+              )}>
                 {(wedding.host_selection === 'bride_side' ? wedding.groom_name : wedding.bride_name).split(' ').map((word: string, i: number) => (
                   <span key={i} className="inline-block mx-[0.1em]">
                     <span className="text-[1.1em]">{word[0]}</span>{word.slice(1)}
@@ -367,6 +373,16 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
           @keyframes blockGlow {
             0%, 100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 255, 255, 0.1); }
             50% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 25px rgba(255, 255, 255, 0.2); }
+          }
+          @media (max-width: 640px) {
+            .bride-name-mobile-wrap {
+              white-space: normal !important;
+              display: -webkit-box !important;
+              -webkit-line-clamp: 2 !important;
+              -webkit-box-orient: vertical !important;
+              overflow: hidden !important;
+              line-height: 1.2 !important;
+            }
           }
         }
       `}</style>
