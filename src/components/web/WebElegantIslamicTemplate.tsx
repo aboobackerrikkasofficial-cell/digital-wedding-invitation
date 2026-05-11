@@ -101,7 +101,7 @@ export function WebElegantIslamicTemplate({ wedding, onAttend, onNotAttend }: El
 
             <motion.p
               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-              className="text-pink-primary font-poppins text-[8.5px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-medium uppercase mt-[-14px] mb-[10px] flex flex-col items-center gap-0 leading-none"
+              className="text-pink-primary font-poppins text-[7.5px] lg:text-[9px] tracking-[0.05em] [word-spacing:0.1em] font-medium uppercase mt-[-14px] mb-[10px] flex flex-col items-center gap-0 leading-none"
             >
               <span>REQUEST THE PLEASURE OF YOUR COMPANY AT THE WEDDING CEREMONY</span>
               <span>OF OUR BELOVED {wedding.host_selection === 'bride_side' ? 'DAUGHTER' : 'SON'}</span>
