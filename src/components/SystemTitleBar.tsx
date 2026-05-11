@@ -12,14 +12,18 @@ export function SystemTitleBar() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const isNativeApp = typeof window !== 'undefined' && (window as any).Capacitor?.platform && ((window as any).Capacitor?.platform === 'android' || (window as any).Capacitor?.platform === 'ios');
-    const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
-    
-    const hideOn = ["/", "/admin/login", "/admin"];
-    const shouldHideDefault = hideOn.includes(pathname);
-    
-    // Show ONLY inside installed app (Native or PWA) AND not on the blacklisted pages
-    setIsVisible((isNativeApp || isStandalone) && !shouldHideDefault);
+    const checkVisibility = () => {
+      const isLargeScreen = window.innerWidth >= 1024;
+      const hideOn = ["/", "/admin/login", "/admin"];
+      const shouldHideOnPage = hideOn.includes(pathname);
+      
+      // Show ONLY on large screens (Desktop/Web App) and NOT on the blacklisted pages
+      setIsVisible(isLargeScreen && !shouldHideOnPage);
+    };
+
+    checkVisibility();
+    window.addEventListener('resize', checkVisibility);
+    return () => window.removeEventListener('resize', checkVisibility);
   }, [pathname]);
 
   const handleBack = () => {
@@ -46,8 +50,7 @@ export function SystemTitleBar() {
 
   return (
     <div className={cn(
-      "fixed top-6 left-0 right-0 z-[99999] flex items-center justify-between px-6 pointer-events-none lg:px-10",
-      "lg:opacity-100 lg:visible lg:flex",
+      "fixed top-6 left-0 right-0 z-[99999] hidden lg:flex items-center justify-between px-6 pointer-events-none lg:px-10",
       isAdjustedPage && "md:left-72 md:px-0 md:pl-1 md:pr-3"
     )}>
       {/* Glass Back Button */}
