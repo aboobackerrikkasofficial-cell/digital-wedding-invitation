@@ -67,38 +67,34 @@ export function PWAInstallPrompt() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          className="fixed bottom-6 left-6 right-6 z-[9999] md:hidden"
+          initial={{ opacity: 0, scale: 0.8, x: 20 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          exit={{ opacity: 0, scale: 0.8, x: 20 }}
+          className="fixed bottom-24 right-4 z-[9999] md:hidden"
         >
-          <div className="bg-white/90 backdrop-blur-md border border-gold/20 rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          <div className="relative group">
+            {/* Minimal Floating Button */}
+            <button
+              onClick={handleInstallClick}
+              className="flex items-center gap-2 bg-white/90 backdrop-blur-md border border-gold/30 p-2 pl-3 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] shadow-gold/20 active:scale-95 transition-all"
+            >
+              <span className="text-[10px] font-bold text-gold uppercase tracking-tighter">Install</span>
+              <div className="w-7 h-7 bg-gold rounded-full flex items-center justify-center text-white shadow-inner">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </div>
-              <div>
-                <p className="text-sm font-bold text-gray-900">Install App</p>
-                <p className="text-[10px] text-gray-500 font-medium">For Full Screen Experience</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsVisible(false)}
-                className="px-3 py-2 text-[10px] font-bold text-gray-400 hover:text-gray-600 uppercase tracking-wider"
-              >
-                Later
-              </button>
-              <button
-                onClick={handleInstallClick}
-                className="bg-gold text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg shadow-gold/20 active:scale-95 transition-all"
-              >
-                Install
-              </button>
-            </div>
+            </button>
+
+            {/* Subtle Dismiss X */}
+            <button
+              onClick={() => setIsVisible(false)}
+              className="absolute -top-1 -left-1 w-4 h-4 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 border border-gray-200 hover:text-gray-600 shadow-sm"
+            >
+              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </motion.div>
       )}
