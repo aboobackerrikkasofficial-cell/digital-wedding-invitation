@@ -251,6 +251,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
           .royal-purple-location-container {
             justify-content: flex-start !important;
           }
+          .royal-purple-location-container p {
+            font-size: 11px !important;
+          }
         }
         @media (max-width: 767px) {
           .web-template-container {
