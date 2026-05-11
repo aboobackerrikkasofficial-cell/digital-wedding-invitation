@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { MapPin, Calendar, MousePointer2, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Wedding } from "@/types/wedding";
+import { Countdown } from "../Countdown";
+import Image from "next/image";
 
 interface PeachFloralTemplateProps {
   wedding: Wedding;
@@ -18,123 +19,133 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
 
   useEffect(() => {
     setMounted(true);
-    const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = originalStyle;
+      document.body.style.overflow = "auto";
     };
   }, []);
 
   if (!mounted) return null;
 
+  const brideInitial = wedding.bride_name?.[0] || "B";
+  const groomInitial = wedding.groom_name?.[0] || "G";
+
   return (
-    <div className="peach-theme font-fredoka selection:bg-[#F4C542]/30 w-full relative h-[100dvh] overflow-hidden">
+    <div className="peach-floral-cinematic-theme w-full relative h-[100dvh] overflow-hidden bg-[#fff5f0] font-serif">
       
+      {/* 1. CINEMATIC BACKGROUND */}
       <div className="fixed inset-0 z-0">
-        <picture>
-          <source media="(max-width: 768px)" srcSet="/main/portraittom&jerry.png" />
-          <img 
-            src="/main/landscapetom&jerry.png" 
-            alt="Background" 
-            className="w-full h-full object-cover object-center no-repeat"
-          />
-        </picture>
+        <Image 
+          src="/peach_floral/bg.png" 
+          alt="Peach Floral Background" 
+          fill 
+          priority 
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Soft overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-1" />
       </div>
 
-      <div className="relative z-10 w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between px-[10px] py-4 md:p-20 min-h-[100dvh]">
+      {/* 2. CINEMATIC CONTENT OVERLAY */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-10 lg:py-16 px-6">
         
-        <motion.main 
-          initial={{ opacity: 0, x: -100, rotate: -2 }}
-          animate={{ opacity: 1, x: 0, rotate: -1.5 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-full max-w-[500px] bg-[#FDF5E6] rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 md:p-12 border-[0.8rem] border-white/40 md:ml-10"
+        {/* TOP SECTION: Monogram & Names */}
+        <motion.div 
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="flex flex-col items-center text-center space-y-6"
         >
-          <div className="absolute inset-2 border-[6px] border-dotted border-[#8B5A2B]/15 rounded-[0.8rem] pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="mb-10">
-              <span className="bg-[#2B4570] text-[#F4C542] font-black px-8 py-2.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-md border-2 border-[#F4C542]/20">
-                YOU&apos;RE INVITED!
-              </span>
+          {/* Monogram */}
+          <div className="relative w-32 h-32 lg:w-40 lg:h-40 flex items-center justify-center">
+            <Image 
+              src="/peach_floral/frame.png" 
+              alt="Monogram Frame" 
+              fill 
+              className="object-contain"
+            />
+            <div className="relative z-10 flex items-center gap-1 text-[#d4af37] drop-shadow-lg">
+              <span className="text-3xl lg:text-4xl font-serif font-bold italic">{brideInitial}</span>
+              <span className="text-xl lg:text-2xl font-serif mt-2 font-light opacity-80">+</span>
+              <span className="text-3xl lg:text-4xl font-serif font-bold italic">{groomInitial}</span>
             </div>
+          </div>
 
-            <div className="mb-10 space-y-3">
-              <h1 className="text-4xl md:text-6xl font-black text-[#2B4570] leading-none tracking-tight">
+          <div className="space-y-2">
+            <p className="text-[#f9f6e5]/80 text-xs lg:text-sm uppercase tracking-[0.4em] font-medium drop-shadow-md">
+              YOU ARE INVITED TO THE WEDDING OF
+            </p>
+            <div className="flex flex-col items-center">
+              <h1 className="text-5xl lg:text-7xl font-serif font-black text-[#f9f6e5] leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)] italic">
                 {wedding.bride_name}
               </h1>
-              <div className="text-[#F4C542] text-2xl font-black">&</div>
-              <h1 className="text-4xl md:text-6xl font-black text-[#8B4513] leading-none tracking-tight">
+              <span className="text-3xl lg:text-4xl text-[#d4af37] font-serif my-1 font-light italic opacity-90">&</span>
+              <h1 className="text-5xl lg:text-7xl font-serif font-black text-[#f9f6e5] leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)] italic">
                 {wedding.groom_name}
               </h1>
             </div>
-
-            <div className="w-32 h-1 bg-[#8B5A2B]/10 rounded-full mb-10" />
-
-            <div className="w-full space-y-8 mb-6">
-              <div className="relative bg-[#FFF9E6] rounded-2xl p-5 border-2 border-[#8B5A2B]/10 shadow-sm flex flex-col items-center group">
-                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-sm border border-[#8B5A2B]/10">
-                    <Calendar className="text-[#2B4570]" size={20} />
-                 </div>
-                 <p className="text-[10px] uppercase font-black text-[#8B5A2B]/40 tracking-widest mt-2 mb-2">When</p>
-                 <p className="font-black text-[#2B4570] text-lg">{format(date, "EEEE, MMMM do, yyyy")}</p>
-                 <p className="text-[#F4C542] font-black text-sm">{format(date, "h:mm a")}</p>
-                 <BookOpen className="absolute bottom-2 right-2 text-[#8B5A2B]/5" size={40} />
-              </div>
-
-              <div className="relative bg-[#FFF9E6] rounded-2xl p-5 border-2 border-[#8B5A2B]/10 shadow-sm flex flex-col items-center">
-                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-sm border border-[#8B5A2B]/10">
-                    <MapPin className="text-[#F4C542]" size={20} />
-                 </div>
-                 <p className="text-[10px] uppercase font-black text-[#2B4570]/40 tracking-widest mt-2 mb-2">Where</p>
-                 <p className="font-black text-[#2B4570] text-lg mb-3">{wedding.venue_name}</p>
-              </div>
-            </div>
           </div>
-        </motion.main>
+        </motion.div>
 
-        <motion.section 
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative z-10 w-full max-w-[360px] md:mt-40 md:mr-20"
+        {/* CENTER SECTION: Date & Countdown */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+          className="flex flex-col items-center text-center space-y-8 w-full max-w-lg bg-black/5 backdrop-blur-[2px] py-8 rounded-[2rem] border border-white/10"
         >
-          <div className="relative bg-[#F5F5F5] p-10 rounded-[3.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.2)] border-2 border-white/50">
-            <div className="absolute top-1/2 left-[-30px] -translate-y-1/2 hidden md:block w-0 h-0 border-t-[15px] border-t-transparent border-r-[35px] border-r-[#F5F5F5] border-b-[15px] border-b-transparent" />
-            
-            <div className="text-center space-y-10">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-black text-[#2B4570]">Will you join us?</h2>
-                <p className="text-[10px] font-black text-[#8B5A2B]/40 uppercase tracking-[0.2em]">RSVP BY APR 25TH</p>
-              </div>
-
-              <div className="flex flex-col gap-5">
-                <button 
-                  onClick={onAttend}
-                  className="group bg-gradient-to-b from-[#8B4513] to-[#5A3D1D] text-white font-black py-6 px-10 rounded-[2rem] shadow-[0_10px_0_#3E2A14] active:shadow-none active:translate-y-[10px] transition-all flex items-center justify-center gap-3"
-                >
-                  <span className="uppercase tracking-widest text-sm">Yes! Count me in!</span>
-                  <MousePointer2 size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </button>
-                
-                <button 
-                  onClick={onNotAttend}
-                  className="bg-[#D1D5DB] text-[#4B5563] font-black py-5 px-10 rounded-[2rem] hover:bg-[#C4C9D1] transition-all active:scale-[0.98] text-xs uppercase tracking-widest"
-                >
-                  Sorry, I can&apos;t make it
-                </button>
-              </div>
+          {/* Elegant Date Block */}
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-12 h-[1px] bg-[#d4af37]/40 mb-2" />
+            <div className="flex items-center gap-6 text-[#f9f6e5] font-serif uppercase tracking-[0.2em] text-lg lg:text-2xl font-bold">
+              <span>{format(date, "dd")}</span>
+              <span className="text-[#d4af37]/60 text-sm">|</span>
+              <span>{format(date, "MMM")}</span>
+              <span className="text-[#d4af37]/60 text-sm">|</span>
+              <span>{format(date, "yyyy")}</span>
             </div>
+            <p className="text-[#d4af37] font-serif uppercase tracking-[0.3em] text-xs lg:text-sm font-semibold">
+              {format(date, "EEEE")}
+            </p>
+            <div className="w-12 h-[1px] bg-[#d4af37]/40 mt-2" />
           </div>
-        </motion.section>
+
+          {/* Luxury Countdown */}
+          <div className="w-full px-4">
+            <Countdown 
+              targetDate={wedding.wedding_date} 
+              numberClassName="text-3xl lg:text-4xl text-[#f9f6e5] font-serif font-bold drop-shadow-md"
+              labelClassName="text-[10px] uppercase tracking-widest text-[#d4af37] font-bold"
+              separatorClassName="text-[#f9f6e5]/20 text-2xl"
+            />
+          </div>
+
+          {/* RSVP Button */}
+          <button 
+            onClick={onAttend}
+            className="group relative bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white font-bold py-4 px-12 rounded-full shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] active:scale-95 transition-all duration-300 uppercase tracking-[0.2em] text-xs lg:text-sm overflow-hidden"
+          >
+            <span className="relative z-10">RSVP NOW</span>
+            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+          </button>
+        </motion.div>
+
+        {/* BOTTOM SECTION: Subtle Spacing for the background artwork */}
+        <div className="h-32 lg:h-48 pointer-events-none" />
 
       </div>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
-        .font-fredoka { font-family: 'Fredoka', sans-serif; }
-        @media (min-width: 768px) {
-          .peach-theme main { margin-left: 10% !important; }
-          .peach-theme section { margin-right: 5% !important; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+        
+        .peach-floral-cinematic-theme {
+          font-family: 'Playfair Display', serif;
+        }
+
+        @keyframes floatGlow {
+          0%, 100% { opacity: 0.4; transform: translateY(0); }
+          50% { opacity: 0.7; transform: translateY(-10px); }
         }
       `}</style>
     </div>
