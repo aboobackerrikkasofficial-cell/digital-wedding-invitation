@@ -13,12 +13,13 @@ export function SystemTitleBar() {
 
   useEffect(() => {
     const checkVisibility = () => {
+      const isStandalone = typeof window !== 'undefined' && (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone);
       const isLargeScreen = window.innerWidth >= 1024;
       const hideOn = ["/", "/admin/login", "/admin"];
       const shouldHideOnPage = hideOn.includes(pathname);
       
-      // Show ONLY on large screens (Desktop/Web App) and NOT on the blacklisted pages
-      setIsVisible(isLargeScreen && !shouldHideOnPage);
+      // Show ONLY inside actual installed Desktop App window (Standalone PWA mode on Large Screen)
+      setIsVisible(isStandalone && isLargeScreen && !shouldHideOnPage);
     };
 
     checkVisibility();
@@ -51,7 +52,7 @@ export function SystemTitleBar() {
   return (
     <div className={cn(
       "fixed top-6 left-0 right-0 z-[99999] hidden lg:flex items-center justify-between px-6 pointer-events-none lg:px-10",
-      isAdjustedPage && "md:left-72 md:px-0 md:pl-1 md:pr-3"
+      isAdjustedPage && "md:left-72 md:px-0 md:pl-4 md:pr-6 md:mt-4"
     )}>
       {/* Glass Back Button */}
       <button
