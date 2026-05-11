@@ -33,32 +33,28 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
   return (
     <div className="peach-floral-cinematic-final w-full relative h-[100dvh] overflow-hidden font-serif">
       
-      {/* 1. CINEMATIC BACKGROUNDS */}
+      {/* 1. CINEMATIC BACKGROUNDS - FORCE CSS RENDERING FOR VERCEL PATH STABILITY */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background */}
-        <div className="block lg:hidden w-full h-full">
-          <Image 
-            src="/peachbackgroundmobile.png" 
-            alt="Mobile Background" 
-            fill 
-            priority 
-            unoptimized={true}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
+        <div 
+          className="block lg:hidden w-full h-full"
+          style={{
+            backgroundImage: "url('/peachbackgroundmobile.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        />
         {/* Web Background */}
-        <div className="hidden lg:block w-full h-full">
-          <Image 
-            src="/peachbackgroundweb.png" 
-            alt="Web Background" 
-            fill 
-            priority 
-            unoptimized={true}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
+        <div 
+          className="hidden lg:block w-full h-full"
+          style={{
+            backgroundImage: "url('/peachbackgroundweb.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        />
       </div>
 
       {/* 2. EXACT CONTENT OVERLAY (Matching Reference Layout) */}
@@ -72,15 +68,17 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           className="flex flex-col items-center text-center mt-2 lg:mt-4"
         >
           <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center">
+            {/* FIXED NEXT.JS IMAGE FOR ARCH */}
             <Image 
               src="/peacharch.png" 
               alt="Peach Arch Monogram" 
-              fill 
-              unoptimized={true}
+              width={220}
+              height={220}
+              unoptimized
               className="object-contain"
               priority
             />
-            <div className="relative z-10 flex items-center gap-1.5 text-[#C5A059] mb-1">
+            <div className="absolute inset-0 z-10 flex items-center justify-center gap-1.5 text-[#C5A059] mb-1">
               <span className="text-4xl lg:text-5xl font-serif font-bold italic drop-shadow-sm">{brideInitial}</span>
               <span className="text-xl lg:text-2xl font-serif mt-2 font-light opacity-60">+</span>
               <span className="text-4xl lg:text-5xl font-serif font-bold italic drop-shadow-sm">{groomInitial}</span>
