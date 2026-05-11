@@ -230,7 +230,7 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
             margin-top: -6px !important;
           }
           .royal-purple-request-text {
-            margin-top: 14px !important;
+            margin-top: 24px !important;
           }
           .royal-purple-wedding-heading-section {
             margin-top: 9px !important;
@@ -250,6 +250,9 @@ export function WebRoyalPurpleIslamicTemplate({ wedding, onAttend, onNotAttend }
         @media (min-width: 1025px) {
           .royal-purple-location-container {
             justify-content: flex-start !important;
+            padding-right: 20px !important;
+            padding-left: 20px !important;
+            flex-grow: 1 !important;
           }
           .royal-purple-location-container p {
             font-size: 11px !important;
