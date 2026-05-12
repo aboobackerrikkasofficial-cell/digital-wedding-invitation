@@ -73,54 +73,59 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. TWINKLING STARS (Sky area) */}
+        {/* B. TWINKLING STARS (Sky area) - Enhanced Visibility */}
         <div className="absolute inset-0 z-[2]">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={`star-${i}`}
-              className="absolute w-[2px] h-[2px] bg-white rounded-full"
+              className="absolute w-[3px] h-[3px] bg-white rounded-full"
               style={{ 
                 left: `${(i * 137.5) % 100}%`, 
                 top: `${(i * 97.1) % 45}%`, 
-                boxShadow: '0 0 6px 1.5px rgba(255, 255, 255, 0.7)'
+                boxShadow: '0 0 10px 2px rgba(255, 255, 255, 0.9)',
+                filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))'
               }}
               animate={{ 
-                opacity: [0.3, 1, 0.3],
-                scale: [1, 1.3, 1]
+                opacity: [0.2, 1, 0.2],
+                scale: [0.8, 1.4, 0.8]
               }}
               transition={{ 
-                duration: 3 + (i % 4), 
+                duration: 2 + (i % 3), 
                 repeat: Infinity, 
                 ease: "easeInOut",
-                delay: i * 0.5
+                delay: i * 0.3
               }}
             />
           ))}
         </div>
 
-        {/* C. FLOATING GOLDEN SPARKLES (Full screen) */}
+        {/* C. FLOATING GOLDEN SPARKLES (Full screen) - Enhanced Count & Brightness */}
         <div className="absolute inset-0 z-[3]">
-          {[...Array(18)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <motion.div
               key={`sparkle-${i}`}
-              className="absolute w-1 h-1 bg-[#C5A059] rounded-full"
+              className="absolute rounded-full"
               style={{ 
                 left: `${(i * 123.7) % 100}%`, 
                 top: `${(i * 157.3) % 100}%`,
-                filter: 'blur(0.8px)',
-                boxShadow: '0 0 10px #C5A059'
+                width: (i % 4 === 0 ? 4 : 2) + 'px',
+                height: (i % 4 === 0 ? 4 : 2) + 'px',
+                background: 'radial-gradient(circle, #fff 0%, #FFD700 50%, #C5A059 100%)',
+                boxShadow: '0 0 15px 3px rgba(255, 215, 0, 0.7)',
+                filter: 'blur(0.4px)'
               }}
               animate={{ 
-                y: [0, -40, 0],
-                x: [0, (i % 2 === 0 ? 20 : -20), 0],
-                opacity: [0, 0.6, 0],
-                scale: [0.4, 0.8, 0.4]
+                y: [0, -150],
+                x: [0, (i % 2 === 0 ? 40 : -40)],
+                opacity: [0, 0.9, 0.9, 0],
+                scale: [0.5, 1.2, 1.2, 0.5]
               }}
               transition={{ 
-                duration: 12 + (i % 8), 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: i * 0.7
+                y: { duration: 20 + (i % 15), repeat: Infinity, ease: "linear" },
+                x: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
+                delay: i * 0.4
               }}
             />
           ))}
