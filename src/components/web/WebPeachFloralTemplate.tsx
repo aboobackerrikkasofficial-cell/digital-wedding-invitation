@@ -149,32 +149,32 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             />
             <div className="absolute inset-0 z-10 flex items-center justify-center text-[#C5A059] pointer-events-none">
               <div className="relative w-24 h-24 lg:w-32 lg:h-32 flex items-center justify-center">
-                {/* First Initial - Upper Left (Slightly Smaller) */}
+                {/* First Initial - Upper Left (Top Layer, ~72% size) */}
                 <motion.span 
-                  initial={{ opacity: 0, x: -10, y: -10 }}
-                  animate={{ opacity: 1, x: -20, y: -18 }}
+                  initial={{ opacity: 0, x: -8, y: -12 }}
+                  animate={{ opacity: 1, x: -14, y: -18 }}
                   transition={{ duration: 1.2, delay: 0.5 }}
-                  className="absolute text-5xl lg:text-7xl font-serif font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] bg-gradient-to-b from-[#f9f6e5] via-[#C5A059] to-[#8a6d3b] bg-clip-text text-transparent leading-none"
+                  className="absolute z-20 text-[46px] lg:text-[62px] font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#FDFDFD] via-[#D4AF37] to-[#997A15] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {brideInitial}
                 </motion.span>
                 
-                {/* Center Sparkle/Plus */}
+                {/* Small Sparkle/Plus (Positioned bottom-left of the visual center) */}
                 <motion.span 
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 0.8, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0, x: -18, y: 14 }}
+                  animate={{ opacity: 0.8, scale: 1, x: -18, y: 14 }}
                   transition={{ duration: 0.8, delay: 1.2 }}
-                  className="absolute text-lg lg:text-2xl font-serif font-light z-20 mt-1"
+                  className="absolute z-10 text-[14px] lg:text-[18px] font-light text-[#D4AF37] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)] monogram-letter"
                 >
-                  +
+                  ✦
                 </motion.span>
                 
-                {/* Second Initial - Lower Right (Slightly Larger) */}
+                {/* Second Initial - Lower Right (Larger 100%, Underneath) */}
                 <motion.span 
-                  initial={{ opacity: 0, x: 10, y: 10 }}
-                  animate={{ opacity: 1, x: 18, y: 22 }}
+                  initial={{ opacity: 0, x: 8, y: 10 }}
+                  animate={{ opacity: 1, x: 12, y: 14 }}
                   transition={{ duration: 1.2, delay: 0.8 }}
-                  className="absolute text-6xl lg:text-8xl font-serif font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] bg-gradient-to-b from-[#f9f6e5] via-[#C5A059] to-[#8a6d3b] bg-clip-text text-transparent leading-none"
+                  className="absolute z-0 text-[64px] lg:text-[86px] font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#FDFDFD] via-[#D4AF37] to-[#997A15] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {groomInitial}
                 </motion.span>
@@ -280,9 +280,14 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
         
         .peach-floral-cinematic-final {
           font-family: 'Playfair Display', serif;
+        }
+
+        .monogram-letter {
+          font-family: 'Cinzel', serif;
         }
 
         .no-scrollbar::-webkit-scrollbar {
