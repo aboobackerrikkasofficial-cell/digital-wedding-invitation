@@ -73,7 +73,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. GALAXY TWINKLING STARS (Integrated into sky) */}
+        {/* B. GALAXY TWINKLING STARS (Integrated into sky) - Refined Glow Colors */}
         <div className="absolute inset-0 z-[2]">
           {[...Array(25)].map((_, i) => (
             <motion.div
@@ -84,16 +84,15 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                 top: `${(i * 97.1) % 55}%`,
                 width: (i % 3 === 0 ? 6 : 3) + 'px',
                 height: (i % 3 === 0 ? 6 : 3) + 'px',
-                background: 'white',
+                background: 'radial-gradient(circle, #FFF5E1 0%, #FF91A4 40%, #9D50BB 100%)',
                 clipPath: 'polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%)',
-                filter: `drop-shadow(0 0 2px #FFD700) drop-shadow(0 0 5px #FF1493) drop-shadow(0 0 8px #8B008B)`,
-                opacity: i % 2 === 0 ? 0.8 : 0.4,
-                blur: i % 4 === 0 ? '1px' : '0px'
+                filter: `drop-shadow(0 0 4px #FF1493) drop-shadow(0 0 8px rgba(157, 80, 187, 0.6))`,
+                mixBlendMode: 'screen',
+                opacity: i % 2 === 0 ? 0.7 : 0.4,
               }}
               animate={{ 
-                opacity: [0.3, 1, 0.3],
-                scale: [1, 1.3, 1],
-                rotate: i % 5 === 0 ? [0, 90, 0] : 0
+                opacity: [0.2, 0.9, 0.2],
+                scale: [0.9, 1.2, 0.9],
               }}
               transition={{ 
                 duration: 4 + (i % 4), 
@@ -105,7 +104,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           ))}
         </div>
 
-        {/* C. DIAMOND GALAXY SPARKLES (Floating depth) */}
+        {/* C. DIAMOND GALAXY SPARKLES (Floating depth) - Refined Glow Colors */}
         <div className="absolute inset-0 z-[3]">
           {[...Array(35)].map((_, i) => (
             <motion.div
@@ -116,10 +115,11 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                 top: `${(i * 157.3) % 100}%`,
                 width: (i % 5 === 0 ? 8 : 4) + 'px',
                 height: (i % 5 === 0 ? 8 : 4) + 'px',
-                background: 'rgba(255, 255, 255, 0.95)',
+                background: 'radial-gradient(circle, #FFF 0%, #FFF5E1 20%, #FF91A4 60%, #9D50BB 100%)',
                 clipPath: 'polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%)',
-                filter: `drop-shadow(0 0 3px #FFD700) drop-shadow(0 0 6px #FF1493) drop-shadow(0 0 12px #8B008B)`,
-                scaleX: i % 7 === 0 ? 1.5 : 1,
+                filter: `drop-shadow(0 0 5px #FF1493) drop-shadow(0 0 12px rgba(157, 80, 187, 0.5))`,
+                mixBlendMode: 'screen',
+                scaleX: i % 7 === 0 ? 1.4 : 1,
                 opacity: 0,
               }}
               animate={{ 
