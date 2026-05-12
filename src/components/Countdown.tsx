@@ -8,6 +8,7 @@ interface CountdownProps {
   numberClassName?: string;
   labelClassName?: string;
   separatorClassName?: string;
+  separatorText?: string;
 }
 
 const TimeUnit = ({ value, label, numberClassName, labelClassName }: { value: number; label: string; numberClassName?: string; labelClassName?: string }) => (
@@ -26,7 +27,7 @@ const TimeUnit = ({ value, label, numberClassName, labelClassName }: { value: nu
   </div>
 );
 
-export function Countdown({ targetDate, numberClassName, labelClassName, separatorClassName }: CountdownProps) {
+export function Countdown({ targetDate, numberClassName, labelClassName, separatorClassName, separatorText }: CountdownProps) {
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
@@ -61,11 +62,11 @@ export function Countdown({ targetDate, numberClassName, labelClassName, separat
   return (
     <div className="flex justify-center items-center">
       <TimeUnit value={timeLeft.days} label="Days" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>{separatorText || ':'}</div>
       <TimeUnit value={timeLeft.hours} label="Hours" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>{separatorText || ':'}</div>
       <TimeUnit value={timeLeft.minutes} label="Minutes" numberClassName={numberClassName} labelClassName={labelClassName} />
-      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>:</div>
+      <div className={`text-xl font-light mb-4 w-4 flex justify-center ${separatorClassName || 'text-white/20'}`}>{separatorText || ':'}</div>
       <TimeUnit value={timeLeft.seconds} label="Seconds" numberClassName={numberClassName} labelClassName={labelClassName} />
     </div>
   );
