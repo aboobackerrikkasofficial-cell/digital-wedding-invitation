@@ -73,11 +73,11 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. RADIANT CINEMATIC SPARKLES (Fixed, Intense Bloom matching reference) */}
+        {/* B. RADIANT CINEMATIC SPARKLES (Fixed, Intense Bloom - Refined Pink/Purple Palette) */}
         <div className="absolute inset-0 z-[2] overflow-hidden">
-          {[...Array(55)].map((_, i) => {
-            const size = (i % 12 === 0 ? 35 : i % 5 === 0 ? 20 : 10);
-            const starSize = size * 0.4;
+          {[...Array(80)].map((_, i) => {
+            const size = (i % 12 === 0 ? 48 : i % 5 === 0 ? 32 : 16);
+            const starSize = size * 0.35;
             return (
               <motion.div
                 key={`radiant-twinkle-${i}`}
@@ -89,8 +89,8 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   height: `${size}px`,
                 }}
                 animate={{ 
-                  opacity: [0.2, 0.9, 0.2],
-                  scale: [0.8, 1.1, 0.8],
+                  opacity: [0.15, 0.95, 0.15],
+                  scale: [0.85, 1.1, 0.85],
                 }}
                 transition={{ 
                   duration: 4 + (i % 6), 
@@ -99,25 +99,25 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   delay: i * 0.2
                 }}
               >
-                {/* 1. LAYERED BLOOM (Cinematic Glow) */}
+                {/* 1. LAYERED BLOOM (Cinematic Purple-Pink Glow) */}
                 <div 
                   className="absolute inset-0 rounded-full"
                   style={{
-                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 182, 193, 0.3) 30%, rgba(255, 20, 147, 0.15) 60%, transparent 80%)`,
-                    boxShadow: `0 0 ${size}px rgba(157, 80, 187, 0.4)`,
+                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 20, 147, 0.25) 45%, rgba(139, 0, 139, 0.15) 75%, transparent 90%)`,
+                    boxShadow: `0 0 ${size * 0.8}px rgba(255, 20, 147, 0.3), 0 0 ${size * 1.2}px rgba(139, 0, 139, 0.2)`,
                     mixBlendMode: 'screen',
-                    filter: 'blur(2px)'
+                    filter: 'blur(3px)'
                   }}
                 />
-                {/* 2. CRYSTAL STAR (Sharp Radiant Center) */}
+                {/* 2. CRYSTAL STAR (Sharp White Radiant Center) */}
                 <div 
                   className="absolute inset-0 m-auto bg-white"
                   style={{
                     width: `${starSize}px`,
                     height: `${starSize}px`,
                     clipPath: 'polygon(50% 0%, 53% 47%, 100% 50%, 53% 53%, 50% 100%, 47% 53%, 0% 50%, 47% 47%)',
-                    filter: 'drop-shadow(0 0 3px #fff)',
-                    boxShadow: '0 0 10px 2px #fff'
+                    filter: 'drop-shadow(0 0 4px #fff)',
+                    boxShadow: '0 0 12px 2px #fff'
                   }}
                 />
               </motion.div>
