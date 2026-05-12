@@ -57,6 +57,76 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
         />
       </div>
 
+      {/* 1.5 PREMIUM CINEMATIC ANIMATIONS - ADDED BETWEEN BG AND CONTENT */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* A. ATMOSPHERIC GLOWS (Behind elements) */}
+        <div className="absolute inset-0 z-[1]">
+          <motion.div 
+            animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#C5A059]/15 rounded-full blur-[120px]"
+          />
+          <motion.div 
+            animate={{ opacity: [0.15, 0.3, 0.15] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[350px] bg-[#C5A059]/10 rounded-full blur-[100px]"
+          />
+        </div>
+
+        {/* B. TWINKLING STARS (Sky area) */}
+        <div className="absolute inset-0 z-[2]">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`star-${i}`}
+              className="absolute w-[2px] h-[2px] bg-white rounded-full"
+              style={{ 
+                left: `${(i * 137.5) % 100}%`, 
+                top: `${(i * 97.1) % 45}%`, 
+                boxShadow: '0 0 6px 1.5px rgba(255, 255, 255, 0.7)'
+              }}
+              animate={{ 
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.3, 1]
+              }}
+              transition={{ 
+                duration: 3 + (i % 4), 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: i * 0.5
+              }}
+            />
+          ))}
+        </div>
+
+        {/* C. FLOATING GOLDEN SPARKLES (Full screen) */}
+        <div className="absolute inset-0 z-[3]">
+          {[...Array(18)].map((_, i) => (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-1 h-1 bg-[#C5A059] rounded-full"
+              style={{ 
+                left: `${(i * 123.7) % 100}%`, 
+                top: `${(i * 157.3) % 100}%`,
+                filter: 'blur(0.8px)',
+                boxShadow: '0 0 10px #C5A059'
+              }}
+              animate={{ 
+                y: [0, -40, 0],
+                x: [0, (i % 2 === 0 ? 20 : -20), 0],
+                opacity: [0, 0.6, 0],
+                scale: [0.4, 0.8, 0.4]
+              }}
+              transition={{ 
+                duration: 12 + (i % 8), 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: i * 0.7
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* 2. EXACT CONTENT OVERLAY (Matching Reference Layout) */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-12 lg:py-16 px-6 no-scrollbar overflow-y-auto lg:overflow-hidden">
         
