@@ -39,7 +39,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
         <div 
           className="block lg:hidden w-full h-full"
           style={{
-            backgroundImage: "url('/peachbackgroundmobile.png')",
+            backgroundImage: "url('/peachbackground4mobile.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat"
