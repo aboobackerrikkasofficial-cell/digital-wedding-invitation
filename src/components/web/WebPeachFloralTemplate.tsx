@@ -73,40 +73,56 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. LUXURY CINEMATIC TWINKLES (Fixed positions, breathing glow) */}
-        <div className="absolute inset-0 z-[2]">
-          {[...Array(60)].map((_, i) => (
-            <motion.div
-              key={`twinkle-${i}`}
-              className="absolute"
-              style={{ 
-                left: `${(i * 123.7) % 100}%`, 
-                top: `${(i * 157.3) % 100}%`,
-                width: (i % 10 === 0 ? 12 : i % 3 === 0 ? 6 : 3) + 'px',
-                height: (i % 10 === 0 ? 12 : i % 3 === 0 ? 6 : 3) + 'px',
-                background: 'radial-gradient(circle, #ffffff 0%, #FFB6C1 30%, #FF1493 60%, transparent 100%)',
-                clipPath: 'polygon(50% 0%, 52% 48%, 100% 50%, 52% 52%, 50% 100%, 48% 52%, 0% 50%, 48% 48%)',
-                filter: `drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 10px #FF1493) drop-shadow(0 0 20px rgba(139, 0, 139, 0.4))`,
-                mixBlendMode: 'screen',
-                opacity: i % 4 === 0 ? 0.7 : 0.4,
-              }}
-              animate={{ 
-                opacity: [0.1, 0.9, 0.1],
-                scale: [0.8, 1.15, 0.8],
-                filter: [
-                  `drop-shadow(0 0 2px #fff) blur(0px)`,
-                  `drop-shadow(0 0 6px #FF1493) blur(1.5px)`,
-                  `drop-shadow(0 0 2px #fff) blur(0px)`
-                ]
-              }}
-              transition={{ 
-                duration: 5 + (i % 7), 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: i * 0.3
-              }}
-            />
-          ))}
+        {/* B. RADIANT CINEMATIC SPARKLES (Fixed, Intense Bloom matching reference) */}
+        <div className="absolute inset-0 z-[2] overflow-hidden">
+          {[...Array(55)].map((_, i) => {
+            const size = (i % 12 === 0 ? 35 : i % 5 === 0 ? 20 : 10);
+            const starSize = size * 0.4;
+            return (
+              <motion.div
+                key={`radiant-twinkle-${i}`}
+                className="absolute"
+                style={{ 
+                  left: `${(i * 123.7) % 100}%`, 
+                  top: `${(i * 157.3) % 100}%`,
+                  width: `${size}px`,
+                  height: `${size}px`,
+                }}
+                animate={{ 
+                  opacity: [0.2, 0.9, 0.2],
+                  scale: [0.8, 1.1, 0.8],
+                }}
+                transition={{ 
+                  duration: 4 + (i % 6), 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: i * 0.2
+                }}
+              >
+                {/* 1. LAYERED BLOOM (Cinematic Glow) */}
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 182, 193, 0.3) 30%, rgba(255, 20, 147, 0.15) 60%, transparent 80%)`,
+                    boxShadow: `0 0 ${size}px rgba(157, 80, 187, 0.4)`,
+                    mixBlendMode: 'screen',
+                    filter: 'blur(2px)'
+                  }}
+                />
+                {/* 2. CRYSTAL STAR (Sharp Radiant Center) */}
+                <div 
+                  className="absolute inset-0 m-auto bg-white"
+                  style={{
+                    width: `${starSize}px`,
+                    height: `${starSize}px`,
+                    clipPath: 'polygon(50% 0%, 53% 47%, 100% 50%, 53% 53%, 50% 100%, 47% 53%, 0% 50%, 47% 47%)',
+                    filter: 'drop-shadow(0 0 3px #fff)',
+                    boxShadow: '0 0 10px 2px #fff'
+                  }}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
