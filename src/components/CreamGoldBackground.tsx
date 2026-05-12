@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 
@@ -63,11 +64,14 @@ export function CreamGoldBackground({ bgColor = "#fffcf2", particleImage }: { bg
           }}
         >
           {particleImage ? (
-            <img 
-              src={particleImage} 
-              alt="" 
-              className="w-full h-full object-contain" 
-            />
+            <div className="relative w-full h-full">
+              <Image 
+                src={particleImage} 
+                alt="" 
+                fill
+                className="object-contain" 
+              />
+            </div>
           ) : (
             <div 
               className="w-full h-full rounded-full" 

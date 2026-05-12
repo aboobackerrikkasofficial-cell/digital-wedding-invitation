@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 /**
@@ -26,7 +27,6 @@ export function PinkPantherBackground({ bgColor = "#FF8DA1" }: { bgColor?: strin
           loop
           muted
           playsInline
-          onLoadedData={() => console.log("Video background initialized successfully.")}
           onError={() => setVideoError(true)}
           className="absolute inset-0 w-full h-full object-cover z-10"
         >
@@ -38,10 +38,12 @@ export function PinkPantherBackground({ bgColor = "#FF8DA1" }: { bgColor?: strin
         High-Quality 3D Fallback
         Automatically visible if the video file is missing or fails to load.
       */}
-      <img 
+      <Image 
         src="/pink_panther_realistic_run.png?v=3" 
         alt="Pink Panther Background" 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoError ? 'opacity-30 z-20' : 'opacity-0 z-0'}`}
+        fill
+        className={`object-cover transition-opacity duration-1000 ${videoError ? 'opacity-30 z-20' : 'opacity-0 z-0'}`}
+        sizes="100vw"
       />
       
       {/* Cinematic Vignette & Noise for Depth */}

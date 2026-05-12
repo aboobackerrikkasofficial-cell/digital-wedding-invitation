@@ -71,12 +71,12 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             {/* FIXED NEXT.JS IMAGE FOR ARCH */}
             <Image 
               src="/peacharch.png" 
-              alt="Peach Arch Monogram" 
+              alt="Peach Arch" 
               width={220}
               height={220}
+              priority
               unoptimized
               className="object-contain"
-              priority
             />
             <div className="absolute inset-0 z-10 flex items-center justify-center gap-1.5 text-[#C5A059] mb-1">
               <span className="text-4xl lg:text-5xl font-serif font-bold italic drop-shadow-sm">{brideInitial}</span>

@@ -2,12 +2,18 @@ import { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import EntryPageClient from "./EntryPageClient";
 
+import { headers } from "next/headers";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const headerList = await headers();
+  const host = headerList.get("host") || "digital-wedding-invitation.vercel.app";
+  const protocol = host.includes("localhost") ? "http" : "https";
+  const baseUrl = `${protocol}://${host}`;
   
   if (slug === "demo") {
     return {
@@ -38,12 +44,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://digital-wedding-invitation.vercel.app/invite/${slug}`,
+      url: `${baseUrl}/invite/${slug}`,
       type: "website",
       siteName: "Smart Wedding Invitation",
       images: [
         {
-          url: "https://digital-wedding-invitation.vercel.app/icons/icon-512x512.png",
+          url: `${baseUrl}/icons/icon-512x512.png`,
           width: 512,
           height: 512,
           alt: `${wedding.bride_name} & ${wedding.groom_name} Wedding`,
@@ -54,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://digital-wedding-invitation.vercel.app/icons/icon-512x512.png"],
+      images: [`${baseUrl}/icons/icon-512x512.png`],
     },
   };
 }
