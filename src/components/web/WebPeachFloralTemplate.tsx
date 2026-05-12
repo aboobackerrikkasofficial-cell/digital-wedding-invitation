@@ -149,32 +149,22 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             />
             <div className="absolute inset-0 z-10 flex items-center justify-center text-[#C5A059] pointer-events-none">
               <div className="relative w-24 h-24 lg:w-32 lg:h-32 flex items-center justify-center">
-                {/* First Initial - Upper Left (Top Layer, ~72% size) */}
+                {/* First Initial - Upper Left (Top Layer, ~92% size) */}
                 <motion.span 
-                  initial={{ opacity: 0, x: -8, y: -12 }}
-                  animate={{ opacity: 1, x: -14, y: -18 }}
+                  initial={{ opacity: 0, x: -6, y: -6 }}
+                  animate={{ opacity: 1, x: -10, y: -10 }}
                   transition={{ duration: 1.2, delay: 0.5 }}
-                  className="absolute z-20 text-[46px] lg:text-[62px] font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#FDFDFD] via-[#D4AF37] to-[#997A15] bg-clip-text text-transparent leading-none monogram-letter"
+                  className="absolute z-20 text-[58px] lg:text-[78px] font-normal drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#D4AF37] via-[#CFA64A] to-[#B8892D] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {brideInitial}
                 </motion.span>
                 
-                {/* Small Sparkle/Plus (Positioned bottom-left of the visual center) */}
-                <motion.span 
-                  initial={{ opacity: 0, scale: 0, x: -18, y: 14 }}
-                  animate={{ opacity: 0.8, scale: 1, x: -18, y: 14 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="absolute z-10 text-[14px] lg:text-[18px] font-light text-[#D4AF37] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)] monogram-letter"
-                >
-                  ✦
-                </motion.span>
-                
                 {/* Second Initial - Lower Right (Larger 100%, Underneath) */}
                 <motion.span 
-                  initial={{ opacity: 0, x: 8, y: 10 }}
-                  animate={{ opacity: 1, x: 12, y: 14 }}
+                  initial={{ opacity: 0, x: 6, y: 6 }}
+                  animate={{ opacity: 1, x: 10, y: 10 }}
                   transition={{ duration: 1.2, delay: 0.8 }}
-                  className="absolute z-0 text-[64px] lg:text-[86px] font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#FDFDFD] via-[#D4AF37] to-[#997A15] bg-clip-text text-transparent leading-none monogram-letter"
+                  className="absolute z-0 text-[64px] lg:text-[86px] font-normal drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#D4AF37] via-[#CFA64A] to-[#B8892D] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {groomInitial}
                 </motion.span>
