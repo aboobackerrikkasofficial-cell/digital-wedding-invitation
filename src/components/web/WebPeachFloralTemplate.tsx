@@ -73,67 +73,68 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. GALAXY TWINKLING STARS (Integrated into sky) - Refined Glow Colors */}
+        {/* B. CINEMATIC GALAXY STARS (Twinkling Depth) */}
         <div className="absolute inset-0 z-[2]">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(35)].map((_, i) => (
             <motion.div
               key={`star-${i}`}
               className="absolute"
               style={{ 
                 left: `${(i * 137.5) % 100}%`, 
-                top: `${(i * 97.1) % 55}%`,
-                width: (i % 3 === 0 ? 6 : 3) + 'px',
-                height: (i % 3 === 0 ? 6 : 3) + 'px',
-                background: 'radial-gradient(circle, #FFF5E1 0%, #FF91A4 40%, #9D50BB 100%)',
-                clipPath: 'polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%)',
-                filter: `drop-shadow(0 0 4px #FF1493) drop-shadow(0 0 8px rgba(157, 80, 187, 0.6))`,
+                top: `${(i * 97.1) % 60}%`,
+                width: (i % 5 === 0 ? 8 : i % 2 === 0 ? 4 : 2) + 'px',
+                height: (i % 5 === 0 ? 8 : i % 2 === 0 ? 4 : 2) + 'px',
+                background: 'radial-gradient(circle, #ffffff 10%, #FFB6C1 40%, #FF1493 80%, transparent 100%)',
+                clipPath: 'polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%)',
+                filter: `drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 10px #FF1493)`,
                 mixBlendMode: 'screen',
-                opacity: i % 2 === 0 ? 0.7 : 0.4,
+                opacity: i % 3 === 0 ? 0.9 : 0.5,
+                filter: i % 4 === 0 ? 'blur(1px)' : 'none'
               }}
               animate={{ 
-                opacity: [0.2, 0.9, 0.2],
-                scale: [0.9, 1.2, 0.9],
+                opacity: [0.3, 1, 0.3],
+                scale: [0.8, 1.2, 0.8],
+                rotate: i % 6 === 0 ? [0, 45, 0] : 0
               }}
               transition={{ 
-                duration: 4 + (i % 4), 
+                duration: 3 + (i % 5), 
                 repeat: Infinity, 
                 ease: "easeInOut",
-                delay: i * 0.3
+                delay: i * 0.2
               }}
             />
           ))}
         </div>
 
-        {/* C. DIAMOND GALAXY SPARKLES (Floating depth) - Refined Glow Colors */}
+        {/* C. HERO FLOATING SPARKLES (Magical Atmosphere) */}
         <div className="absolute inset-0 z-[3]">
-          {[...Array(35)].map((_, i) => (
+          {[...Array(45)].map((_, i) => (
             <motion.div
               key={`sparkle-${i}`}
               className="absolute"
               style={{ 
                 left: `${(i * 123.7) % 100}%`, 
                 top: `${(i * 157.3) % 100}%`,
-                width: (i % 5 === 0 ? 8 : 4) + 'px',
-                height: (i % 5 === 0 ? 8 : 4) + 'px',
-                background: 'radial-gradient(circle, #FFF 0%, #FFF5E1 20%, #FF91A4 60%, #9D50BB 100%)',
-                clipPath: 'polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%)',
-                filter: `drop-shadow(0 0 5px #FF1493) drop-shadow(0 0 12px rgba(157, 80, 187, 0.5))`,
+                width: (i % 10 === 0 ? 12 : i % 3 === 0 ? 6 : 3) + 'px',
+                height: (i % 10 === 0 ? 12 : i % 3 === 0 ? 6 : 3) + 'px',
+                background: 'radial-gradient(circle, #ffffff 0%, #FFB6C1 30%, #FF1493 60%, #8B008B 100%)',
+                clipPath: 'polygon(50% 0%, 53% 47%, 100% 50%, 53% 53%, 50% 100%, 47% 53%, 0% 50%, 47% 47%)',
+                filter: `drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 12px #FF1493) drop-shadow(0 0 20px rgba(139, 0, 139, 0.4))`,
                 mixBlendMode: 'screen',
-                scaleX: i % 7 === 0 ? 1.4 : 1,
                 opacity: 0,
               }}
               animate={{ 
-                y: [0, -80],
-                x: [0, (i % 2 === 0 ? 25 : -25)],
-                opacity: [0, 0.8, 0.8, 0],
-                scale: [0.5, 1.1, 1.1, 0.5]
+                y: [0, -120],
+                x: [0, (i % 2 === 0 ? 30 : -30)],
+                opacity: [0, 0.9, 0.9, 0],
+                scale: [0.4, 1.1, 1.1, 0.4]
               }}
               transition={{ 
-                y: { duration: 25 + (i % 15), repeat: Infinity, ease: "linear" },
-                x: { duration: 15 + (i % 10), repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 8 + (i % 5), repeat: Infinity, ease: "easeInOut" },
-                scale: { duration: 8 + (i % 5), repeat: Infinity, ease: "easeInOut" },
-                delay: i * 0.5
+                y: { duration: 20 + (i % 20), repeat: Infinity, ease: "linear" },
+                x: { duration: 12 + (i % 12), repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 8 + (i % 6), repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 8 + (i % 6), repeat: Infinity, ease: "easeInOut" },
+                delay: i * 0.4
               }}
             />
           ))}
