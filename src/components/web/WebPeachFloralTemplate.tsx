@@ -73,24 +73,30 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           />
         </div>
 
-        {/* B. TWINKLING STARS (Sky area) - Enhanced Visibility */}
+        {/* B. GALAXY TWINKLING STARS (Integrated into sky) */}
         <div className="absolute inset-0 z-[2]">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <motion.div
               key={`star-${i}`}
-              className="absolute w-[3px] h-[3px] bg-white rounded-full"
+              className="absolute"
               style={{ 
                 left: `${(i * 137.5) % 100}%`, 
-                top: `${(i * 97.1) % 45}%`, 
-                boxShadow: '0 0 10px 2px rgba(255, 255, 255, 0.9)',
-                filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))'
+                top: `${(i * 97.1) % 55}%`,
+                width: (i % 3 === 0 ? 6 : 3) + 'px',
+                height: (i % 3 === 0 ? 6 : 3) + 'px',
+                background: 'white',
+                clipPath: 'polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%)',
+                filter: `drop-shadow(0 0 2px #FFD700) drop-shadow(0 0 5px #FF1493) drop-shadow(0 0 8px #8B008B)`,
+                opacity: i % 2 === 0 ? 0.8 : 0.4,
+                blur: i % 4 === 0 ? '1px' : '0px'
               }}
               animate={{ 
-                opacity: [0.2, 1, 0.2],
-                scale: [0.8, 1.4, 0.8]
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.3, 1],
+                rotate: i % 5 === 0 ? [0, 90, 0] : 0
               }}
               transition={{ 
-                duration: 2 + (i % 3), 
+                duration: 4 + (i % 4), 
                 repeat: Infinity, 
                 ease: "easeInOut",
                 delay: i * 0.3
@@ -99,33 +105,35 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           ))}
         </div>
 
-        {/* C. FLOATING GOLDEN SPARKLES (Full screen) - Enhanced Count & Brightness */}
+        {/* C. DIAMOND GALAXY SPARKLES (Floating depth) */}
         <div className="absolute inset-0 z-[3]">
-          {[...Array(40)].map((_, i) => (
+          {[...Array(35)].map((_, i) => (
             <motion.div
               key={`sparkle-${i}`}
-              className="absolute rounded-full"
+              className="absolute"
               style={{ 
                 left: `${(i * 123.7) % 100}%`, 
                 top: `${(i * 157.3) % 100}%`,
-                width: (i % 4 === 0 ? 4 : 2) + 'px',
-                height: (i % 4 === 0 ? 4 : 2) + 'px',
-                background: 'radial-gradient(circle, #fff 0%, #FFD700 50%, #C5A059 100%)',
-                boxShadow: '0 0 15px 3px rgba(255, 215, 0, 0.7)',
-                filter: 'blur(0.4px)'
+                width: (i % 5 === 0 ? 8 : 4) + 'px',
+                height: (i % 5 === 0 ? 8 : 4) + 'px',
+                background: 'rgba(255, 255, 255, 0.95)',
+                clipPath: 'polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%)',
+                filter: `drop-shadow(0 0 3px #FFD700) drop-shadow(0 0 6px #FF1493) drop-shadow(0 0 12px #8B008B)`,
+                scaleX: i % 7 === 0 ? 1.5 : 1,
+                opacity: 0,
               }}
               animate={{ 
-                y: [0, -150],
-                x: [0, (i % 2 === 0 ? 40 : -40)],
-                opacity: [0, 0.9, 0.9, 0],
-                scale: [0.5, 1.2, 1.2, 0.5]
+                y: [0, -80],
+                x: [0, (i % 2 === 0 ? 25 : -25)],
+                opacity: [0, 0.8, 0.8, 0],
+                scale: [0.5, 1.1, 1.1, 0.5]
               }}
               transition={{ 
-                y: { duration: 20 + (i % 15), repeat: Infinity, ease: "linear" },
-                x: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
-                scale: { duration: 10 + (i % 10), repeat: Infinity, ease: "easeInOut" },
-                delay: i * 0.4
+                y: { duration: 25 + (i % 15), repeat: Infinity, ease: "linear" },
+                x: { duration: 15 + (i % 10), repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 8 + (i % 5), repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 8 + (i % 5), repeat: Infinity, ease: "easeInOut" },
+                delay: i * 0.5
               }}
             />
           ))}
