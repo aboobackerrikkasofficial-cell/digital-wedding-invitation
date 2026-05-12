@@ -99,12 +99,12 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   delay: i * 0.2
                 }}
               >
-                {/* 1. LAYERED BLOOM (Blue-to-Pink Galaxy Gradient: #0652C5 to #D4418E) */}
+                {/* 1. LAYERED BLOOM (Rosy-Pink to Wine-Magenta Gradient: #AA4465 to #861657) */}
                 <div 
                   className="absolute inset-0 rounded-full"
                   style={{
-                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(6, 82, 197, 0.45) 40%, rgba(212, 65, 142, 0.3) 75%, transparent 100%)`,
-                    boxShadow: `0 0 ${size * 0.8}px rgba(6, 82, 197, 0.35), 0 0 ${size * 1.2}px rgba(212, 65, 142, 0.25)`,
+                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(170, 68, 101, 0.45) 40%, rgba(134, 22, 87, 0.3) 75%, transparent 100%)`,
+                    boxShadow: `0 0 ${size * 0.8}px rgba(170, 68, 101, 0.35), 0 0 ${size * 1.2}px rgba(134, 22, 87, 0.25)`,
                     mixBlendMode: 'screen',
                     filter: 'blur(3px)'
                   }}
