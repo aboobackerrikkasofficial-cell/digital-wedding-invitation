@@ -136,20 +136,20 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="flex flex-col items-center text-center shrink-0 mt-2"
         >
-          <div className="relative w-28 h-28 lg:w-36 lg:h-36 flex items-center justify-center">
-            {/* FIXED NEXT.JS IMAGE FOR ARCH - Reduced by 2px for mobile (180 -> 178) */}
+          <div className="relative w-[110px] h-[110px] lg:w-36 lg:h-36 flex items-center justify-center">
+            {/* FIXED NEXT.JS IMAGE FOR ARCH */}
             <Image 
               src="/peacharch.png" 
               alt="Peach Arch" 
-              width={178}
-              height={178}
+              width={180}
+              height={180}
               priority
               unoptimized
-              className="object-contain lg:w-[180px] lg:h-[180px]"
+              className="object-contain"
             />
             <div className="absolute inset-0 z-10 flex items-center justify-center text-[#C5A059] pointer-events-none">
               <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex items-center justify-center">
-                {/* First Initial - Upper Left - Increased by 1px for mobile (26 -> 27) */}
+                {/* First Initial - Upper Left */}
                 <motion.span 
                   initial={{ opacity: 0, x: -3, y: -3 }}
                   animate={{ opacity: 1, x: -3, y: -3 }}
@@ -159,7 +159,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   {brideInitial}
                 </motion.span>
                 
-                {/* Second Initial - Lower Right - Increased by 1px for mobile (26 -> 27) */}
+                {/* Second Initial - Lower Right */}
                 <motion.span 
                   initial={{ opacity: 0, x: 3, y: 3 }}
                   animate={{ opacity: 1, x: 3, y: 3 }}
@@ -176,15 +176,15 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
         {/* MIDDLE SECTION: TYPOGRAPHY & COUNTDOWN */}
         <div className="flex-grow flex flex-col items-center justify-start w-full max-w-2xl mt-4 shrink-1 overflow-hidden min-h-0">
           
-          {/* Subtitle - REFINED MOBILE TYPOGRAPHY */}
+          {/* Subtitle */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="flex flex-col items-center text-[#D6A24B] text-center space-y-1"
+            className="flex flex-col items-center text-[#D6A24B] uppercase text-center space-y-1"
           >
-            <span className="text-[9px] lg:text-[11px] uppercase tracking-[0.4em] font-semibold" style={{ letterSpacing: 'calc(0.5em - 1px)' }}>YOU ARE INVITED TO</span>
-            <span className="text-[10px] lg:text-[11px] uppercase tracking-[0.5em] font-semibold">THE WEDDING OF</span>
+            <span className="text-[9px] lg:text-[11px] font-semibold lg:font-medium tracking-[3.5px] lg:tracking-[0.5em]">YOU ARE INVITED TO</span>
+            <span className="text-[10px] lg:text-[11px] font-semibold lg:font-medium tracking-[0.5em]">THE WEDDING OF</span>
           </motion.div>
 
           {/* Bride Name */}
