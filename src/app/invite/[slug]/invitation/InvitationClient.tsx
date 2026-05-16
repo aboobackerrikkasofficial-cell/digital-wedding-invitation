@@ -1,6 +1,7 @@
 "use client";
 
 import { InvitationLanding } from "@/components/InvitationLanding";
+import { TrustMessage } from "@/components/TrustMessage";
 import { useParams, useRouter } from "next/navigation";
 import { useWedding } from "../WeddingContext";
 import { supabase } from "@/lib/supabase";
@@ -48,6 +49,7 @@ export default function InvitationClient() {
 
   return (
     <div className="min-h-screen w-full relative">
+      {slug === "thameem-weds-ayisha" && <TrustMessage />}
       <InvitationLanding 
         wedding={wedding} 
         onAttend={handleAttend} 
