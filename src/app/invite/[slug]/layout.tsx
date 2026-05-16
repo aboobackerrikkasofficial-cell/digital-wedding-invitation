@@ -121,7 +121,7 @@ export default function InviteLayout({
   }
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden relative">
       <BackgroundMusic 
         musicUrl={wedding?.music_url || ""} 
         forcePlay={isOpened} 
