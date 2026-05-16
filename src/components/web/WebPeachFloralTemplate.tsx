@@ -36,25 +36,29 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
       {/* 1. CINEMATIC BACKGROUNDS - FORCE CSS RENDERING FOR VERCEL PATH STABILITY */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background */}
-        <div 
-          className="block lg:hidden w-full h-full"
-          style={{
-            backgroundImage: "url('/peachbackground4mobile.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
-          }}
-        />
+        <div className="block lg:hidden absolute inset-0 w-full h-full">
+          <Image
+            src="/peachbackground4mobile.png"
+            alt="Background Mobile"
+            fill
+            priority
+            quality={85}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* Web Background */}
-        <div 
-          className="hidden lg:block w-full h-full"
-          style={{
-            backgroundImage: "url('/peachbackgroundweb.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
-          }}
-        />
+        <div className="hidden lg:block absolute inset-0 w-full h-full">
+          <Image
+            src="/peachbackgroundweb.png"
+            alt="Background Web"
+            fill
+            priority
+            quality={90}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
       </div>
 
       {/* 1.5 PREMIUM CINEMATIC ANIMATIONS - ADDED BETWEEN BG AND CONTENT */}
@@ -64,11 +68,13 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           <motion.div 
             animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            style={{ willChange: 'transform, opacity' }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#C5A059]/15 rounded-full blur-[120px]"
           />
           <motion.div 
             animate={{ opacity: [0.15, 0.3, 0.15] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            style={{ willChange: 'opacity' }}
             className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[350px] bg-[#C5A059]/10 rounded-full blur-[100px]"
           />
         </div>
@@ -87,6 +93,8 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   top: `${(i * 157.3) % 100}%`,
                   width: `${size}px`,
                   height: `${size}px`,
+                  willChange: 'transform, opacity',
+                  transform: 'translateZ(0)'
                 }}
                 animate={{ 
                   opacity: [0.15, 0.95, 0.15],
@@ -99,14 +107,14 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   delay: i * 0.2
                 }}
               >
-                {/* 1. LAYERED BLOOM (Rosy-Pink to Wine-Magenta Gradient: #AA4465 to #861657) */}
+                {/* 1. LAYERED BLOOM (Optimized: Combined Gradient for Performance) */}
                 <div 
                   className="absolute inset-0 rounded-full"
                   style={{
-                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(170, 68, 101, 0.45) 40%, rgba(134, 22, 87, 0.3) 75%, transparent 100%)`,
-                    boxShadow: `0 0 ${size * 0.8}px rgba(170, 68, 101, 0.35), 0 0 ${size * 1.2}px rgba(134, 22, 87, 0.25)`,
+                    background: `radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(170, 68, 101, 0.4) 30%, rgba(134, 22, 87, 0.2) 60%, transparent 100%)`,
                     mixBlendMode: 'screen',
-                    filter: 'blur(3px)'
+                    willChange: 'opacity',
+                    backfaceVisibility: 'hidden'
                   }}
                 />
                 {/* 2. CRYSTAL STAR (Sharp White Radiant Center) */}
@@ -154,6 +162,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   initial={{ opacity: 0, x: -3, y: -3 }}
                   animate={{ opacity: 1, x: -3, y: -3 }}
                   transition={{ duration: 1.2, delay: 0.5 }}
+                  style={{ willChange: 'transform, opacity' }}
                   className="absolute z-20 text-[30px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {brideInitial}
@@ -164,6 +173,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   initial={{ opacity: 0, x: 3, y: 3 }}
                   animate={{ opacity: 1, x: 3, y: 3 }}
                   transition={{ duration: 1.2, delay: 0.8 }}
+                  style={{ willChange: 'transform, opacity' }}
                   className="absolute z-0 text-[30px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {groomInitial}
@@ -192,6 +202,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
+            style={{ willChange: 'transform, opacity' }}
             className="text-[46px] lg:text-[68px] font-light bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent text-center leading-[0.7] mt-2 max-w-[90%] lg:max-w-none script-name"
           >
             {wedding.bride_name}
@@ -202,6 +213,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
+            style={{ willChange: 'opacity' }}
             className="text-[#D6A24B] text-lg lg:text-2xl font-serif italic font-extralight opacity-80 my-1"
           >
             &
@@ -212,6 +224,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
+            style={{ willChange: 'transform, opacity' }}
             className="text-[40px] lg:text-[60px] font-light bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent text-center leading-[0.7] mb-2 max-w-[90%] lg:max-w-none script-name"
           >
             {wedding.groom_name}
