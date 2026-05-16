@@ -134,7 +134,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="flex flex-col items-center text-center shrink-0 mt-1"
+          className="flex flex-col items-center text-center shrink-0 mt-6"
         >
           <div className="relative w-[108px] h-[108px] lg:w-36 lg:h-36 flex items-center justify-center">
             {/* FIXED NEXT.JS IMAGE FOR ARCH */}
@@ -154,7 +154,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   initial={{ opacity: 0, x: -3, y: -3 }}
                   animate={{ opacity: 1, x: -3, y: -3 }}
                   transition={{ duration: 1.2, delay: 0.5 }}
-                  className="absolute z-20 text-[28px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
+                  className="absolute z-20 text-[30px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {brideInitial}
                 </motion.span>
@@ -164,7 +164,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
                   initial={{ opacity: 0, x: 3, y: 3 }}
                   animate={{ opacity: 1, x: 3, y: 3 }}
                   transition={{ duration: 1.2, delay: 0.8 }}
-                  className="absolute z-0 text-[28px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
+                  className="absolute z-0 text-[30px] lg:text-[34px] font-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#E5C06D] via-[#D6A24B] to-[#B8862F] bg-clip-text text-transparent leading-none monogram-letter"
                 >
                   {groomInitial}
                 </motion.span>
@@ -174,7 +174,7 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
         </motion.div>
 
         {/* MIDDLE SECTION: TYPOGRAPHY & COUNTDOWN */}
-        <div className="flex-grow flex flex-col items-center justify-start w-full max-w-2xl mt-2 shrink-1 overflow-hidden min-h-0">
+        <div className="flex-grow flex flex-col items-center justify-start w-full max-w-2xl mt-[13px] shrink-1 overflow-hidden min-h-0">
           
           {/* Subtitle */}
           <motion.div 
@@ -183,8 +183,8 @@ export function WebPeachFloralTemplate({ wedding, onAttend, onNotAttend }: Peach
             transition={{ duration: 1, delay: 0.3 }}
             className="flex flex-col items-center text-[#D6A24B] uppercase text-center space-y-1"
           >
-            <span className="text-[9px] lg:text-[11px] font-bold lg:font-medium tracking-[2.5px] lg:tracking-[0.5em]">YOU ARE INVITED TO</span>
-            <span className="text-[11px] lg:text-[11px] font-bold lg:font-medium tracking-[0.5em]">THE WEDDING OF</span>
+            <span className="text-[10.5px] lg:text-[11px] font-bold lg:font-medium tracking-[2.5px] lg:tracking-[0.5em]">YOU ARE INVITED TO</span>
+            <span className="text-[13px] lg:text-[11px] font-bold lg:font-medium tracking-[0.5em]">THE WEDDING OF</span>
           </motion.div>
 
           {/* Bride Name */}
