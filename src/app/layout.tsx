@@ -23,8 +23,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Official Wedding Invitation | Fathimath Ayisha Thasneem & Muhammed Thameem MD",
-  description: "With the blessings of our families, we warmly invite you to our wedding celebration.",
+  title: "Smart Wedding Invitation System",
+  description: "Elegant digital wedding invitations with integrated RSVP",
   manifest: "/manifest.json",
   icons: {
     apple: "/icons/icon-192x192.png",
@@ -34,28 +34,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Official Wedding Invitation",
-  },
-  openGraph: {
-    title: "Official Wedding Invitation | Fathimath Ayisha Thasneem & Muhammed Thameem MD",
-    description: "With the blessings of our families, we warmly invite you to our wedding celebration.",
-    url: "https://digital-wedding-invitation-two.vercel.app/",
-    type: "website",
-    siteName: "Smart Wedding Invitation",
-    images: [
-      {
-        url: "/cream-gold-thumbnail.png",
-        width: 1200,
-        height: 630,
-        alt: "Official Wedding Invitation",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Official Wedding Invitation | Fathimath Ayisha Thasneem & Muhammed Thameem MD",
-    description: "With the blessings of our families, we warmly invite you to our wedding celebration.",
-    images: ["/cream-gold-thumbnail.png"],
+    title: "Smart Wedding",
   },
 };
 
